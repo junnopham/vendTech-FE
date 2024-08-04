@@ -11,7 +11,7 @@ const OfficeWorks = () => {
 				>
 					<img
 						src={morsl03}
-						className="object-cover"
+						className="object-cover rounded-lg"
 						style={{ maxWidth: 500, maxHeight: 300 }}
 					/>
 				</div>

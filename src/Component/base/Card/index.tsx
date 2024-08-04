@@ -35,15 +35,26 @@ const Card = (props: IProps) => {
 							{item.title}
 						</div>
 						<ul className="text-center">
-							{item.contents.map((content) => {
-								return (
+							{item.contents.map((content, _, arr) => {
+								let list = (
 									<li
 										className="font-thin"
 										style={{ lineHeight: '32px' }}
 									>
-										- {content}
+										{content}
 									</li>
 								);
+								if (arr.length > 1) {
+									list = (
+										<li
+											className="font-thin"
+											style={{ lineHeight: '32px' }}
+										>
+											- {content}
+										</li>
+									);
+								}
+								return list;
 							})}
 						</ul>
 					</div>

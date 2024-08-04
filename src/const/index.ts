@@ -36,15 +36,15 @@ export const itemInfo1 = [
 ];
 export const itemInfo2 = [
 	{
-		id: 4,
+		id: 1,
 		title: 'Restocking',
 		contents: [
 			'Each market has its own dedicated market manager responsible for restocking and quality control'
 		],
-		url: '.https://www.morsl.com.au/wp-content/uploads/2021/08/FOOD-ICONS_Morsl-2021-Web-22.svg'
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/FOOD-ICONS_Morsl-2021-Web-22.svg'
 	},
 	{
-		id: 5,
+		id: 2,
 		title: 'Security',
 		contents: [
 			'Real-time remote monitoring ensures security and inventory levels are maintained'
@@ -52,11 +52,31 @@ export const itemInfo2 = [
 		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/FOOD-ICONS_Morsl-2021-Web-23.svg'
 	},
 	{
-		id: 6,
+		id: 3,
 		title: 'Active Management ',
 		contents: [
 			'Regular promotions, new products and health campaigns keep employees engaged, encouraging healthy eating.'
 		],
 		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/FOOD-ICONS_Morsl-2021-Web-27.svg'
+	}
+];
+export const employeeDescriptions = [
+	{
+		name: 'Jeadee',
+		description:
+			'Since the market is here I’ve been eating way healthier. There are fresh juices, protein shakes and really nice sandwiches. ',
+		url: 'https://www.morsl.com.au/wp-content/uploads/2023/05/Artboard-1-copy-1-2.webp'
+	},
+	{
+		name: 'Claire',
+		description:
+			'Morsl is able to provide our team members with healthy and nutritious food options across all hours. ',
+		url: 'https://www.morsl.com.au/wp-content/uploads/2023/05/Artboard-1-copy-2-1-1.webp'
+	},
+	{
+		name: 'Ollie',
+		description:
+			'Since the market has been here you find yourself less tired, there is always something to refuel on. If you need energy, the market is always there for you ',
+		url: 'https://www.morsl.com.au/wp-content/uploads/2023/05/Artboard-1-1-1.webp'
 	}
 ];
