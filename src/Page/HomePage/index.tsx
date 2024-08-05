@@ -6,6 +6,7 @@ const HomePage = () => {
 		<>
 			<Header />
 			<Main />
+			<div>Hello World!</div>
 		</>
 	);
 };
