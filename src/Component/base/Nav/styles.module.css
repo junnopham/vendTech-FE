@@ -24,3 +24,31 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+/* ------ */
+.itemList2 > a:hover::before {
+	width: 100%;
+	transition: width 0.5s;
+}
+.itemList2 > a {
+	position: relative;
+	padding: 5px;
+	font-size: 16px;
+	text-align: center;
+	font-weight: 100;
+}
+.itemList2 > a::before {
+	content: '';
+	width: 0px;
+	height: 2px;
+	position: absolute;
+	background-color: rgb(232, 90, 42);
+	top: 32px;
+	left: 0;
+	z-index: 100;
+}
+.itemList2 {
+	min-width: 400px;
+	display: flex;
+	justify-content: space-between;
+}

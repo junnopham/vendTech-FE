@@ -12,9 +12,7 @@ const contentStyle: React.CSSProperties = {
 };
 
 const Employee: React.FC = () => {
-	const onChange = (currentSlide: number) => {
-		console.log(currentSlide);
-	};
+	const onChange = (currentSlide: number) => {};
 
 	return (
 		<div

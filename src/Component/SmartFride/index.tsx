@@ -10,7 +10,7 @@ const SmartFridge = () => {
 					className="font-bold text-3xl text-main mb-2"
 					style={{ color: '#e7592a', lineHeight: '64px' }}
 				>
-					Morsl Smart Fridge
+					Vend Tech Smart Fridge
 				</h3>
 				<p className="mb-6 font-light">
 					Our innovative, AI powered food solution, serving fresh and

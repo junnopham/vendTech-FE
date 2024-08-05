@@ -7,7 +7,7 @@ const Benefit = () => {
 				className="py-12 text-center"
 				style={{ color: '#9fa07c', fontSize: 28, lineHeight: '64px' }}
 			>
-				Why Morsl?
+				Why Vend Tech?
 			</h3>
 			<div className="flex">
 				<div className="p-20">
