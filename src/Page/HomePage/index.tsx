@@ -1,5 +1,5 @@
-import Header from '../../Component/base/Header';
-import Main from '../../Component/base/Main';
+import Header from '../../Components/base/Header';
+import Main from '../../Components/base/Main';
 
 const HomePage = () => {
 	return (
