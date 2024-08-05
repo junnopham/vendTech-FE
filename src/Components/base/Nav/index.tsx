@@ -130,16 +130,16 @@ const NavBar = () => {
 								Make Enquiry
 							</button>
 							<button className="mr-4">
-								<BiLogoFacebook className="text-gray-300 hover:text-white" />
+								<BiLogoFacebook className="text-gray-300 hover:text-white text-2xl" />
 							</button>
 							<button className="mr-4">
-								<BiLogoLinkedin className="text-gray-300 hover:text-white" />
+								<BiLogoLinkedin className="text-gray-300 hover:text-white text-2xl" />
 							</button>
 							<button className="mr-4">
-								<BiLogoInstagram className="text-gray-300 hover:text-white" />
+								<BiLogoInstagram className="text-gray-300 hover:text-white text-2xl" />
 							</button>
 							<button className="mr-4">
-								<BiLogoGmail className="text-gray-300 hover:text-white" />
+								<BiLogoGmail className="text-gray-300 hover:text-white text-2xl" />
 							</button>
 						</div>
 					</div>
@@ -221,21 +221,21 @@ const NavBar = () => {
 						>
 							<button
 								style={{ backgroundColor: 'rgb(232, 90, 42)' }}
-								className="px-5 py-1 font-thin text-sm text-white hover:opacity-80 mr-10"
+								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mr-10"
 							>
 								Make Enquiry
 							</button>
 							<button className="mr-4">
-								<BiLogoFacebook className="text-black hover:text-white" />
+								<BiLogoFacebook className="text-black hover:text-orange-600 text-2xl" />
 							</button>
 							<button className="mr-4">
-								<BiLogoLinkedin className="text-black hover:text-white" />
+								<BiLogoLinkedin className="text-black hover:text-orange-600 text-2xl" />
 							</button>
 							<button className="mr-4">
-								<BiLogoInstagram className="text-black hover:text-white" />
+								<BiLogoInstagram className="text-black hover:text-orange-600 text-2xl" />
 							</button>
 							<button className="mr-4">
-								<BiLogoGmail className="text-black hover:text-white" />
+								<BiLogoGmail className="text-black hover:text-orange-600 text-2xl" />
 							</button>
 						</div>
 					</div>
