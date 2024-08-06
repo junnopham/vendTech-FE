@@ -260,7 +260,7 @@ const NavBar = () => {
 						>
 							<button
 								style={{ backgroundColor: 'rgb(232, 90, 42)' }}
-								className="px-5 py-1 font-thin text-sm text-white hover:opacity-80 mr-10"
+								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mr-10"
 							>
 								Make Enquiry
 							</button>
