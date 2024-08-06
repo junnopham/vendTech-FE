@@ -57,13 +57,14 @@
 .iconWrapper {
 	position: relative;
 	display: inline-block;
+	font-size: 20px;
 }
 
 .icon {
 	position: relative;
 	transition:
-		transform 0.4s ease,
-		opacity 0.4s ease;
+		transform 0.2s ease,
+		opacity 0.2s ease;
 }
 
 .iconWhite {
@@ -71,8 +72,8 @@
 	opacity: 0;
 	color: white;
 	transition:
-		transform 0.4s ease,
-		opacity 0.4s ease;
+		transform 0.2s ease,
+		opacity 0.2s ease;
 	transform: translateY(10px);
 	top: 0;
 	left: 0;
@@ -89,41 +90,9 @@
 	opacity: 1;
 }
 
-/* .iconWrapper {
-	position: relative;
-	display: inline-block;
+.iconSubNav {
+	margin-right: 16px;
 }
-
-.icon {
-	position: relative;
-	transition:
-		transform 0.4s ease,
-		opacity 0.4s ease;
-	z-index: 1;
+.iconSubNav:hover .iconWhite {
+	color: rgb(232, 90, 42);
 }
-
-.icon::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	transform: translateY(10px);
-	opacity: 0;
-	transition:
-		transform 0.4s ease,
-		opacity 0.4s ease;
-	z-index: -1;
-	color: white;
-}
-
-.iconWrapper:hover .icon {
-	transform: translateY(-10px);
-	opacity: 0;
-}
-
-.iconWrapper:hover .icon::before {
-	transform: translateY(0);
-	opacity: 1;
-} */

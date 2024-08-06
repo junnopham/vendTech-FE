@@ -1,62 +1,8 @@
 import React, { useState } from 'react';
-import type { CascaderProps } from 'antd';
-import {
-	AutoComplete,
-	Button,
-	Cascader,
-	Checkbox,
-	Col,
-	Form,
-	Input,
-	InputNumber,
-	Row,
-	Select
-} from 'antd';
+import { Button, Form, Input, Select } from 'antd';
 import './styles.css';
-import { start } from 'repl';
 
 const { Option } = Select;
-
-interface DataNodeType {
-	value: string;
-	label: string;
-	children?: DataNodeType[];
-}
-
-const residences: CascaderProps<DataNodeType>['options'] = [
-	{
-		value: 'zhejiang',
-		label: 'Zhejiang',
-		children: [
-			{
-				value: 'hangzhou',
-				label: 'Hangzhou',
-				children: [
-					{
-						value: 'xihu',
-						label: 'West Lake'
-					}
-				]
-			}
-		]
-	},
-	{
-		value: 'jiangsu',
-		label: 'Jiangsu',
-		children: [
-			{
-				value: 'nanjing',
-				label: 'Nanjing',
-				children: [
-					{
-						value: 'zhonghuamen',
-						label: 'Zhong Hua Men'
-					}
-				]
-			}
-		]
-	}
-];
 
 const formItemLayout = {
 	labelCol: {
@@ -66,19 +12,6 @@ const formItemLayout = {
 	wrapperCol: {
 		xs: { span: 24 },
 		sm: { span: 16 }
-	}
-};
-
-const tailFormItemLayout = {
-	wrapperCol: {
-		xs: {
-			span: 24,
-			offset: 0
-		},
-		sm: {
-			span: 16,
-			offset: 8
-		}
 	}
 };
 
@@ -133,12 +66,11 @@ const SubmitForm: React.FC = () => {
 				backgroundPosition: 'left top',
 				backgroundRepeat: 'repeat',
 				willChange: 'transform',
-				transform: 'translate3d(0px, 135px, 0px) scale(1.005)',
-				paddingTop: '16px'
+				transform: 'translate3d(0px, 135px, 0px) scale(1.005)'
 			}}
 		>
 			<div className="">
-				<div className="flex justify-center">
+				<div className="flex justify-center py-20">
 					<Form
 						{...formItemLayout}
 						form={form}
@@ -280,7 +212,8 @@ const SubmitForm: React.FC = () => {
 								maxLength={200}
 								style={{
 									backgroundColor: '#f5f8fa',
-									height: 'auto'
+									height: 'auto',
+									padding: '6px 4px'
 								}}
 							/>
 						</Form.Item>

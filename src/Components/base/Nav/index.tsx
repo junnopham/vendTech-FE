@@ -1,8 +1,4 @@
-import {
-	Disclosure,
-	DisclosureButton,
-	DisclosurePanel
-} from '@headlessui/react';
+import { Disclosure, DisclosureButton } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import { navigation } from '../../../const';
@@ -18,8 +14,7 @@ import { useEffect, useState } from 'react';
 
 interface IconButtonProps {
 	Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-	color?: string;
-	currentColor?: string;
+	customColor?: string;
 }
 
 const NavBar = () => {
@@ -55,28 +50,12 @@ const NavBar = () => {
 		};
 	}, []);
 
-	const IconButton: React.FC<IconButtonProps> = ({
-		Icon,
-		color,
-		currentColor
-	}) => (
+	const IconButton: React.FC<IconButtonProps> = ({ Icon, customColor }) => (
 		<div className={styles.iconWrapper}>
-			<Icon
-				className={`${styles.icon} text-gray-300`}
-				style={{ color: currentColor }}
-			/>
-			<Icon className={`${styles.iconWhite}`} style={{ color: color }} />
+			<Icon className={`${styles.icon}`} style={{ color: customColor }} />
+			<Icon className={`${styles.iconWhite}`} />
 		</div>
 	);
-	// const IconButton: React.FC<IconButtonProps> = ({
-	// 	Icon,
-	// 	color,
-	// 	currentColor
-	// }) => (
-	// 	<div className={styles.iconWrapper}>
-	// 		<Icon className={styles.icon} />
-	// 	</div>
-	// );
 
 	return (
 		<>
@@ -90,7 +69,7 @@ const NavBar = () => {
 					transition: 'transform .5s ease,box-shadow .5s ease'
 				}}
 			>
-				<div className="mx-auto px-2 sm:px-6 lg:px-16 w-full">
+				<div className="mx-auto sm:px-6 lg:px-16 w-full">
 					<div className="relative flex h-16 items-center justify-between">
 						<div
 							className="absolute inset-y-0 left-0 flex items-center sm:hidden"
@@ -112,7 +91,7 @@ const NavBar = () => {
 						</div>
 						<div
 							className="flex flex-1 items-center justify-center align-middle sm:justify-start"
-							style={{ flex: '1 1 60%' }}
+							style={{ flex: '1 1 70%' }}
 						>
 							<div
 								className="flex flex-shrink-0 items-center"
@@ -124,7 +103,7 @@ const NavBar = () => {
 							</div>
 							<div
 								className="hidden sm:ml-6 sm:block"
-								style={{ flex: '1 1 100%' }}
+								style={{ flex: '1 1 70%' }}
 							>
 								<div className={styles.itemList}>
 									{navigation.map((item) => (
@@ -151,34 +130,37 @@ const NavBar = () => {
 						</div>
 						<div
 							className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 justify-center"
-							style={{ minWidth: 300, flex: '1 1 20%' }}
+							style={{ minWidth: 300, flex: '1 1 30%' }}
 						>
 							<button
 								style={{ backgroundColor: 'rgb(232, 90, 42)' }}
-								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mr-10"
+								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mx-5"
 							>
 								Make Enquiry
 							</button>
 							<button className="mr-4">
 								<IconButton
 									Icon={BiLogoFacebook}
-									color="#fff"
+									customColor="#fff"
 								/>
 							</button>
 							<button className="mr-4">
 								<IconButton
 									Icon={BiLogoLinkedin}
-									color="#fff"
+									customColor="#fff"
 								/>
 							</button>
 							<button className="mr-4">
 								<IconButton
 									Icon={BiLogoInstagram}
-									color="#fff"
+									customColor="#fff"
 								/>
 							</button>
 							<button className="mr-4">
-								<IconButton Icon={BiLogoGmail} color="#fff" />
+								<IconButton
+									Icon={BiLogoGmail}
+									customColor="#fff"
+								/>
 							</button>
 						</div>
 					</div>
@@ -229,7 +211,7 @@ const NavBar = () => {
 							</div>
 							<div
 								className="hidden sm:ml-6 sm:block"
-								style={{ flex: '1 1 100%' }}
+								style={{ flex: '1 1 70%' }}
 							>
 								<div className={styles.itemList2}>
 									{navigation.map((item) => (
@@ -260,37 +242,21 @@ const NavBar = () => {
 						>
 							<button
 								style={{ backgroundColor: 'rgb(232, 90, 42)' }}
-								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mr-10"
+								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mx-5"
 							>
 								Make Enquiry
 							</button>
-							<button className="mr-4">
-								<IconButton
-									Icon={BiLogoFacebook}
-									color="#E85A2A"
-									currentColor="black"
-								/>
+							<button className={styles.iconSubNav}>
+								<IconButton Icon={BiLogoFacebook} />
 							</button>
-							<button className="mr-4">
-								<IconButton
-									Icon={BiLogoLinkedin}
-									color="#E85A2A"
-									currentColor="black"
-								/>
+							<button className={styles.iconSubNav}>
+								<IconButton Icon={BiLogoLinkedin} />
 							</button>
-							<button className="mr-4">
-								<IconButton
-									Icon={BiLogoInstagram}
-									color="#E85A2A"
-									currentColor="black"
-								/>
+							<button className={styles.iconSubNav}>
+								<IconButton Icon={BiLogoInstagram} />
 							</button>
-							<button className="mr-4">
-								<IconButton
-									Icon={BiLogoGmail}
-									color="#E85A2A"
-									currentColor="black"
-								/>
+							<button className={styles.iconSubNav}>
+								<IconButton Icon={BiLogoGmail} />
 							</button>
 						</div>
 					</div>

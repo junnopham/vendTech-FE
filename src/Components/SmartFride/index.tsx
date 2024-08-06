@@ -1,7 +1,7 @@
 import morsl02 from '../../assets/morsl-02.png';
 const SmartFridge = () => {
 	return (
-		<div className="flex pt-28">
+		<div className="flex py-28">
 			<div className="pl-3 pr-3">
 				<img src={morsl02} />
 			</div>
