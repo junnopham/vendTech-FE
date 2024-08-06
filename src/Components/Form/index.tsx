@@ -12,6 +12,8 @@ import {
 	Row,
 	Select
 } from 'antd';
+import './styles.css';
+import { start } from 'repl';
 
 const { Option } = Select;
 
@@ -89,7 +91,7 @@ const SubmitForm: React.FC = () => {
 
 	const prefixSelector = (
 		<Form.Item name="prefix" noStyle>
-			<Select style={{ width: 70 }}>
+			<Select style={{ width: '70px', height: '40px' }}>
 				<Option value="86">+86</Option>
 				<Option value="87">+87</Option>
 			</Select>
@@ -131,7 +133,8 @@ const SubmitForm: React.FC = () => {
 				backgroundPosition: 'left top',
 				backgroundRepeat: 'repeat',
 				willChange: 'transform',
-				transform: 'translate3d(0px, 135px, 0px) scale(1.005)'
+				transform: 'translate3d(0px, 135px, 0px) scale(1.005)',
+				paddingTop: '16px'
 			}}
 		>
 			<div className="">
@@ -152,8 +155,9 @@ const SubmitForm: React.FC = () => {
 								'rgba(0,0,0,.04) 0 1px 0,rgba(0,0,0,.05) 0 2px 7px,rgba(0,0,0,.06) 0 12px 22px'
 						}}
 						scrollToFirstError
+						wrapperCol={{ span: 24 }}
 						layout="vertical"
-						className="px-16 py-16 w-full bg-white"
+						className="px-16 py-16 bg-white"
 					>
 						<div
 							className="flex justify-center flex-col text-center "
@@ -177,15 +181,20 @@ const SubmitForm: React.FC = () => {
 						<Form.Item
 							name="fistName"
 							label="First Name"
+							className="custom-form-label"
 							rules={[
 								{
 									required: true,
 									message: 'Please input your first name'
 								}
 							]}
-							className="w-full"
 						>
-							<Input />
+							<Input
+								style={{
+									height: '40px',
+									backgroundColor: '#f5f8fa'
+								}}
+							/>
 						</Form.Item>
 						<Form.Item
 							name="lastName"
@@ -198,12 +207,20 @@ const SubmitForm: React.FC = () => {
 							]}
 							hasFeedback
 						>
-							<Input />
+							<Input
+								style={{
+									height: '40px',
+									backgroundColor: '#f5f8fa'
+								}}
+							/>
 						</Form.Item>
 						<Form.Item name="phone" label="Phone Number">
 							<Input
 								addonBefore={prefixSelector}
-								style={{ width: '100%' }}
+								style={{
+									height: '40px',
+									backgroundColor: '#f5f8fa'
+								}}
 							/>
 						</Form.Item>
 						<Form.Item
@@ -216,7 +233,12 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input />
+							<Input
+								style={{
+									height: '40px',
+									backgroundColor: '#f5f8fa'
+								}}
+							/>
 						</Form.Item>
 						<Form.Item
 							name="siteName"
@@ -228,7 +250,12 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input />
+							<Input
+								style={{
+									height: '40px',
+									backgroundColor: '#f5f8fa'
+								}}
+							/>
 						</Form.Item>
 						<Form.Item
 							name="numberOfEmployees"
@@ -240,13 +267,21 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input />
+							<Input
+								style={{
+									height: '40px',
+									backgroundColor: '#f5f8fa'
+								}}
+							/>
 						</Form.Item>
 						<Form.Item name="message" label="Message">
 							<Input.TextArea
 								showCount
 								maxLength={200}
-								className="w-full"
+								style={{
+									backgroundColor: '#f5f8fa',
+									height: 'auto'
+								}}
 							/>
 						</Form.Item>
 						<Form.Item
@@ -263,10 +298,19 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input />
+							<Input
+								style={{
+									height: '40px',
+									backgroundColor: '#f5f8fa'
+								}}
+							/>
 						</Form.Item>
-						<Form.Item {...tailFormItemLayout}>
-							<Button type="primary" htmlType="submit">
+						<Form.Item>
+							<Button
+								type="primary"
+								htmlType="submit"
+								className="button-submit"
+							>
 								Submit
 							</Button>
 						</Form.Item>
