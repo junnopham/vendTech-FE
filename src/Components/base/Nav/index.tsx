@@ -16,6 +16,12 @@ import {
 } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 
+interface IconButtonProps {
+	Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+	color?: string;
+	currentColor?: string;
+}
+
 const NavBar = () => {
 	let oldScrollY = 0;
 
@@ -48,6 +54,30 @@ const NavBar = () => {
 			window.removeEventListener('scroll', controlDirection);
 		};
 	}, []);
+
+	const IconButton: React.FC<IconButtonProps> = ({
+		Icon,
+		color,
+		currentColor
+	}) => (
+		<div className={styles.iconWrapper}>
+			<Icon
+				className={`${styles.icon} text-gray-300`}
+				style={{ color: currentColor }}
+			/>
+			<Icon className={`${styles.iconWhite}`} style={{ color: color }} />
+		</div>
+	);
+	// const IconButton: React.FC<IconButtonProps> = ({
+	// 	Icon,
+	// 	color,
+	// 	currentColor
+	// }) => (
+	// 	<div className={styles.iconWrapper}>
+	// 		<Icon className={styles.icon} />
+	// 	</div>
+	// );
+
 	return (
 		<>
 			<Disclosure
@@ -130,16 +160,25 @@ const NavBar = () => {
 								Make Enquiry
 							</button>
 							<button className="mr-4">
-								<BiLogoFacebook className="text-gray-300 hover:text-white text-2xl" />
+								<IconButton
+									Icon={BiLogoFacebook}
+									color="#fff"
+								/>
 							</button>
 							<button className="mr-4">
-								<BiLogoLinkedin className="text-gray-300 hover:text-white text-2xl" />
+								<IconButton
+									Icon={BiLogoLinkedin}
+									color="#fff"
+								/>
 							</button>
 							<button className="mr-4">
-								<BiLogoInstagram className="text-gray-300 hover:text-white text-2xl" />
+								<IconButton
+									Icon={BiLogoInstagram}
+									color="#fff"
+								/>
 							</button>
 							<button className="mr-4">
-								<BiLogoGmail className="text-gray-300 hover:text-white text-2xl" />
+								<IconButton Icon={BiLogoGmail} color="#fff" />
 							</button>
 						</div>
 					</div>
@@ -226,16 +265,32 @@ const NavBar = () => {
 								Make Enquiry
 							</button>
 							<button className="mr-4">
-								<BiLogoFacebook className="text-black hover:text-orange-600 text-2xl" />
+								<IconButton
+									Icon={BiLogoFacebook}
+									color="#E85A2A"
+									currentColor="black"
+								/>
 							</button>
 							<button className="mr-4">
-								<BiLogoLinkedin className="text-black hover:text-orange-600 text-2xl" />
+								<IconButton
+									Icon={BiLogoLinkedin}
+									color="#E85A2A"
+									currentColor="black"
+								/>
 							</button>
 							<button className="mr-4">
-								<BiLogoInstagram className="text-black hover:text-orange-600 text-2xl" />
+								<IconButton
+									Icon={BiLogoInstagram}
+									color="#E85A2A"
+									currentColor="black"
+								/>
 							</button>
 							<button className="mr-4">
-								<BiLogoGmail className="text-black hover:text-orange-600 text-2xl" />
+								<IconButton
+									Icon={BiLogoGmail}
+									color="#E85A2A"
+									currentColor="black"
+								/>
 							</button>
 						</div>
 					</div>
