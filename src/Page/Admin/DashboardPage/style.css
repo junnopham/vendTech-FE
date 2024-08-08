@@ -1,0 +1,12 @@
+.logo-vend-tech {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
