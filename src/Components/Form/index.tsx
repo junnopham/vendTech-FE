@@ -64,9 +64,7 @@ const SubmitForm: React.FC = () => {
 				backgroundImage:
 					'url(https://www.morsl.com.au/wp-content/uploads/2018/04/morsl-dark-pattern-800-08-1.png)',
 				backgroundPosition: 'left top',
-				backgroundRepeat: 'repeat',
-				willChange: 'transform',
-				transform: 'translate3d(0px, 135px, 0px) scale(1.005)'
+				backgroundRepeat: 'repeat'
 			}}
 		>
 			<div className="">

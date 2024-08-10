@@ -1,9 +1,31 @@
+import { useInView } from 'react-intersection-observer';
 import morsl02 from '../../assets/morsl-02.png';
+import AddCircleIcon from '../base/AddCircleIcon';
 const SmartFridge = () => {
+	const { ref, inView } = useInView({
+		threshold: 0.6
+	});
+	const animationClass = 'translate-y-full opacity-0';
+	const smoothClass = '';
 	return (
-		<div className="flex py-28">
-			<div className="pl-3 pr-3">
-				<img src={morsl02} />
+		<div className="flex py-28" ref={ref}>
+			<div className="pl-3 pr-3 relative max-h-[520px]">
+				<img src={morsl02} className="h-full w-full" />
+				<AddCircleIcon
+					classesName={`absolute left-[230px] top-[20px] transition-all duration-1000 ${inView ? 'opacity-1' : animationClass}`}
+				/>
+				<AddCircleIcon
+					classesName={`${inView ? 'opacity-1' : animationClass} absolute right-[250px] top-[20%] transition-all duration-1000`}
+				/>
+				<AddCircleIcon
+					classesName={`${inView ? 'opacity-1' : animationClass} absolute left-[230px] top-[30%] transition-all duration-1000`}
+				/>
+				<AddCircleIcon
+					classesName={`${inView ? 'opacity-1' : animationClass} absolute right-[250px] bottom-[40%] transition-all duration-1000`}
+				/>
+				<AddCircleIcon
+					classesName={`${inView ? 'opacity-1' : animationClass} absolute left-[230px] bottom-[10%] transition-all duration-1000`}
+				/>
 			</div>
 			<div className="flex flex-col justify-center pl-3 pr-3">
 				<h3
@@ -12,7 +34,9 @@ const SmartFridge = () => {
 				>
 					Vend Tech Smart Fridge
 				</h3>
-				<p className="mb-6 font-light">
+				<p
+					className={`mb-6 font-light transition-all duration-1000 ${inView ? 'opacity-1' : animationClass}`}
+				>
 					Our innovative, AI powered food solution, serving fresh and
 					healthy options in smaller workplaces and public spaces.
 				</p>

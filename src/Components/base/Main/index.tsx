@@ -11,18 +11,20 @@ import SubmitForm from '../../Form';
 const Main = () => {
 	return (
 		<>
-			<div className="px-24 py-0">
+			<div className="px-28 py-0">
 				<MicroMarket />
 				<SmartFridge />
 			</div>
 			<OfficeWorks />
-			<div className="px-24 py-0">
+			<div className="px-28 py-0">
 				<OurService />
 				<OurProduct />
 				<Benefit />
 			</div>
 			<Employee />
 			<SubmitForm />
+
+			<ImageIntro />
 		</>
 	);
 };

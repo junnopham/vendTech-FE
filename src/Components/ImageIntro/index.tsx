@@ -1,50 +1,34 @@
-import React from 'react';
-import { Anchor, Col, Row } from 'antd';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
-const ImageIntro: React.FC = () => (
-	<Row className="flex flex-col pb-10">
-		<Col
-			span={16}
-			className="flex
-        "
-		>
-			<div
-				id="part-1"
-				style={{ height: '100vh', background: 'red', width: 200 }}
-			/>
-			<div
-				id="part-2"
-				style={{ height: '100vh', background: 'yellow', width: 200 }}
-			/>
-			<div
-				id="part-3"
-				style={{ height: '100vh', background: 'green', width: 200 }}
-			/>
-		</Col>
-		<Col span={8}>
-			<Anchor
-				replace
-				direction="horizontal"
-				items={[
-					{
-						key: 'part-1',
-						href: '#part-1',
-						title: ''
-					},
-					{
-						key: 'part-2',
-						href: '#part-2',
-						title: ''
-					},
-					{
-						key: 'part-3',
-						href: '#part-3',
-						title: ''
-					}
-				]}
-			/>
-		</Col>
-	</Row>
-);
+import './style.css';
+import { imageList } from '../../const';
 
+const ImageIntro = () => {
+	// const sliderWidth = ((imageList.length - 4) * 740) / 2;
+	// console.log(sliderWidth);
+
+	return (
+		<div className="py-20">
+			<Swiper
+				watchSlidesProgress={true}
+				slidesPerView={3}
+				className=" w-full"
+				width={2480}
+				speed={800}
+			>
+				{imageList.map((img) => {
+					return (
+						<SwiperSlide key={img.id} className="mx-[16px]">
+							<img
+								src={img.url}
+								className="h-full w-full object-cover hover:cursor-pointer"
+							/>
+						</SwiperSlide>
+					);
+				})}
+			</Swiper>
+		</div>
+	);
+};
 export default ImageIntro;
