@@ -1,0 +1,12 @@
+.swiper {
+	/* width: 800px; */
+}
+.swiper-slide {
+	height: 400px;
+	width: 700px !important;
+	line-height: 300px;
+	text-align: center;
+}
+.swiper-wrapper:nth-child(1) {
+	margin-left: 48px;
+}

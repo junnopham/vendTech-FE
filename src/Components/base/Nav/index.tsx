@@ -38,7 +38,6 @@ const NavBar = () => {
 		window.scrollY > 80 && direction === 'up'
 			? setHiddenSubNav(false)
 			: setHiddenSubNav(true);
-		console.log(window.scrollY);
 	};
 	useEffect(() => {
 		window.addEventListener('scroll', listenScrollEvent);

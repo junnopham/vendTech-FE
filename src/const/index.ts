@@ -80,3 +80,49 @@ export const employeeDescriptions = [
 		url: 'https://www.morsl.com.au/wp-content/uploads/2023/05/Artboard-1-1-1.webp'
 	}
 ];
+export const imageList = [
+	{
+		id: 1,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2023/05/Morsl-Employsure-Mirco-Market-1-1024x768-2-1.webp'
+	},
+	{
+		id: 2,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2023/05/Morsl-Employsure-Micro-Market-3-1024x768-1.webp'
+	},
+	{
+		id: 3,
+		url: '	https://www.morsl.com.au/wp-content/uploads/2023/05/morsl_using-market-1.webp'
+	},
+	{
+		id: 4,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/morsl_market_image-1536x887.png'
+	},
+	{
+		id: 5,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/PHOTO-2020-11-13-08-17-31-1536x691.jpg'
+	},
+	{
+		id: 6,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/1628034686403.jpeg'
+	},
+	{
+		id: 7,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/DSC4639-1-1536x864.jpg'
+	},
+	{
+		id: 8,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/IMG20210107085511-1536x691.jpg'
+	},
+	{
+		id: 9,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/DSC4639-1-1536x864.jpg'
+	},
+	{
+		id: 10,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/PHOTO-2021-05-21-11-09-41-1024x461.jpg'
+	},
+	{
+		id: 11,
+		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/DSC4613-1536x864.jpg'
+	}
+];

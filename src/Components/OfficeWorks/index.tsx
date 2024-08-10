@@ -1,10 +1,14 @@
+import { useInView } from 'react-intersection-observer';
 import morsl03 from '../../assets/morsl-03.jpg';
 import { itemInfo1 } from '../../const';
 import Card from '../base/Card';
 const OfficeWorks = () => {
+	const { ref, inView } = useInView({
+		threshold: 0.6
+	});
 	return (
-		<div className="pt-28 pb-40" style={{ backgroundColor: '#ecece5' }}>
-			<div className="flex px-20 pb-24" style={{ flex: '1 1 50%' }}>
+		<div className="pt-28 pb-40 bg-[#ecece5]" ref={ref}>
+			<div className="flex px-20 pb-24 ">
 				<div
 					className="px-10 flex justify-center align-middle"
 					style={{ flex: '1 1 50%' }}
