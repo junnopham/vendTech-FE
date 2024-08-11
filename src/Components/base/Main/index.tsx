@@ -22,9 +22,9 @@ const Main = () => {
 				<Benefit />
 			</div>
 			<Employee />
+			<ImageIntro />
 			<SubmitForm />
 
-			<ImageIntro />
 		</>
 	);
 };

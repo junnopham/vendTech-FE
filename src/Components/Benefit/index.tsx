@@ -12,14 +12,14 @@ const Benefit = () => {
 			<div className="flex">
 				<div className="p-20">
 					<h2
-						style={{ color: '#e7592a' }}
+						style={{ color: '#52B2BF' }}
 						className="text-center text-3xl font-extrabold mb-4"
 					>
 						Employer
 					</h2>
 					<p
 						className="font-semibold text-center mb-4"
-						style={{ color: '#e7592a' }}
+						style={{ color: '#52B2BF' }}
 					>
 						Benefits
 					</p>
@@ -37,14 +37,14 @@ const Benefit = () => {
 				</div>
 				<div className="p-20">
 					<h2
-						style={{ color: '#e7592a' }}
+						style={{ color: '#52B2BF' }}
 						className="text-center text-3xl font-extrabold mb-4"
 					>
 						Employee
 					</h2>
 					<p
 						className="font-semibold text-center mb-4"
-						style={{ color: '#e7592a' }}
+						style={{ color: '#52B2BF' }}
 					>
 						Benefits
 					</p>
@@ -62,14 +62,14 @@ const Benefit = () => {
 				</div>
 				<div className="p-20">
 					<h2
-						style={{ color: '#e7592a' }}
+						style={{ color: '#52B2BF' }}
 						className="text-center text-3xl font-extrabold mb-4"
 					>
 						Decision Maker
 					</h2>
 					<p
 						className="font-semibold text-center mb-4"
-						style={{ color: '#e7592a' }}
+						style={{ color: '#52B2BF' }}
 					>
 						Competitive Advantages
 					</p>

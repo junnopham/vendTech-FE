@@ -5,8 +5,8 @@
 
 .button-submit {
 	color: #fff;
-	background-color: #e7592a;
-	border-color: #e7592a;
+	background-color: #52B2BF;
+	border-color: #52B2BF;
 	height: 40px;
 	width: 92px;
 	border-radius: 3px;
@@ -14,5 +14,5 @@
 
 .button-submit:hover {
 	cursor: pointer;
-	background: #e7592a !important;
+	background: #52B2BF !important;
 }

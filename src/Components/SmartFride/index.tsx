@@ -30,7 +30,7 @@ const SmartFridge = () => {
 			<div className="flex flex-col justify-center pl-3 pr-3">
 				<h3
 					className="font-bold text-3xl text-main mb-2"
-					style={{ color: '#e7592a', lineHeight: '64px' }}
+					style={{ color: '#52B2BF', lineHeight: '64px' }}
 				>
 					Vend Tech Smart Fridge
 				</h3>

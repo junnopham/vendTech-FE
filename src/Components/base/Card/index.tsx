@@ -30,7 +30,7 @@ const Card = (props: IProps) => {
 						</div>
 						<div
 							className="mb-4 text-center text-xl font-bold"
-							style={{ color: '#e85a2a' }}
+							style={{ color: '#52B2BF' }}
 						>
 							{item.title}
 						</div>

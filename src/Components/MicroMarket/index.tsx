@@ -9,7 +9,7 @@ const MicroMarket = () => {
 	return (
 		<div className="flex pt-28" ref={ref}>
 			<div className="flex flex-col justify-center px-6 max-w-[600px]">
-				<h3 className="font-bold text-3xl text-main mb-2 text-[#e7592a] leading-[64px]">
+				<h3 className="font-bold text-3xl text-main mb-2 text-[#52B2BF] leading-[64px]">
 					Vend Tech Micro Market
 				</h3>
 				<p
