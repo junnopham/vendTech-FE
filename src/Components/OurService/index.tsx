@@ -7,7 +7,7 @@ const OurService = () => {
 		<div className="pt-16 pb-24">
 			<h3
 				className="font-bold text-left mb-8 not-italic"
-				style={{ color: '#e7592a', fontSize: 28, lineHeight: '64px' }}
+				style={{ color: '#52B2BF', fontSize: 28, lineHeight: '64px' }}
 			>
 				Our Service
 			</h3>

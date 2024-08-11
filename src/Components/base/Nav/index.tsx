@@ -132,8 +132,7 @@ const NavBar = () => {
 							style={{ minWidth: 300, flex: '1 1 30%' }}
 						>
 							<button
-								style={{ backgroundColor: 'rgb(232, 90, 42)' }}
-								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mx-5"
+								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mx-5 bg-[#52B2BF]"
 							>
 								Make Enquiry
 							</button>
@@ -240,8 +239,7 @@ const NavBar = () => {
 							style={{ minWidth: 300, flex: '1 1 20%' }}
 						>
 							<button
-								style={{ backgroundColor: 'rgb(232, 90, 42)' }}
-								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mx-5"
+								className="px-5 py-2 font-thin text-sm text-white hover:opacity-80 mx-5 bg-[#52B2BF]"
 							>
 								Make Enquiry
 							</button>

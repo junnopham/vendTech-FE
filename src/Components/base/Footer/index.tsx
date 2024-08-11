@@ -5,7 +5,7 @@ const Footer = () => {
 		<div className="min-h-[560px] bg-[#280D30] ">
 			<div className="h-full p-[76px_90px] flex justify-between">
 				<div className="w-[23%]">
-					<div className="text-[#e7592a] mb-[20px] text-[25px]">
+					<div className="text-[#52B2BF] mb-[20px] text-[25px]">
 						Services
 					</div>
 					<ul className="text-white text-[16px]">
@@ -34,7 +34,7 @@ const Footer = () => {
 				</div>
 
 				<div className="w-[23%]">
-					<div className="text-[#e7592a] mb-[30px] text-[25px]">
+					<div className="text-[#52B2BF] mb-[30px] text-[25px]">
 						Links
 					</div>
 					<ul className="text-white text-[16px] ">
@@ -60,7 +60,7 @@ const Footer = () => {
 				</div>
 
 				<div style={{ width: '23%' }}>
-					<div className="text-[#e7592a] mb-[20px] text-[25px]">
+					<div className="text-[#52B2BF] mb-[20px] text-[25px]">
 						Contact Us
 					</div>
 					<div className="text-[16px] text-white italic">
