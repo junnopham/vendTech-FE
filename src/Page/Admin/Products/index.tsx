@@ -142,7 +142,7 @@ const Products = () => {
 			tableParams.pagination?.pageSize || 10,
 			tableParams.pagination?.current || 0
 		).then((results) => {
-			setData(results);
+			setData(results.data);
 			setLoading(false);
 			setTableParams({
 				...tableParams,
@@ -150,7 +150,7 @@ const Products = () => {
 					...tableParams.pagination,
 					showSizeChanger: true,
 					pageSizeOptions: ['10', '20', '30', '40', '50'],
-					total: 30
+					total: results.total
 				}
 			});
 		});
