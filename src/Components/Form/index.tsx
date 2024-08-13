@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Input, Select } from 'antd';
-import './styles.css';
+import { useInView } from 'react-intersection-observer';
 
 const { Option } = Select;
 
@@ -18,6 +18,9 @@ const formItemLayout = {
 const SubmitForm: React.FC = () => {
 	const [form] = Form.useForm();
 
+	const { ref, inView } = useInView({
+		threshold: 0.25
+	});
 	const onFinish = (values: any) => {
 		console.log('Received values of form: ', values);
 	};
@@ -66,8 +69,9 @@ const SubmitForm: React.FC = () => {
 				backgroundPosition: 'left top',
 				backgroundRepeat: 'repeat'
 			}}
+			ref={ref}
 		>
-			<div className="">
+			<div>
 				<div className="flex justify-center py-20">
 					<Form
 						{...formItemLayout}
@@ -93,7 +97,9 @@ const SubmitForm: React.FC = () => {
 							className="flex justify-center flex-col text-center "
 							style={{ color: '#280c2f' }}
 						>
-							<h2 className="text-4xl font-bold mb-12">
+							<h2
+								className={`text-4xl font-bold mb-12 transition-all duration-1000 ${inView ? 'opacity-1' : 'translate-y-full opacity-0'}`}
+							>
 								Want to create a happier, healthier and more
 								productive workplace?
 							</h2>
@@ -119,12 +125,7 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input
-								style={{
-									height: '40px',
-									backgroundColor: '#f5f8fa'
-								}}
-							/>
+							<Input className="bg-[#f5f8fa] h-[40px]" />
 						</Form.Item>
 						<Form.Item
 							name="lastName"
@@ -137,21 +138,10 @@ const SubmitForm: React.FC = () => {
 							]}
 							hasFeedback
 						>
-							<Input
-								style={{
-									height: '40px',
-									backgroundColor: '#f5f8fa'
-								}}
-							/>
+							<Input className="bg-[#f5f8fa] h-[40px]" />
 						</Form.Item>
 						<Form.Item name="phone" label="Phone Number">
-							<Input
-								addonBefore={prefixSelector}
-								style={{
-									height: '40px',
-									backgroundColor: '#f5f8fa'
-								}}
-							/>
+							<Input className="bg-[#f5f8fa] h-[40px]" />
 						</Form.Item>
 						<Form.Item
 							name="companyName"
@@ -163,12 +153,7 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input
-								style={{
-									height: '40px',
-									backgroundColor: '#f5f8fa'
-								}}
-							/>
+							<Input className="bg-[#f5f8fa] h-[40px]" />
 						</Form.Item>
 						<Form.Item
 							name="siteName"
@@ -180,12 +165,7 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input
-								style={{
-									height: '40px',
-									backgroundColor: '#f5f8fa'
-								}}
-							/>
+							<Input className="bg-[#f5f8fa] h-[40px]" />
 						</Form.Item>
 						<Form.Item
 							name="numberOfEmployees"
@@ -197,22 +177,13 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input
-								style={{
-									height: '40px',
-									backgroundColor: '#f5f8fa'
-								}}
-							/>
+							<Input className="bg-[#f5f8fa] h-[40px]" />
 						</Form.Item>
 						<Form.Item name="message" label="Message">
 							<Input.TextArea
 								showCount
 								maxLength={200}
-								style={{
-									backgroundColor: '#f5f8fa',
-									height: 'auto',
-									padding: '6px 4px'
-								}}
+								className="bg-[#f5f8fa] h-auto px-1 py-[6px]"
 							/>
 						</Form.Item>
 						<Form.Item
@@ -229,18 +200,13 @@ const SubmitForm: React.FC = () => {
 								}
 							]}
 						>
-							<Input
-								style={{
-									height: '40px',
-									backgroundColor: '#f5f8fa'
-								}}
-							/>
+							<Input className="bg-[#f5f8fa] h-[40px]" />
 						</Form.Item>
 						<Form.Item>
 							<Button
 								type="primary"
 								htmlType="submit"
-								className="button-submit"
+								className="text-white !bg-[#52b2bf] h-10 w-24 rounded hover:opacity-80 "
 							>
 								Submit
 							</Button>

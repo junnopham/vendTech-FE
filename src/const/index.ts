@@ -126,3 +126,36 @@ export const imageList = [
 		url: 'https://www.morsl.com.au/wp-content/uploads/2021/08/DSC4613-1536x864.jpg'
 	}
 ];
+export const imageFoodList = [
+	{
+		id: 1,
+		url: '	https://www.morsl.com.au/wp-content/uploads/2023/05/Morsl_Kalea.png'
+	},
+	{
+		id: 2,
+		url: '	https://www.morsl.com.au/wp-content/uploads/2023/05/Morsl_Opera.png'
+	}
+];
+export const itemFoodList = [
+	{
+		id: 1,
+		icon: 'CiCreditCard1',
+		title: 'Versatile Payment Options',
+		description:
+			'We offer versatile coffee payment options, including employee pay, partially-subsidised and fully-subsidised (employer pay)'
+	},
+	{
+		id: 2,
+		icon: '',
+		title: 'Market Leading Machines',
+		description:
+			'We offer a wide range of top-quality machines to suit all capacity requirements, from small offices to large fulfilment centres.'
+	},
+	{
+		id: 3,
+		icon: '',
+		title: 'Quality Customer Service',
+		description:
+			'Our team is dedicated to providing exceptional customer service and maintenance, customized solutions, and a seamless coffee experience.'
+	}
+];
