@@ -14,6 +14,7 @@ import {
 	getCategories,
 } from '../../../service/category.service';
 import EditCategoryModal from '../../../Components/Admin/EditCategoryModal';
+import withAuth from '../../../Components/Admin/withAuth';
 
 const { confirm } = Modal;
 
@@ -214,4 +215,4 @@ const Category = () => {
 	);
 };
 
-export default Category;
+export default withAuth(Category);

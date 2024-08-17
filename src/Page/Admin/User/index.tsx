@@ -6,6 +6,7 @@ import type { SorterResult } from 'antd/es/table/interface';
 import { EditOutlined } from '@ant-design/icons';
 import { getUsers } from '../../../service/user.service';
 import { formatTime } from '../../../util/date-time';
+import withAuth from '../../../Components/Admin/withAuth';
 
 const User = () => {
 	useTitle('Users');
@@ -149,4 +150,4 @@ const User = () => {
 	);
 };
 
-export default User;
+export default withAuth(User);
