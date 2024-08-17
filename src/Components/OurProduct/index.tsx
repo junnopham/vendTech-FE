@@ -41,7 +41,7 @@ const OurProduct = () => {
 						style={{
 							borderRadius: 5,
 							boxShadow:
-								'rgba(0,0,0,.04) 0 1px 0,rgba(0,0,0,.05) 0 2px 7px,rgba(0,0,0,.06) 0 12px 22px',
+								'rgba(0,0,0,.04) 0 1px 0,rgba(0,0,0,.05) 0 2px 7px,rgba(0,0,0,.06) 0 12px 22px'
 						}}
 					/>
 				</div>

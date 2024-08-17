@@ -24,7 +24,7 @@ const Card = (props: IProps) => {
 									minWidth: 220,
 									maxWidth: 242,
 									minHeight: 220,
-									maxHeight: 242,
+									maxHeight: 242
 								}}
 							/>
 						</div>

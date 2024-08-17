@@ -8,7 +8,7 @@ import {
 	BiLogoFacebook,
 	BiLogoLinkedin,
 	BiLogoInstagram,
-	BiLogoGmail,
+	BiLogoGmail
 } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 
@@ -65,7 +65,7 @@ const NavBar = () => {
 					transform: hiddenNav
 						? 'translateY(-100%)'
 						: 'translateY(0px)',
-					transition: 'transform .5s ease,box-shadow .5s ease',
+					transition: 'transform .5s ease,box-shadow .5s ease'
 				}}
 			>
 				<div className="mx-auto sm:px-6 lg:px-16 w-full">
@@ -170,7 +170,7 @@ const NavBar = () => {
 						? 'translateY(-100%)'
 						: 'translateY(0px)',
 					transition:
-						'transform .3s ease,height .3s ease,background .3s ease,opacity .3s ease,border-color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease',
+						'transform .3s ease,height .3s ease,background .3s ease,opacity .3s ease,border-color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease'
 				}}
 			>
 				<div className="mx-auto px-2 sm:px-6 lg:px-16 w-full">

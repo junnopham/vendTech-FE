@@ -1,9 +1,10 @@
-export const BASE_URL = 'http://localhost:3001/api';
 
-export const PRODUCTS_URL = '/product';
+export const BASE_URL = "http://localhost:3001/api";
 
-export const USER_URL = '/user';
+export const PRODUCTS_URL = "/product";
 
-export const GUESTINFO_URL = '/guestInfo';
+export const USER_URL = "/user";
 
-export const CATEGORY_URL = '/category';
+export const GUESTINFO_URL = "/guestInfo";
+
+export const CATEGORY_URL = "/category";

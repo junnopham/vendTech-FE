@@ -8,18 +8,18 @@ const FormLayout = (props: IProps) => {
 	const [form] = Form.useForm();
 	const { ref, inView } = useInView({
 		threshold: 0.25,
-		triggerOnce: true,
+		triggerOnce: true
 	});
 	const { className } = props;
 	const formItemLayout = {
 		labelCol: {
 			xs: { span: 24 },
-			sm: { span: 12 },
+			sm: { span: 12 }
 		},
 		wrapperCol: {
 			xs: { span: 24 },
-			sm: { span: 16 },
-		},
+			sm: { span: 16 }
+		}
 	};
 
 	const onFinish = (values: any) => {
@@ -36,7 +36,7 @@ const FormLayout = (props: IProps) => {
 					onFinish={onFinish}
 					initialValues={{
 						residence: ['zhejiang', 'hangzhou', 'xihu'],
-						prefix: '86',
+						prefix: '86'
 					}}
 					scrollToFirstError
 					wrapperCol={{ span: 24 }}
@@ -68,8 +68,8 @@ const FormLayout = (props: IProps) => {
 						rules={[
 							{
 								required: true,
-								message: 'Please input your first name',
-							},
+								message: 'Please input your first name'
+							}
 						]}
 					>
 						<Input className="bg-[#f5f8fa] h-[40px]" />
@@ -80,8 +80,8 @@ const FormLayout = (props: IProps) => {
 						rules={[
 							{
 								required: true,
-								message: 'Please input your last name!',
-							},
+								message: 'Please input your last name!'
+							}
 						]}
 						hasFeedback
 					>
@@ -96,8 +96,8 @@ const FormLayout = (props: IProps) => {
 						rules={[
 							{
 								required: true,
-								message: 'Please input your company!',
-							},
+								message: 'Please input your company!'
+							}
 						]}
 					>
 						<Input className="bg-[#f5f8fa] h-[40px]" />
@@ -108,8 +108,8 @@ const FormLayout = (props: IProps) => {
 						rules={[
 							{
 								required: true,
-								message: 'Please input your site name!',
-							},
+								message: 'Please input your site name!'
+							}
 						]}
 					>
 						<Input className="bg-[#f5f8fa] h-[40px]" />
@@ -120,8 +120,8 @@ const FormLayout = (props: IProps) => {
 						rules={[
 							{
 								required: true,
-								message: 'Please input number of employees!',
-							},
+								message: 'Please input number of employees!'
+							}
 						]}
 					>
 						<Input className="bg-[#f5f8fa] h-[40px]" />
@@ -139,12 +139,12 @@ const FormLayout = (props: IProps) => {
 						rules={[
 							{
 								type: 'email',
-								message: 'The input is not valid E-mail!',
+								message: 'The input is not valid E-mail!'
 							},
 							{
 								required: true,
-								message: 'Please input your E-mail!',
-							},
+								message: 'Please input your E-mail!'
+							}
 						]}
 					>
 						<Input className="bg-[#f5f8fa] h-[40px]" />
