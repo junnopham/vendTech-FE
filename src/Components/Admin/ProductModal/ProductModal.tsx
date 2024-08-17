@@ -2,41 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, message, Modal, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import {
+	createProduct,
 	getProductById,
 	updateProductById,
 } from '../../../service/product.service';
 
-interface EditFormModalProps {
-	id: string;
+interface ProductFormModalProps {
+	id: string | null;
 	onClose: () => void;
 	onUpdate: (updatedProduct: Product) => void;
+	onCreate?: (newProduct: Product) => void;
 }
 
-const EditProductModal: React.FC<EditFormModalProps> = ({
+const ProductModal: React.FC<ProductFormModalProps> = ({
 	id,
 	onClose,
 	onUpdate,
+	onCreate,
 }) => {
 	const [form] = Form.useForm();
 	const [isModalOpen, setIsModalOpen] = useState(true);
 	const [fileList, setFileList] = useState<any[]>([]);
+	const isEditMode = !!id;
 
 	useEffect(() => {
-		getProductById(id).then((response) => {
-			const { image } = response;
-			form.setFieldsValue(response);
+		if (isEditMode && id) {
+			getProductById(id).then((response) => {
+				const { image } = response;
+				form.setFieldsValue(response);
 
-			if (image?._id) {
-				setFileList([
-					{
-						uid: image._id,
-						name: image.name,
-						status: 'done',
-						url: image.url,
-					},
-				]);
-			}
-		});
+				if (image?._id) {
+					setFileList([
+						{
+							uid: image._id,
+							name: image.name,
+							status: 'done',
+							url: image.url,
+						},
+					]);
+				}
+			});
+		} else {
+			form.resetFields();
+			setFileList([]);
+		}
 	}, [id]);
 
 	const handleOk = async () => {
@@ -54,16 +63,27 @@ const EditProductModal: React.FC<EditFormModalProps> = ({
 				}
 			}
 
-			const updatedProduct = await updateProductById(_id, formData);
-			onUpdate(updatedProduct);
-			message.success('Update successfully');
+			if (isEditMode) {
+				const updatedProduct = await updateProductById(id!, formData);
+				onUpdate(updatedProduct);
+				message.success('Update successfully');
+			} else {
+				const newProduct = await createProduct(formData);
+				onCreate && onCreate(newProduct);
+				message.success('Product created successfully');
+			}
+
 			setIsModalOpen(false);
 			onClose();
 		} catch (error: any) {
 			if (error.errorFields) {
 				console.error(error);
 			} else {
-				message.error('Error when updating product, please try again!');
+				message.error(
+					isEditMode
+						? 'Error when updating product, please try again!'
+						: 'Error when creating product, please try again!'
+				);
 			}
 		}
 	};
@@ -84,7 +104,7 @@ const EditProductModal: React.FC<EditFormModalProps> = ({
 	return (
 		<>
 			<Modal
-				title="Edit product"
+				title={isEditMode ? 'Edit Product' : 'Add Product'}
 				open={isModalOpen}
 				onOk={handleOk}
 				onCancel={handleCancel}
@@ -93,14 +113,16 @@ const EditProductModal: React.FC<EditFormModalProps> = ({
 						Cancel
 					</Button>,
 					<Button key="submit" type="primary" onClick={handleOk}>
-						Update
+						{isEditMode ? 'Update' : 'Add'}
 					</Button>,
 				]}
 			>
 				<Form form={form} layout="vertical" name="edit_form">
-					<Form.Item name="_id" label="ID">
-						<Input disabled={true} />
-					</Form.Item>
+					{isEditMode && (
+						<Form.Item name="_id" label="ID">
+							<Input disabled={true} />
+						</Form.Item>
+					)}
 					<Form.Item
 						name="name"
 						label="Name"
@@ -136,4 +158,4 @@ const EditProductModal: React.FC<EditFormModalProps> = ({
 	);
 };
 
-export default EditProductModal;
+export default ProductModal;

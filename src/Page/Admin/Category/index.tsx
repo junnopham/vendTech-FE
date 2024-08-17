@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import useTitle from '../../../hooks/useTtitle';
-import { GetProp, Modal, notification, Table, TableProps } from 'antd';
+import { Button, GetProp, Modal, notification, Table, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
 import { formatTime } from '../../../util/date-time';
 import {
@@ -13,7 +13,7 @@ import {
 	deleteCategoryById,
 	getCategories,
 } from '../../../service/category.service';
-import EditCategoryModal from '../../../Components/Admin/EditCategoryModal';
+import CategoryModal from '../../../Components/Admin/CategoryModal';
 import withAuth from '../../../Components/Admin/withAuth';
 
 const { confirm } = Modal;
@@ -98,6 +98,10 @@ const Category = () => {
 		});
 	};
 
+	const handleAdd = () => {
+		setCategory({ _id: '', name: '', createdAt: '', updatedAt: '' });
+	};
+
 	const handleEdit = (record: Category) => {
 		setCategory(record);
 	};
@@ -180,12 +184,19 @@ const Category = () => {
 	};
 
 	const handleUpdate = (updatedCategory: Category) => {
-		setData(
-			(prevData) =>
-				prevData?.map((item) =>
-					item._id === updatedCategory._id ? updatedCategory : item
-				) || []
-		);
+		if (category?._id) {
+			setData(
+				(prevData) =>
+					prevData?.map((item) =>
+						item._id === updatedCategory._id
+							? updatedCategory
+							: item
+					) || []
+			);
+		} else {
+			// Thêm mới dữ liệu vào bảng
+			setData((prevData) => [...(prevData || []), updatedCategory]);
+		}
 	};
 
 	const onCloseModal = () => {
@@ -195,6 +206,17 @@ const Category = () => {
 	return (
 		<>
 			{contextHolder}
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'flex-end',
+					marginBottom: 16,
+				}}
+			>
+				<Button type="primary" onClick={handleAdd}>
+					Add
+				</Button>
+			</div>
 			<Table
 				scroll={{ x: 768 }}
 				columns={columns}
@@ -205,10 +227,11 @@ const Category = () => {
 				onChange={handleTableChange}
 			/>
 			{category && (
-				<EditCategoryModal
+				<CategoryModal
 					category={category}
 					onClose={onCloseModal}
 					onUpdate={handleUpdate}
+					mode={category._id ? 'edit' : 'add'}
 				/>
 			)}
 		</>

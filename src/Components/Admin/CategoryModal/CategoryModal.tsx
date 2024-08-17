@@ -1,40 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, message, Modal } from 'antd';
-import { updateCategoryById } from '../../../service/category.service';
+import {
+	createCategory,
+	updateCategoryById,
+} from '../../../service/category.service';
 
-interface EditFormModalProps {
+interface CategoryFormModalProps {
 	category: Category;
 	onClose: () => void;
 	onUpdate: (updatedCategory: Category) => void;
+	mode: 'edit' | 'add';
 }
 
-const EditCategoryModal: React.FC<EditFormModalProps> = ({
+const CategoryModal: React.FC<CategoryFormModalProps> = ({
 	category,
 	onClose,
 	onUpdate,
+	mode,
 }) => {
 	const [form] = Form.useForm();
 	const [isModalOpen, setIsModalOpen] = useState(true);
 
 	useEffect(() => {
-		form.setFieldsValue(category);
-	}, [category]);
+		if (mode === 'edit' && category) {
+			form.setFieldsValue(category);
+		} else {
+			form.resetFields();
+		}
+	}, [mode, category]);
 
 	const handleOk = async () => {
 		try {
 			const validate = await form.validateFields();
-			const { _id, name } = validate;
+			let updatedCategory;
 
-			const updatedProduct = await updateCategoryById(_id, name);
-			onUpdate(updatedProduct);
-			message.success('Update successfully');
+			if (mode === 'edit' && category) {
+				const { _id, name } = validate;
+				updatedCategory = await updateCategoryById(_id, name);
+				message.success('Update successfully');
+			} else {
+				const { name } = validate;
+				updatedCategory = await createCategory(name);
+				message.success('Category added successfully');
+			}
+			onUpdate(updatedCategory);
 			setIsModalOpen(false);
 			onClose();
 		} catch (error: any) {
 			if (error.errorFields) {
 				console.error(error);
 			} else {
-				message.error('Error when updating product, please try again!');
+				message.error(
+					mode === 'edit'
+						? 'Error when updating product, please try again!'
+						: 'Error when creating product, please try again!'
+				);
 			}
 		}
 	};
@@ -47,7 +67,7 @@ const EditCategoryModal: React.FC<EditFormModalProps> = ({
 	return (
 		<>
 			<Modal
-				title="Edit product"
+				title={mode === 'edit' ? 'Edit Category' : 'Add Category'}
 				open={isModalOpen}
 				onOk={handleOk}
 				onCancel={handleCancel}
@@ -61,9 +81,11 @@ const EditCategoryModal: React.FC<EditFormModalProps> = ({
 				]}
 			>
 				<Form form={form} layout="vertical" name="edit_form">
-					<Form.Item name="_id" label="ID">
-						<Input disabled={true} />
-					</Form.Item>
+					{mode === 'edit' && (
+						<Form.Item name="_id" label="ID">
+							<Input disabled={true} />
+						</Form.Item>
+					)}
 					<Form.Item
 						name="name"
 						label="Name"
@@ -82,4 +104,4 @@ const EditCategoryModal: React.FC<EditFormModalProps> = ({
 	);
 };
 
-export default EditCategoryModal;
+export default CategoryModal;
