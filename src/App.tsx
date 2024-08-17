@@ -12,7 +12,7 @@ import AboutPage from './Page/AboutPage';
 import Products from './Page/Admin/Products';
 import GuestInfo from './Page/Admin/GuestInfo';
 import Dashboard from './Page/Admin/DashboardPage';
-import User from './Page/Admin/User';
+import User from './Page/Admin/Profile';
 import Category from './Page/Admin/Category';
 import Main from './Components/base/Main';
 import ProductPage from './Page/ProductPage';
@@ -33,14 +33,14 @@ const App: React.FC = () => (
 					<Route path="about-us" element={<AboutPage />} />
 				</Route>
 				<Route path="admin" element={<Dashboard />}>
-					<Route index element={<Navigate to="users" />} />
-					<Route path="users" element={<User />} />
+					<Route index element={<Navigate to="profile" />} />
+					<Route path="profile" element={<User />} />
 					<Route path="guestInfo" element={<GuestInfo />} />
-					<Route path="products" element={<Products />} />
+					<Route path="product-management" element={<Products />} />
 					<Route path="category" element={<Category />} />
 				</Route>
 				<Route path="auth">
-					<Route path="sign_in" element={<SignIn />} />
+					<Route path="sign-in" element={<SignIn />} />
 				</Route>
 			</Routes>
 		</Router>

@@ -4,14 +4,14 @@ import {
 	deleteProductById,
 	getProducts,
 } from '../../../service/product.service';
-import { GetProp, Modal, notification, Table, TableProps } from 'antd';
+import { Button, GetProp, Modal, notification, Table, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
 import {
 	DeleteOutlined,
 	EditOutlined,
 	ExclamationCircleFilled,
 } from '@ant-design/icons';
-import EditProductModal from '../../../Components/Admin/EditProductModal';
+import ProductModal from '../../../Components/Admin/ProductModal';
 import withAuth from '../../../Components/Admin/withAuth';
 import useTitle from '../../../hooks/useTtitle';
 
@@ -87,6 +87,7 @@ const Products = () => {
 		},
 	});
 	const [editId, setEditId] = useState<string | null>(null);
+	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
 	const [api, contextHolder] = notification.useNotification();
 	type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -107,6 +108,7 @@ const Products = () => {
 
 	const onCloseModal = () => {
 		setEditId(null);
+		setIsAddModalOpen(false);
 	};
 
 	const deleteProduct = (record: Product) => {
@@ -195,9 +197,29 @@ const Products = () => {
 		);
 	};
 
+	const addProduct = () => {
+		setIsAddModalOpen(true);
+	};
+
+	const handleAddProduct = (newProduct: Product) => {
+		setData((prevData) => [newProduct, ...(prevData || [])]);
+		setIsAddModalOpen(false);
+	};
+
 	return (
 		<>
 			{contextHolder}
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'flex-end',
+					marginBottom: 16,
+				}}
+			>
+				<Button type="primary" onClick={addProduct}>
+					Add
+				</Button>
+			</div>
 			<Table
 				columns={columns}
 				rowKey={(record) => record._id}
@@ -207,10 +229,17 @@ const Products = () => {
 				onChange={handleTableChange}
 			/>
 			{editId && (
-				<EditProductModal
+				<ProductModal
 					id={editId}
 					onClose={onCloseModal}
 					onUpdate={handleUpdate}
+				/>
+			)}
+			{isAddModalOpen && (
+				<ProductModal
+					id={null}
+					onClose={onCloseModal}
+					onUpdate={handleAddProduct}
 				/>
 			)}
 		</>

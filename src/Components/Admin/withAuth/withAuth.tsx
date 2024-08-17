@@ -12,7 +12,7 @@ const withAuth = <P extends object>(
 		const { isAuthenticated } = useAuth();
 
 		if (!isAuthenticated) {
-			return <Navigate to="/auth/sign_in" state={{ from: location }} />;
+			return <Navigate to="/auth/sign-in" state={{ from: location }} />;
 		}
 
 		return <WrappedComponent {...props} />;

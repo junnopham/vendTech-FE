@@ -24,6 +24,7 @@ const Dashboard: React.FC = () => {
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
 			<Sider
+				width={230}
 				trigger={null}
 				collapsible
 				collapsed={collapsed}
@@ -32,9 +33,11 @@ const Dashboard: React.FC = () => {
 				onCollapse={(collapsed) => setCollapsed(collapsed)}
 			>
 				<div className="logo-vend-tech">
-					<span className="logo">
-						{!collapsed ? 'Vend Tech' : 'VT'}
-					</span>
+					<Link to="/">
+						<span className="logo">
+							{!collapsed ? 'Vend Tech' : 'VT'}
+						</span>
+					</Link>
 				</div>
 				<Menu
 					theme="dark"
@@ -47,9 +50,13 @@ const Dashboard: React.FC = () => {
 							label: <Link to="/admin">User</Link>,
 						},
 						{
-							key: '/admin/products',
+							key: '/admin/product-management',
 							icon: <InboxOutlined />,
-							label: <Link to="/admin/products">Product</Link>,
+							label: (
+								<Link to="/admin/product-management">
+									Product Management
+								</Link>
+							),
 						},
 						{
 							key: '/admin/guestInfo',
