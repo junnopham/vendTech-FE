@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './style.css';
 import {
+	InboxOutlined,
 	MenuFoldOutlined,
 	MenuUnfoldOutlined,
 	MessageOutlined,
+	UnorderedListOutlined,
 	UserOutlined,
-	InboxOutlined,
-	UnorderedListOutlined
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -15,20 +15,27 @@ const { Header, Sider, Content } = Layout;
 
 const Dashboard: React.FC = () => {
 	const location = useLocation();
-	const pathname = location.pathname;   
+	const pathname = location.pathname;
 	const [collapsed, setCollapsed] = useState(false);
 	const {
-		token: { colorBgContainer, borderRadiusLG }
+		token: { colorBgContainer, borderRadiusLG },
 	} = theme.useToken();
 
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
-			<Sider trigger={null} collapsible collapsed={collapsed}>
-				{!collapsed && (
-					<div className="logo-vend-tech">
-						<span className="logo">Vend Tech</span>
-					</div>
-				)}
+			<Sider
+				trigger={null}
+				collapsible
+				collapsed={collapsed}
+				breakpoint="lg"
+				collapsedWidth="80"
+				onCollapse={(collapsed) => setCollapsed(collapsed)}
+			>
+				<div className="logo-vend-tech">
+					<span className="logo">
+						{!collapsed ? 'Vend Tech' : 'VT'}
+					</span>
+				</div>
 				<Menu
 					theme="dark"
 					mode="inline"
@@ -47,13 +54,15 @@ const Dashboard: React.FC = () => {
 						{
 							key: '/admin/guestInfo',
 							icon: <MessageOutlined />,
-							label: <Link to="/admin/guestInfo">Guest Info</Link>,
+							label: (
+								<Link to="/admin/guestInfo">Guest Info</Link>
+							),
 						},
 						{
 							key: '/admin/category',
 							icon: <UnorderedListOutlined />,
 							label: <Link to="/admin/category">Category</Link>,
-						}
+						},
 					]}
 				/>
 			</Sider>
@@ -72,7 +81,7 @@ const Dashboard: React.FC = () => {
 						style={{
 							fontSize: '16px',
 							width: 64,
-							height: 64
+							height: 64,
 						}}
 					/>
 				</Header>
@@ -81,7 +90,7 @@ const Dashboard: React.FC = () => {
 						margin: '24px 16px',
 						padding: 24,
 						background: colorBgContainer,
-						borderRadius: borderRadiusLG
+						borderRadius: borderRadiusLG,
 					}}
 				>
 					<Outlet />

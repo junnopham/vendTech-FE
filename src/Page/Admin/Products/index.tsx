@@ -1,34 +1,28 @@
 import { useEffect, useState } from 'react';
 import './style.css';
-import { getProducts, deleteProductById } from '../../../service/user.service';
-import type { GetProp, TableProps } from 'antd';
-import { Table, Modal, notification, message } from 'antd';
+import {
+	deleteProductById,
+	getProducts,
+} from '../../../service/product.service';
+import { GetProp, Modal, notification, Table, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
 import {
-	EditOutlined,
 	DeleteOutlined,
-	ExclamationCircleFilled
+	EditOutlined,
+	ExclamationCircleFilled,
 } from '@ant-design/icons';
+import EditProductModal from '../../../Components/Admin/EditProductModal';
+import withAuth from '../../../Components/Admin/withAuth';
+import useTitle from '../../../hooks/useTtitle';
 
 const { confirm } = Modal;
 const Products = () => {
+	useTitle('Products');
 	type ColumnsType<T> = TableProps<T>['columns'];
 	type TablePaginationConfig = Exclude<
 		GetProp<TableProps, 'pagination'>,
 		boolean
 	>;
-
-	interface Product {
-		_id: string;
-		name: string;
-		description: string;
-		action: string;
-		image: {
-			name: string;
-			type: string;
-			url: string;
-		};
-	}
 
 	interface TableParams {
 		pagination?: TablePaginationConfig;
@@ -50,17 +44,17 @@ const Products = () => {
 						alt=""
 					/>
 				);
-			}
+			},
 		},
 		{
 			title: 'Name',
 			dataIndex: 'name',
-			width: '30%'
+			width: '30%',
 		},
 		{
 			title: 'Description',
 			dataIndex: 'description',
-			width: '50%'
+			width: '50%',
 		},
 		{
 			title: 'Action',
@@ -79,8 +73,8 @@ const Products = () => {
 						/>
 					</div>
 				);
-			}
-		}
+			},
+		},
 	];
 
 	const [data, setData] = useState<Product[]>();
@@ -89,13 +83,11 @@ const Products = () => {
 	const [tableParams, setTableParams] = useState<TableParams>({
 		pagination: {
 			current: 1,
-			pageSize: 10
-		}
+			pageSize: 10,
+		},
 	});
+	const [editId, setEditId] = useState<string | null>(null);
 
-	const editProduct = (record: Product) => {
-		console.log('edit', record);
-	};
 	const [api, contextHolder] = notification.useNotification();
 	type NotificationType = 'success' | 'info' | 'warning' | 'error';
 	const openNotificationWithIcon = (
@@ -105,34 +97,55 @@ const Products = () => {
 	) => {
 		api[type]({
 			message,
-			description
+			description,
 		});
+	};
+
+	const editProduct = (record: Product) => {
+		setEditId(record._id);
+	};
+
+	const onCloseModal = () => {
+		setEditId(null);
 	};
 
 	const deleteProduct = (record: Product) => {
 		confirm({
 			title: 'Are you sure delete this product?',
 			icon: <ExclamationCircleFilled />,
-			content: 'Some descriptions',
 			okText: 'Yes',
 			okType: 'danger',
 			cancelText: 'No',
 			onOk() {
-				deleteProductById(record._id).then((res) => {
-					setReload(!reload);
-					const deleteInfo :{type:NotificationType, message: string} = {
-						type: 'success',
-						message: 'Delete successfully!'
-					}
-					openNotificationWithIcon(deleteInfo.type, deleteInfo.message);
-				}).catch((err) => {
-					const deleteInfo :{type:NotificationType, message: string} = {
-						type: 'error',
-						message: 'Delete fail!'
-					}
-					openNotificationWithIcon(deleteInfo.type, deleteInfo.message);
-				});
-			}
+				deleteProductById(record._id)
+					.then((res) => {
+						setReload(!reload);
+						const deleteInfo: {
+							type: NotificationType;
+							message: string;
+						} = {
+							type: 'success',
+							message: 'Delete successfully!',
+						};
+						openNotificationWithIcon(
+							deleteInfo.type,
+							deleteInfo.message
+						);
+					})
+					.catch((err) => {
+						const deleteInfo: {
+							type: NotificationType;
+							message: string;
+						} = {
+							type: 'error',
+							message: 'Delete fail!',
+						};
+						openNotificationWithIcon(
+							deleteInfo.type,
+							deleteInfo.message
+						);
+					});
+			},
 		});
 	};
 
@@ -150,23 +163,36 @@ const Products = () => {
 					...tableParams.pagination,
 					showSizeChanger: true,
 					pageSizeOptions: ['10', '20', '30', '40', '50'],
-					total: results.total
-				}
+					total: results.total,
+				},
 			});
 		});
 	};
 
 	useEffect(() => {
 		fetchData();
-	}, [tableParams.pagination?.current, tableParams.pagination?.pageSize, reload]);
+	}, [
+		tableParams.pagination?.current,
+		tableParams.pagination?.pageSize,
+		reload,
+	]);
 
 	const handleTableChange: TableProps['onChange'] = (pagination) => {
 		setTableParams({
-			pagination
+			pagination,
 		});
 		if (pagination.pageSize !== tableParams.pagination?.pageSize) {
 			setData([]);
 		}
+	};
+
+	const handleUpdate = (updatedProduct: Product) => {
+		setData(
+			(prevData) =>
+				prevData?.map((item) =>
+					item._id === updatedProduct._id ? updatedProduct : item
+				) || []
+		);
 	};
 
 	return (
@@ -180,8 +206,15 @@ const Products = () => {
 				loading={loading}
 				onChange={handleTableChange}
 			/>
+			{editId && (
+				<EditProductModal
+					id={editId}
+					onClose={onCloseModal}
+					onUpdate={handleUpdate}
+				/>
+			)}
 		</>
 	);
 };
 
-export default Products;
+export default withAuth(Products);
