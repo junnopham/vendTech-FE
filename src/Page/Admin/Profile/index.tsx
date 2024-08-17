@@ -1,151 +1,181 @@
 import React, { useEffect, useState } from 'react';
+import { Button, Card, Descriptions, Form, Input, message, Modal } from 'antd';
 import './style.css';
 import useTitle from '../../../hooks/useTtitle';
-import { GetProp, notification, Table, TableProps } from 'antd';
-import type { SorterResult } from 'antd/es/table/interface';
-import { EditOutlined } from '@ant-design/icons';
-import { getUsers } from '../../../service/user.service';
-import { formatTime } from '../../../util/date-time';
 import withAuth from '../../../Components/Admin/withAuth';
+import { useAuth } from '../../../context/AuthContext';
+import { formatTime } from '../../../util/date-time';
+import { updateUser } from '../../../service/user.service';
+
+type FormUpdate = {
+	username: string;
+	currentPassword: string;
+	newPassword: string;
+};
 
 const User = () => {
-	useTitle('Users');
-	type ColumnsType<T> = TableProps<T>['columns'];
-	type TablePaginationConfig = Exclude<
-		GetProp<TableProps, 'pagination'>,
-		boolean
-	>;
+	useTitle('Profile');
+	const { user } = useAuth();
+	const [form] = Form.useForm();
 
-	interface TableParams {
-		pagination?: TablePaginationConfig;
-		sortField?: SorterResult<any>['field'];
-		sortOrder?: SorterResult<any>['order'];
-		filters?: Parameters<GetProp<TableProps, 'onChange'>>[1];
-	}
-
-	const columns: ColumnsType<User> = [
-		{
-			title: 'ID',
-			key: 'index',
-			render: (text, record, index) => index + 1,
-		},
-		{
-			title: 'Username',
-			dataIndex: 'username',
-		},
-		{
-			title: 'Email',
-			dataIndex: 'email',
-		},
-		{
-			title: 'Created At',
-			dataIndex: 'createdAt',
-			render: (text, record, index) => formatTime(record.createdAt),
-		},
-		{
-			title: 'Updated At',
-			dataIndex: 'updatedAt',
-			render: (text, record, index) => formatTime(record.updatedAt),
-		},
-		{
-			title: 'Action',
-			dataIndex: 'action',
-			width: '10%',
-			render: (text, record, index) => {
-				return (
-					<div className="action-row">
-						<EditOutlined
-							onClick={(event) => editUser(record)}
-							style={{ fontSize: '16px', cursor: 'pointer' }}
-						/>
-					</div>
-				);
-			},
-		},
-	];
-
-	const [data, setData] = useState<User[]>();
-	const [loading, setLoading] = useState(false);
-	const [reload, setReload] = useState(false);
-	const [tableParams, setTableParams] = useState<TableParams>({
-		pagination: {
-			current: 1,
-			pageSize: 10,
-		},
-	});
-	const [editId, setEditId] = useState<string | null>(null);
-
-	const [api, contextHolder] = notification.useNotification();
-	type NotificationType = 'success' | 'info' | 'warning' | 'error';
-	const openNotificationWithIcon = (
-		type: NotificationType,
-		message?: string,
-		description?: string
-	) => {
-		api[type]({
-			message,
-			description,
-		});
-	};
-
-	const editUser = (record: User) => {
-		setEditId(record._id);
-	};
-
-	const onCloseModal = () => {
-		setEditId(null);
-	};
-
-	const fetchData = () => {
-		setLoading(true);
-		getUsers(
-			tableParams.pagination?.pageSize || 10,
-			tableParams.pagination?.current || 0
-		).then((results) => {
-			setData(results.data);
-			setLoading(false);
-			setTableParams({
-				...tableParams,
-				pagination: {
-					...tableParams.pagination,
-					showSizeChanger: true,
-					pageSizeOptions: ['10', '20', '30', '40', '50'],
-					total: results.total,
-				},
-			});
-		});
-	};
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
-		fetchData();
-	}, [
-		tableParams.pagination?.current,
-		tableParams.pagination?.pageSize,
-		reload,
-	]);
+		form.setFieldsValue(user);
+	}, [user]);
 
-	const handleTableChange: TableProps['onChange'] = (pagination) => {
-		setTableParams({
-			pagination,
-		});
-		if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-			setData([]);
+	const showModal = () => {
+		form.setFieldsValue(user);
+		setIsModalOpen(true);
+	};
+
+	const handleOk = () => {
+		setIsModalOpen(false);
+	};
+
+	const handleCancel = () => {
+		form.resetFields();
+		setIsModalOpen(false);
+	};
+
+	const getData = (data: FormUpdate) => {
+		return Object.fromEntries(
+			Object.entries(data).filter(
+				([key, value]) =>
+					value !== undefined && value !== null && value !== ''
+			)
+		);
+	};
+
+	const onFinish = async (values: {
+		username: string;
+		currentPassword: string;
+		newPassword: string;
+		confirmPassword: string;
+	}) => {
+		try {
+			if (values.newPassword !== values.confirmPassword) {
+				message.error('New password and confirmation do not match!');
+				return;
+			}
+
+			let formUpdate = {
+				username: values.username,
+				currentPassword: values.currentPassword,
+				newPassword: values.newPassword,
+			};
+
+			const data = getData(formUpdate);
+
+			await updateUser(data);
+
+			message.success('Updated successfully!');
+			setIsModalOpen(false);
+		} catch (error) {
+			message.error('Failed to update. Please try again.');
 		}
 	};
 
-	const handleUpdate = (updatedUser: User) => {};
-
 	return (
 		<>
-			{contextHolder}
-			<Table
-				columns={columns}
-				rowKey={(record) => record._id}
-				dataSource={data}
-				pagination={tableParams.pagination}
-				loading={loading}
-				onChange={handleTableChange}
-			/>
+			<Card
+				title="Profile"
+				style={{ maxWidth: 600, margin: '0 auto' }}
+				extra={
+					<Button type="primary" onClick={showModal}>
+						Edit Profile
+					</Button>
+				}
+			>
+				<Descriptions bordered>
+					<Descriptions.Item label="ID" span={3}>
+						{user._id}
+					</Descriptions.Item>
+					<Descriptions.Item label="Username" span={3}>
+						{user.username}
+					</Descriptions.Item>
+					<Descriptions.Item label="Email" span={3}>
+						{user.email}
+					</Descriptions.Item>
+					<Descriptions.Item label="Created At" span={3}>
+						{formatTime(user.createdAt)}
+					</Descriptions.Item>
+					<Descriptions.Item label="Updated At" span={3}>
+						{formatTime(user.updatedAt)}
+					</Descriptions.Item>
+				</Descriptions>
+			</Card>
+			<Modal
+				title="Edit Profile"
+				open={isModalOpen}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={[
+					<Button key="back" onClick={handleCancel}>
+						Cancel
+					</Button>,
+					<Button
+						key="submit"
+						type="primary"
+						onClick={() => form.submit()}
+					>
+						Update
+					</Button>,
+				]}
+			>
+				<Form
+					form={form}
+					layout="vertical"
+					onFinish={onFinish}
+					name="edit_form"
+				>
+					<Form.Item name="username" label="Username">
+						<Input placeholder="Enter new username" />
+					</Form.Item>
+					<Form.Item name="email" label="Email">
+						<Input disabled={true} />
+					</Form.Item>
+					<Form.Item name="newPassword" label="New Password">
+						<Input.Password />
+					</Form.Item>
+					<Form.Item
+						name="confirmPassword"
+						label="Confirm New Password"
+						dependencies={['newPassword']}
+						rules={[
+							({ getFieldValue }) => ({
+								validator(_, value) {
+									if (
+										!value ||
+										getFieldValue('newPassword') === value
+									) {
+										return Promise.resolve();
+									}
+									return Promise.reject(
+										new Error(
+											'The two passwords do not match!'
+										)
+									);
+								},
+							}),
+						]}
+					>
+						<Input.Password />
+					</Form.Item>
+					<Form.Item
+						name="currentPassword"
+						label="Current Password"
+						rules={[
+							{
+								required: true,
+								message: 'Please enter your current password!',
+							},
+						]}
+					>
+						<Input.Password />
+					</Form.Item>
+				</Form>
+			</Modal>
 		</>
 	);
 };

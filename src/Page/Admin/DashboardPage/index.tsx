@@ -45,9 +45,9 @@ const Dashboard: React.FC = () => {
 					defaultSelectedKeys={[pathname]}
 					items={[
 						{
-							key: '/admin',
+							key: '/admin/profile',
 							icon: <UserOutlined />,
-							label: <Link to="/admin">User</Link>,
+							label: <Link to="/admin/profile">User</Link>,
 						},
 						{
 							key: '/admin/product-management',
