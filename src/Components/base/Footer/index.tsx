@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Footer = () => {
 	return (
 		<div className="min-h-[560px] bg-[#280D30] ">
@@ -76,7 +74,7 @@ const Footer = () => {
 				</div>
 				<div style={{ width: '23%' }}>
 					<div className="text-[16px] text-white italic">
-						For new services{' '}
+						For new services
 						<span className="not-italic">enquiries:</span>
 					</div>
 					<div className=" pt-[20px] hover:opacity-80 cursor-pointer">

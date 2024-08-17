@@ -6,7 +6,7 @@ import OurProduct from '../../OurProduct';
 import Benefit from '../../Benefit';
 import Employee from '../../Employee';
 import ImageIntro from '../../ImageIntro';
-import SubmitForm from '../../Form';
+import FormSubmit from '../../FormSubmit';
 
 const Main = () => {
 	return (
@@ -23,8 +23,7 @@ const Main = () => {
 			</div>
 			<Employee />
 			<ImageIntro />
-			<SubmitForm />
-
+			<FormSubmit />
 		</>
 	);
 };

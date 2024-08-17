@@ -1,30 +1,27 @@
-import background from '../../../assets/backgrond.jpg';
-import videoBg from '../../../assets/background.mp4';
 import NavBar from '../Nav';
-import header from '../../../assets/header.png';
+import SubNavBar from '../SubNav';
 
-const navigation = [
-	{ name: 'Home', href: '/', current: true },
-	{ name: 'Contact Us', href: '/contactUs', current: false },
-	{ name: 'Food and Drink', href: '/foodAndDrink', current: false },
-	{ name: 'About Us', href: '/aboutUs', current: false }
-];
-
-const Header = () => {
+interface IProps {
+	type?: 'main' | 'sub';
+}
+const Header = (props: IProps) => {
+	const { type = 'main' } = props;
 	return (
 		<div className="relative">
-			<div className="h-full w-screen">
+			<div className="flex justify-center">
 				<video
 					src={require('../../../assets/background.mp4')}
 					autoPlay
 					loop
 					muted
-					className="w-full h-full object-container
+					className="w-[75%vw] h-full object-container
+
 					"
 				/>
 			</div>
 			<div>
-				<NavBar />
+				{type === 'main' && <NavBar />}
+				{type === 'sub' && <SubNavBar />}
 			</div>
 		</div>
 	);
