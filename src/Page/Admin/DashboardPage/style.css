@@ -1,33 +1,33 @@
 .logo-vend-tech {
-  display: flex;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
 }
 
 .logo {
-  font-weight: bold;
-  font-size: 18px;
-  color: white;
+	font-weight: bold;
+	font-size: 18px;
+	color: white;
 }
 
 @media (max-width: 768px) {
-  .ant-layout-sider {
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-  }
+	.ant-layout-sider {
+		position: fixed;
+		width: 100%;
+		z-index: 100;
+	}
 
-  .ant-layout-sider-collapsed {
-    width: 80px;
-  }
+	.ant-layout-sider-collapsed {
+		width: 80px;
+	}
 
-  .ant-layout-header {
-    padding: 0 16px;
-  }
+	.ant-layout-header {
+		padding: 0 16px;
+	}
 
-  .ant-layout-content {
-    margin: 0;
-    padding: 16px;
-  }
+	.ant-layout-content {
+		margin: 0;
+		padding: 16px;
+	}
 }
