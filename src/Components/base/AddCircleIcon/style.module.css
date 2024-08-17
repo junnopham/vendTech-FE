@@ -1,5 +1,6 @@
 .icon {
-	filter: invert(64%) sepia(48%) saturate(414%) hue-rotate(139deg) brightness(89%) contrast(93%);
+	filter: invert(64%) sepia(48%) saturate(414%) hue-rotate(139deg)
+		brightness(89%) contrast(93%);
 	font-size: 30px;
 	transition: all 0.5s ease-out;
 }
@@ -35,7 +36,7 @@
 	content: '';
 	position: absolute;
 	animation: pulsate 3s cubic-bezier(0.2, 1, 0.2, 1) infinite;
-	background-color: #52B2BF;
+	background-color: #52b2bf;
 	width: 30px;
 	height: 30px;
 	pointer-events: none;

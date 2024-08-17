@@ -5,8 +5,8 @@ const getProducts = async (pageSize: number, currentPage: number) => {
 	const response = await axios.get(PRODUCTS_URL, {
 		params: {
 			pageSize,
-			currentPage
-		}
+			currentPage,
+		},
 	});
 
 	return response.data;
@@ -16,7 +16,7 @@ const getProductById = async (id: string) => {
 	const url = `${PRODUCTS_URL}/${id}`;
 	const response = await axios.get(url);
 	return response.data;
-}
+};
 
 const updateProductById = async (id: string, product: FormData) => {
 	const url = `${PRODUCTS_URL}/${id}`;
@@ -26,9 +26,9 @@ const updateProductById = async (id: string, product: FormData) => {
 		},
 	});
 	return response.data;
-}
+};
 
-const deleteProductById = async (id:string) => {
+const deleteProductById = async (id: string) => {
 	const response = await axios.delete(`${PRODUCTS_URL}/${id}`);
 	return response.data;
 };

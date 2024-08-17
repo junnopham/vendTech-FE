@@ -5,7 +5,7 @@ import { CiCreditCard1 } from 'react-icons/ci';
 const FoodItem = () => {
 	const { ref, inView } = useInView({
 		threshold: 0.25,
-		triggerOnce: true
+		triggerOnce: true,
 	});
 
 	return (

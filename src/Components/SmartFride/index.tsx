@@ -4,7 +4,7 @@ import AddCircleIcon from '../base/AddCircleIcon';
 const SmartFridge = () => {
 	const { ref, inView } = useInView({
 		threshold: 0.6,
-		triggerOnce: true
+		triggerOnce: true,
 	});
 	const animationClass = 'translate-y-full opacity-0';
 	return (

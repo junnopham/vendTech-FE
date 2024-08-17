@@ -8,7 +8,7 @@ const contentStyle: React.CSSProperties = {
 	color: '#fff',
 	lineHeight: '160px',
 	textAlign: 'center',
-	background: '#364d79'
+	background: '#364d79',
 };
 
 const Employee: React.FC = () => {
@@ -21,7 +21,7 @@ const Employee: React.FC = () => {
 					'url(https://www.morsl.com.au/wp-content/uploads/2021/08/Side-fruits-both-44.svg)',
 				backgroundPosition: 'center',
 				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover'
+				backgroundSize: 'cover',
 			}}
 			className="px-36"
 		>
@@ -44,7 +44,7 @@ const Employee: React.FC = () => {
 											background:
 												'rgba(41, 14, 48, 0.18)',
 											width: '368px',
-											height: '540px'
+											height: '540px',
 										}}
 										className="absolute z-10"
 									></div>
@@ -55,7 +55,7 @@ const Employee: React.FC = () => {
 											top: 36,
 											left: 72,
 											width: '368px',
-											height: '540px'
+											height: '540px',
 										}}
 									/>
 								</div>
@@ -67,13 +67,13 @@ const Employee: React.FC = () => {
 										className="flex flex-col pb-8 font-thin"
 										style={{
 											fontSize: 22,
-											lineHeight: '36px'
+											lineHeight: '36px',
 										}}
 									>
 										<span
 											className="text-7xl font-extralight truncate"
 											style={{
-												color: '#290e30!important'
+												color: '#290e30!important',
 											}}
 										>
 											”
@@ -85,7 +85,7 @@ const Employee: React.FC = () => {
 											className="text-base font-light opacity-70 mb-1"
 											style={{
 												lineHeight: '22px',
-												color: '#290e30'
+												color: '#290e30',
 											}}
 										>
 											{employee.name}
