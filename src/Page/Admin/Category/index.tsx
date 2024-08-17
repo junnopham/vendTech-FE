@@ -13,6 +13,7 @@ import {
   deleteCategoryById,
   getCategories,
 } from '../../../service/category.service';
+import EditCategoryModal from '../../../Components/Admin/EditCategoryModal';
 
 const { confirm } = Modal;
 
@@ -81,6 +82,7 @@ const Category = () => {
       pageSize: 10,
     },
   });
+  const [category, setCategory] = useState<Category | null>(null);
 
   const [api, contextHolder] = notification.useNotification();
   type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -95,7 +97,9 @@ const Category = () => {
     });
   };
 
-  const handleEdit = (record: Category) => {};
+  const handleEdit = (record: Category) => {
+    setCategory(record);
+  };
 
   const handleDelete = (record: Category) => {
     confirm({
@@ -162,6 +166,19 @@ const Category = () => {
     }
   };
 
+  const handleUpdate = (updatedCategory: Category) => {
+    setData(
+      (prevData) =>
+        prevData?.map((item) =>
+          item._id === updatedCategory._id ? updatedCategory : item
+        ) || []
+    );
+  };
+
+  const onCloseModal = () => {
+    setCategory(null);
+  };
+
   return (
     <>
       {contextHolder}
@@ -174,6 +191,13 @@ const Category = () => {
         loading={loading}
         onChange={handleTableChange}
       />
+      {category && (
+        <EditCategoryModal
+          category={category}
+          onClose={onCloseModal}
+          onUpdate={handleUpdate}
+        />
+      )}
     </>
   );
 };

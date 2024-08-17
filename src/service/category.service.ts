@@ -12,10 +12,18 @@ const getCategories = async (pageSize: number, currentPage: number) => {
   return response.data;
 };
 
+const updateCategoryById = async (id: string, name: string) => {
+  const response = await axios.post(`${CATEGORY_URL}/${id}`, {
+    name,
+  });
+
+  return response.data;
+};
+
 const deleteCategoryById = async (id: string) => {
   const response = await axios.delete(`${CATEGORY_URL}/${id}`);
 
   return response.data;
 };
 
-export { getCategories, deleteCategoryById };
+export { getCategories, updateCategoryById, deleteCategoryById };

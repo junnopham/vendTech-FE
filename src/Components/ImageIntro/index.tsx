@@ -5,9 +5,6 @@ import './style.css';
 import { imageList } from '../../const';
 
 const ImageIntro = () => {
-	// const sliderWidth = ((imageList.length - 4) * 740) / 2;
-	// console.log(sliderWidth);
-
 	return (
 		<div className="py-20">
 			<Swiper

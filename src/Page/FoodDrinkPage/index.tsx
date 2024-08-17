@@ -1,7 +1,13 @@
-import React from 'react';
+import FoodItem from '../../Components/FoodItem';
+import FormSubmit from '../../Components/FormSubmit';
 
 const FoodAndDrinkPage = () => {
-	return <div>FoodAndDrinkPage</div>;
+	return (
+		<div className="h-full">
+			<FoodItem />
+			<FormSubmit />
+		</div>
+	);
 };
 
 export default FoodAndDrinkPage;

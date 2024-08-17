@@ -1,12 +1,14 @@
+import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../../Components/base/Footer';
 import Header from '../../Components/base/Header';
-import Main from '../../Components/base/Main';
 
 const HomePage = () => {
+	const location = useLocation();
+	const isHomePage = location.pathname === '/' ? 'main' : 'sub';
 	return (
 		<>
-			<Header />
-			<Main />
+			<Header type={isHomePage} />
+			<Outlet />
 			<Footer />
 		</>
 	);

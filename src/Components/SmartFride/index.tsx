@@ -3,10 +3,10 @@ import morsl02 from '../../assets/morsl-02.png';
 import AddCircleIcon from '../base/AddCircleIcon';
 const SmartFridge = () => {
 	const { ref, inView } = useInView({
-		threshold: 0.6
+		threshold: 0.6,
+		triggerOnce: true
 	});
 	const animationClass = 'translate-y-full opacity-0';
-	const smoothClass = '';
 	return (
 		<div className="flex py-28" ref={ref}>
 			<div className="pl-3 pr-3 relative max-h-[520px]">

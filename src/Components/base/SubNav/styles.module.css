@@ -1,0 +1,98 @@
+.itemList > a:hover::before {
+	width: 100%;
+	transition: width 0.5s;
+}
+.itemList > a {
+	position: relative;
+	padding: 5px;
+	font-size: 16px;
+	text-align: center;
+	font-weight: 100;
+}
+.itemList > a::before {
+	content: '';
+	width: 0px;
+	height: 2px;
+	position: absolute;
+	background-color: white;
+	top: 32px;
+	left: 0;
+	z-index: 100;
+}
+.itemList {
+	min-width: 400px;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* ------ */
+.itemList2 > a:hover::before {
+	width: 100%;
+	transition: width 0.5s;
+}
+.itemList2 > a {
+	position: relative;
+	padding: 5px;
+	font-size: 16px;
+	text-align: center;
+	font-weight: 100;
+}
+.itemList2 > a::before {
+	content: '';
+	width: 0px;
+	height: 2px;
+	position: absolute;
+	background-color: #52b2bf;
+	top: 32px;
+	left: 0;
+	z-index: 100;
+}
+.itemList2 {
+	min-width: 400px;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* icon button */
+.iconWrapper {
+	position: relative;
+	display: inline-block;
+	font-size: 20px;
+}
+
+.icon {
+	position: relative;
+	transition:
+		transform 0.2s ease,
+		opacity 0.2s ease;
+}
+
+.iconWhite {
+	position: absolute;
+	opacity: 0;
+	color: white;
+	transition:
+		transform 0.2s ease,
+		opacity 0.2s ease;
+	transform: translateY(10px);
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.iconWrapper:hover .icon {
+	transform: translateY(-10px);
+	opacity: 0;
+}
+
+.iconWrapper:hover .iconWhite {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.iconSubNav {
+	margin-right: 16px;
+}
+.iconSubNav:hover .iconWhite {
+	color: #52b2bf;
+}
