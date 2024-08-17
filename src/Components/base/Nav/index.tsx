@@ -60,7 +60,7 @@ const NavBar = () => {
 		<>
 			<Disclosure
 				as="nav"
-				className="bg-transparent fixed top-0 left-0 w-full z-50 flex pt-6 px-36"
+				className="bg-transparent fixed top-0 left-0 w-full z-50 flex py-6 px-36"
 				style={{
 					transform: hiddenNav
 						? 'translateY(-100%)'
@@ -97,7 +97,7 @@ const NavBar = () => {
 								style={{ flex: '1 1 30%', minWidth: 175 }}
 							>
 								<button className="text-white font-bold text-4xl ">
-									Vend Tech
+									<Link to="/"> Vend Tech </Link>
 								</button>
 							</div>
 							<div
@@ -202,7 +202,7 @@ const NavBar = () => {
 								style={{ flex: '1 1 30%', minWidth: 175 }}
 							>
 								<button className="text-black font-bold text-4xl ">
-									Vend Tech
+									<Link to="/"> Vend Tech </Link>
 								</button>
 							</div>
 							<div

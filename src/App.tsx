@@ -9,15 +9,24 @@ import GuestInfo from './Page/Admin/GuestInfo';
 import Dashboard from './Page/Admin/DashboardPage';
 import User from './Page/Admin/User';
 import Category from './Page/Admin/Category';
+import Main from './Components/base/Main';
+import ProductPage from './Page/ProductPage';
 
 const App: React.FC = () => (
 	<div className="App">
 		<Router>
 			<Routes>
-				<Route index path="/" element={<HomePage />} />
-				<Route path="foodAndDrink" element={<FoodAndDrinkPage />} />
-				<Route path="contactUs" element={<ContactPage />} />
-				<Route path="aboutUs" element={<AboutPage />} />
+				<Route path="/" element={<HomePage />}>
+					<Route index element={<Main />} />
+					<Route path="products" element={<ProductPage />} />
+					<Route
+						path="food-and-drink"
+						element={<FoodAndDrinkPage />}
+					/>
+					<Route path="contact-us" element={<ContactPage />} />
+					<Route path="about-us" element={<AboutPage />} />
+				</Route>
+
 				<Route path="admin" element={<Dashboard />}>
 					<Route index element={<User />} />
 					<Route path="guestInfo" element={<GuestInfo />} />

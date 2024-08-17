@@ -1,8 +1,8 @@
 export const navigation = [
-	{ name: 'About Us', href: '/aboutUs', current: true },
+	{ name: 'About Us', href: '/about-us', current: true },
 	{ name: 'Product', href: '/products', current: true },
-	{ name: 'Contact Us', href: '/contactUs', current: false },
-	{ name: 'Food & Drink', href: '/foodAndDrink', current: false }
+	{ name: 'Contact Us', href: '/contact-us', current: false },
+	{ name: 'Food & Drink', href: '/food-and-drink', current: false }
 ];
 export const itemInfo1 = [
 	{

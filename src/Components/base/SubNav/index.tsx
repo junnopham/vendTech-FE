@@ -1,6 +1,6 @@
 import { Disclosure, DisclosureButton } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { navigation } from '../../../const';
 import { classNames } from '../../../util';
 import styles from './styles.module.css';
@@ -21,8 +21,7 @@ const SubNavBar = () => {
 	let oldScrollY = 0;
 
 	const [direction, setDirection] = useState('up');
-
-	const [hiddenSubNav, setHiddenSubNav] = useState(true);
+	const [hiddenSubNav, setHiddenSubNav] = useState(false);
 
 	const controlDirection = () => {
 		if (window.scrollY > oldScrollY) {
@@ -34,9 +33,7 @@ const SubNavBar = () => {
 	};
 
 	const listenScrollEvent = () => {
-		direction === 'up' || window.scrollY === 0
-			? setHiddenSubNav(false)
-			: setHiddenSubNav(true);
+		direction === 'down' ? setHiddenSubNav(true) : setHiddenSubNav(false);
 	};
 	useEffect(() => {
 		window.addEventListener('scroll', listenScrollEvent);
@@ -59,7 +56,7 @@ const SubNavBar = () => {
 		<>
 			<Disclosure
 				as="nav"
-				className="bg-white text-black fixed top-0 left-0 w-full z-50 flex p-6 px-36"
+				className="bg-white text-black fixed top-0 left-0 w-full z-50 flex py-6 px-36"
 				style={{
 					transform: hiddenSubNav
 						? 'translateY(-100%)'

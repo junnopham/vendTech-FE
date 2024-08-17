@@ -3,7 +3,8 @@ import vend from '../../assets/vend.jpg';
 import AddCircleIcon from '../base/AddCircleIcon';
 const MicroMarket = () => {
 	const { ref, inView } = useInView({
-		threshold: 0.6
+		threshold: 0.6,
+		triggerOnce: true
 	});
 
 	return (
