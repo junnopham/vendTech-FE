@@ -14,8 +14,7 @@ const Header = (props: IProps) => {
 					autoPlay
 					loop
 					muted
-					className="w-[75%vw] h-full object-container
-
+					className="h-[75vh] w-full object-fill
 					"
 				/>
 			</div>
