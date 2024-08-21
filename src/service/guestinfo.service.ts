@@ -1,21 +1,39 @@
 import axios from '../config/axios';
 import { GUESTINFO_URL } from '../const/api-url';
-
+interface IGuestInfo {
+	firstName: string;
+	lastName: string;
+	phone?: string;
+	message?: string;
+	email: string;
+}
 const getGuestInfo = async (pageSize: number, currentPage: number) => {
-  const response = await axios(GUESTINFO_URL, {
-    params: {
-      pageSize,
-      currentPage,
-    },
-  });
+	const response = await axios(GUESTINFO_URL, {
+		params: {
+			pageSize,
+			currentPage,
+		},
+	});
 
-  return response.data;
+	return response.data;
 };
 
 const deleteGuestInfo = async (id: string) => {
-  const response = await axios.delete(`${GUESTINFO_URL}/${id}`);
+	const response = await axios.delete(`${GUESTINFO_URL}/${id}`);
 
-  return response.data;
+	return response.data;
 };
 
-export { getGuestInfo, deleteGuestInfo };
+const createGuestInfo = async (guestInfo: IGuestInfo) => {
+	const { firstName, lastName, phone, message, email } = guestInfo;
+	const response = await axios.post(GUESTINFO_URL, {
+		firstName,
+		lastName,
+		phone,
+		message,
+		email,
+	});
+	return response;
+};
+
+export { getGuestInfo, deleteGuestInfo, createGuestInfo };
