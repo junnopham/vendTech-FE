@@ -36,7 +36,7 @@ const FormLayout = (props: IProps) => {
 
 		const response = await createGuestInfo(userInfo);
 
-		if (response.status === 200) {
+		if (response?.status === 200) {
 			openNotification();
 			form.resetFields();
 		}

@@ -1,16 +1,13 @@
 const OurProduct = () => {
 	return (
-		<div className="pt-28 px-4 pb-32">
+		<div className="lg:pt-28 px-4 lg:pb-32">
 			<div className="px-3 pb-6">
-				<h3
-					className="font-bold text-3xl text-main mb-2"
-					style={{ color: '#52B2BF', lineHeight: '64px' }}
-				>
+				<h3 className="font-bold text-3xl text-main mb-2 text-[#52B2BF] leading-[64px]">
 					Our Products
 				</h3>
 			</div>
-			<div className="flex px-3 gap-x-28 font-thin">
-				<ul className="list-disc">
+			<div className="flex flex-wrap px-3 gap-x-28 font-thin">
+				<ul className="list-disc flex-1 lg:basis-1/2 w-full">
 					<li className="mb-8 pl-9 leading-8">
 						We survey employees, aligning our offering to meet their
 						needs and preferences. We can offer gluten-free,
@@ -31,17 +28,18 @@ const OurProduct = () => {
 						effectively with other providers.
 					</li>
 				</ul>
-				<div>
+				<div className=" flex-1 basis-full max-w-[40%]  hidden md:block md:basis-1/2">
 					<img
 						src={
 							'https://www.morsl.com.au/wp-content/uploads/2021/08/shutterstock_397748143-1536x1141.jpg'
 						}
 						loading="lazy"
 						decoding="async"
+						className="w-full"
 						style={{
 							borderRadius: 5,
 							boxShadow:
-								'rgba(0,0,0,.04) 0 1px 0,rgba(0,0,0,.05) 0 2px 7px,rgba(0,0,0,.06) 0 12px 22px'
+								'rgba(0,0,0,.04) 0 1px 0,rgba(0,0,0,.05) 0 2px 7px,rgba(0,0,0,.06) 0 12px 22px',
 						}}
 					/>
 				</div>

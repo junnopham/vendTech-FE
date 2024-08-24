@@ -4,12 +4,15 @@ import AddCircleIcon from '../base/AddCircleIcon';
 const MicroMarket = () => {
 	const { ref, inView } = useInView({
 		threshold: 0.6,
-		triggerOnce: true
+		triggerOnce: true,
 	});
 
 	return (
-		<div className="flex pt-28" ref={ref}>
-			<div className="flex flex-col justify-center px-6 max-w-[600px]">
+		<div
+			className="flex flex-wrap  flex-col xl:flex-row pt-28 justify-center items-center"
+			ref={ref}
+		>
+			<div className="flex flex-col flex-1 basis-full lg:basis-1/2 justify-center px-6 max-w-[600px] min-w-[300px]">
 				<h3 className="font-bold text-3xl text-main mb-2 text-[#52B2BF] leading-[64px]">
 					Vend Tech Micro Market
 				</h3>
@@ -25,10 +28,10 @@ const MicroMarket = () => {
 					productivity at minimal to no cost to you.
 				</p>
 			</div>
-			<div className="mx-6 relative">
+			<div className="mx-6 relative flex-1 lg:basis-1/2 max-w-[600px]">
 				<img src={vend} className="w-full h-full" />
 				<AddCircleIcon
-					classesName="absolute top-[50px] right-[80px]"
+					classesName="absolute top-[10%] right-[15%]"
 					title="Operated within a secure and controlled environment, with smart security and inventory controls."
 				/>
 				<AddCircleIcon
@@ -37,7 +40,7 @@ const MicroMarket = () => {
 					title="We manage the design, installation and launch, helping to create a welcoming environment for your staff"
 				/>
 				<AddCircleIcon
-					classesName="absolute bottom-[60px] left-[60px]"
+					classesName="absolute bottom-[20%] left-[20%]"
 					position="bottom"
 					title="A modular design, customised to suit the size and demographics of your team"
 				/>

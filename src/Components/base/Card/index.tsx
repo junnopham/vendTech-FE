@@ -11,10 +11,13 @@ type ICard = {
 const Card = (props: IProps) => {
 	const { items } = props;
 	return (
-		<div className="flex">
+		<div className="flex flex-wrap justify-center items-center">
 			{items.map((item) => {
 				return (
-					<div key={item.id} className="flex flex-col px-20">
+					<div
+						key={item.id}
+						className="flex flex-col flex-1 basis-1/3 px-20 max-w-[500px]"
+					>
 						<div className="flex justify-center my-3">
 							<img
 								src={item.url}
@@ -24,7 +27,7 @@ const Card = (props: IProps) => {
 									minWidth: 220,
 									maxWidth: 242,
 									minHeight: 220,
-									maxHeight: 242
+									maxHeight: 242,
 								}}
 							/>
 						</div>
@@ -32,7 +35,7 @@ const Card = (props: IProps) => {
 							className="mb-4 text-center text-xl font-bold"
 							style={{ color: '#52B2BF' }}
 						>
-							{item.title}
+							{item?.title}
 						</div>
 						<ul className="text-center">
 							{item.contents.map((content, _, arr) => {
