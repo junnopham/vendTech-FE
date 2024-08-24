@@ -8,7 +8,7 @@ const contentStyle: React.CSSProperties = {
 	color: '#fff',
 	lineHeight: '160px',
 	textAlign: 'center',
-	background: '#364d79'
+	background: '#364d79',
 };
 
 const Employee: React.FC = () => {
@@ -21,9 +21,9 @@ const Employee: React.FC = () => {
 					'url(https://www.morsl.com.au/wp-content/uploads/2021/08/Side-fruits-both-44.svg)',
 				backgroundPosition: 'center',
 				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover'
+				backgroundSize: 'cover',
 			}}
-			className="px-36"
+			className="lg:px-36"
 		>
 			<Carousel
 				afterChange={onChange}
@@ -33,47 +33,34 @@ const Employee: React.FC = () => {
 			>
 				{employeeDescriptions.map((employee) => {
 					return (
-						<div>
-							<div className="flex pb-10">
-								<div
-									style={{ flex: '1 1 40%', minHeight: 700 }}
-									className="pl-12 relative"
-								>
+						<div className="">
+							<div className="flex flex-col lg:flex-row flex-wrap justify-around lg:pb-10 px-8">
+								<div className="lg:px-12 pb-10 max-w-[100%] md:min-h-[700px] flex-1 basis-full lg:basis-[40%]">
 									<div
 										style={{
 											background:
 												'rgba(41, 14, 48, 0.18)',
-											width: '368px',
-											height: '540px'
 										}}
-										className="absolute z-10"
-									></div>
-									<img
-										src={employee.url}
-										className="absolute z-20"
-										style={{
-											top: 36,
-											left: 72,
-											width: '368px',
-											height: '540px'
-										}}
-									/>
+										className="relative z-10 w-[65vw] h-[90vw] sm:w-[368px] sm:h-[540px]"
+									>
+										<img
+											src={employee.url}
+											className="absolute z-20 w-[65vw] h-[90vw] top-[6%] left-[12%] sm:w-[368px] sm:h-[540px] sm:top-[36px] sm:left-[72px]"
+										/>
+									</div>
 								</div>
-								<div
-									style={{ flex: '1 1 40%' }}
-									className="pl-12 pr-9 text-left"
-								>
+								<div className="pl-12 pr-9 text-left flex-1 basis-full xl:basis-[60%]">
 									<p
 										className="flex flex-col pb-8 font-thin"
 										style={{
 											fontSize: 22,
-											lineHeight: '36px'
+											lineHeight: '36px',
 										}}
 									>
 										<span
 											className="text-7xl font-extralight truncate"
 											style={{
-												color: '#290e30!important'
+												color: '#290e30!important',
 											}}
 										>
 											”
@@ -85,7 +72,7 @@ const Employee: React.FC = () => {
 											className="text-base font-light opacity-70 mb-1"
 											style={{
 												lineHeight: '22px',
-												color: '#290e30'
+												color: '#290e30',
 											}}
 										>
 											{employee.name}
@@ -98,7 +85,6 @@ const Employee: React.FC = () => {
 										</span>
 									</span>
 								</div>
-								<div style={{ flex: '1 1 10%' }}></div>
 							</div>
 						</div>
 					);

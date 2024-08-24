@@ -5,7 +5,7 @@ import { CiCreditCard1 } from 'react-icons/ci';
 const FoodItem = () => {
 	const { ref, inView } = useInView({
 		threshold: 0.25,
-		triggerOnce: true
+		triggerOnce: true,
 	});
 
 	return (
@@ -25,11 +25,14 @@ const FoodItem = () => {
 				})}
 			</div>
 			<div
-				className={`flex justify-around text-center pt-5 px-20 transition-all duration-1000 ${inView ? 'opacity-1' : 'translate-y-full opacity-0'}`}
+				className={`flex  flex-wrap justify-around text-center pt-5 px-20 transition-all duration-1000 ${inView ? 'opacity-1' : 'translate-y-full opacity-0'}`}
 			>
 				{itemFoodList.map((item) => {
 					return (
-						<div className="flex flex-col p-9" key={item.id}>
+						<div
+							className="flex flex-col p-9 max-w-[300px]"
+							key={item.id}
+						>
 							<div className="flex justify-center mb-6">
 								<CiCreditCard1 className="h-[57px] w-[50px] opacity-25 hover:cursor-pointer" />
 							</div>

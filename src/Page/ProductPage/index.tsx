@@ -9,7 +9,7 @@ const ProductPage = () => {
 	useEffect(() => {
 		const getProduct = async () => {
 			const productResponse = await getProducts(9);
-			setProducts(productResponse.data);
+			setProducts(productResponse?.data);
 		};
 		getProduct();
 	}, []);

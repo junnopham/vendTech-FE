@@ -3,26 +3,16 @@ import { itemInfo1 } from '../../const';
 import Card from '../base/Card';
 const OfficeWorks = () => {
 	return (
-		<div className="pt-28 pb-40 bg-[#ecece5]">
-			<div className="flex px-20 pb-24 ">
-				<div
-					className="px-10 flex justify-center align-middle"
-					style={{ flex: '1 1 50%' }}
-				>
+		<div className=" py-10 lg:pt-28 lg:pb-40 bg-[#ecece5]">
+			<div className="flex flex-col flex-wrap justify-center items-center lg:px-20 lg:pb-24">
+				<div className="flex flex-1 sm:basis-auto xl:basis-1/2 px-10 justify-center align-middle xl:max-w-[700px] ">
 					<img
 						src={morsl03}
-						className="object-cover rounded-lg"
-						style={{ maxWidth: 500, maxHeight: 300 }}
+						className="object-cover rounded-lg xl:w-full"
 					/>
 				</div>
-				<div
-					className="flex flex-col justify-center px-10 "
-					style={{ flex: '1 1 50%' }}
-				>
-					<h3
-						className="font-bold text-3xl text-main mb-2"
-						style={{ color: '#52B2BF', lineHeight: '64px' }}
-					>
+				<div className="flex flex-col flex-1 sm:basis-auto xl:basis-1/2 justify-center px-10 max-w-[800px]">
+					<h3 className="font-bold text-3xl text-main mb-2 text-[#52B2BF] leading-[64px]">
 						Did you know?
 					</h3>
 					<p className="mb-6 font-light">
@@ -41,7 +31,7 @@ const OfficeWorks = () => {
 						href="https://www.morsl.com.au/wp-content/uploads/2021/09/OFFICEWORKS-CASE-STUDY.pdf"
 						target="_blank"
 						rel="noreferrer"
-						style={{ color: '#52B2BF' }}
+						className="text-[#52B2BF]"
 					>
 						OFFICEWORKS CASE STUDY
 					</a>
