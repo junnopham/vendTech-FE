@@ -10,10 +10,12 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 
 const { Header, Sider, Content } = Layout;
 
 const Dashboard: React.FC = () => {
+	const { signOut } = useAuth();
 	const location = useLocation();
 	const pathname = location.pathname;
 	const [collapsed, setCollapsed] = useState(false);
@@ -47,7 +49,7 @@ const Dashboard: React.FC = () => {
 						{
 							key: '/admin/profile',
 							icon: <UserOutlined />,
-							label: <Link to="/admin/profile">User</Link>,
+							label: <Link to="/admin/profile">Profile</Link>,
 						},
 						{
 							key: '/admin/product-management',
@@ -74,7 +76,15 @@ const Dashboard: React.FC = () => {
 				/>
 			</Sider>
 			<Layout>
-				<Header style={{ padding: 0, background: colorBgContainer }}>
+				<Header
+					style={{
+						padding: 0,
+						background: colorBgContainer,
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+					}}
+				>
 					<Button
 						type="text"
 						icon={
@@ -91,6 +101,13 @@ const Dashboard: React.FC = () => {
 							height: 64,
 						}}
 					/>
+					<Button
+						type="text"
+						style={{ marginRight: '10px' }}
+						onClick={signOut}
+					>
+						Sign Out
+					</Button>
 				</Header>
 				<Content
 					style={{

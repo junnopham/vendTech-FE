@@ -6,16 +6,18 @@ import { classNames } from '../../../util';
 import styles from './styles.module.css';
 import {
 	BiLogoFacebook,
-	BiLogoLinkedin,
-	BiLogoInstagram,
 	BiLogoGmail,
+	BiLogoInstagram,
+	BiLogoLinkedin,
+	BiSolidDashboard,
 } from 'react-icons/bi';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface IconButtonProps {
 	Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 	customColor?: string;
 }
+
 interface IProps {
 	toggleCollapsed?: () => void;
 	collapsed?: boolean;
@@ -29,6 +31,9 @@ const NavBar = (props: IProps) => {
 	const [hiddenNav, setHiddenNav] = useState(false);
 	const [hiddenSubNav, setHiddenSubNav] = useState(true);
 	const [isDisplay, setIsDisplay] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(
+		localStorage.getItem('authToken') && localStorage.getItem('user')
+	);
 
 	const controlDirection = () => {
 		if (window.scrollY > oldScrollY) {
@@ -178,6 +183,12 @@ const NavBar = (props: IProps) => {
 										customColor="#fff"
 									/>
 								</button>
+								<Link to="/admin">
+									<IconButton
+										Icon={BiSolidDashboard}
+										customColor="#fff"
+									/>
+								</Link>
 							</div>
 						</div>
 					</div>
@@ -271,6 +282,12 @@ const NavBar = (props: IProps) => {
 										customColor="#333"
 									/>
 								</button>
+								<Link to="/admin">
+									<IconButton
+										Icon={BiSolidDashboard}
+										customColor="#333"
+									/>
+								</Link>
 							</div>
 						</div>
 					</div>

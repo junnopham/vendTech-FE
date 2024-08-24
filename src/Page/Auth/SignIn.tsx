@@ -4,7 +4,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useAuth } from '../../context/AuthContext';
 import { signInWithUsernameAndPassword } from '../../service/user.service';
 import useTitle from '../../hooks/useTtitle';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -60,8 +60,7 @@ const SignIn: React.FC = () => {
 						placeholder="Password"
 					/>
 				</Form.Item>
-
-				<Form.Item>
+				<Form.Item style={{ marginBottom: 0 }}>
 					<Button
 						type="primary"
 						htmlType="submit"
@@ -69,6 +68,14 @@ const SignIn: React.FC = () => {
 					>
 						Login
 					</Button>
+				</Form.Item>
+				<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+					<Link
+						to="/reset-password"
+						style={{ textAlign: 'center', color: '#1890ff' }}
+					>
+						Forgot Password?
+					</Link>
 				</Form.Item>
 			</Form>
 		</div>
