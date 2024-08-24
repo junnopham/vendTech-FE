@@ -24,7 +24,7 @@ request.interceptors.response.use(
 		const status = error.response.status;
 
 		if (status === 401) {
-			window.location.assign('/auth/sign-in');
+			window.location.assign('/sign-in');
 		}
 
 		return Promise.reject(error);

@@ -17,6 +17,7 @@ import Category from './Page/Admin/Category';
 import Main from './Components/base/Main';
 import ProductPage from './Page/ProductPage';
 import SignIn from './Page/Auth/SignIn';
+import ForgotPassword from './Page/Auth/ForgotPassword';
 
 const App: React.FC = () => (
 	<div className="App">
@@ -39,9 +40,8 @@ const App: React.FC = () => (
 					<Route path="product-management" element={<Products />} />
 					<Route path="category" element={<Category />} />
 				</Route>
-				<Route path="auth">
-					<Route path="sign-in" element={<SignIn />} />
-				</Route>
+				<Route path="sign-in" element={<SignIn />} />
+				<Route path="reset-password" element={<ForgotPassword />} />
 			</Routes>
 		</Router>
 	</div>

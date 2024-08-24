@@ -6,9 +6,10 @@ import { classNames } from '../../../util';
 import styles from './styles.module.css';
 import {
 	BiLogoFacebook,
-	BiLogoLinkedin,
+	BiLogoGmail,
 	BiLogoInstagram,
-	BiLogoGmail
+	BiLogoLinkedin,
+	BiSolidDashboard,
 } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 
@@ -23,6 +24,9 @@ const NavBar = () => {
 	const [direction, setDirection] = useState('up');
 	const [hiddenNav, setHiddenNav] = useState(false);
 	const [hiddenSubNav, setHiddenSubNav] = useState(true);
+	const [isLoggedIn, setIsLoggedIn] = useState(
+		localStorage.getItem('authToken') && localStorage.getItem('user')
+	);
 
 	const controlDirection = () => {
 		if (window.scrollY > oldScrollY) {
@@ -65,7 +69,7 @@ const NavBar = () => {
 					transform: hiddenNav
 						? 'translateY(-100%)'
 						: 'translateY(0px)',
-					transition: 'transform .5s ease,box-shadow .5s ease'
+					transition: 'transform .5s ease,box-shadow .5s ease',
 				}}
 			>
 				<div className="mx-auto sm:px-6 lg:px-16 w-full">
@@ -158,6 +162,14 @@ const NavBar = () => {
 									customColor="#fff"
 								/>
 							</button>
+							{isLoggedIn && (
+								<Link to="/admin">
+									<IconButton
+										Icon={BiSolidDashboard}
+										customColor="#fff"
+									/>
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>
@@ -170,7 +182,7 @@ const NavBar = () => {
 						? 'translateY(-100%)'
 						: 'translateY(0px)',
 					transition:
-						'transform .3s ease,height .3s ease,background .3s ease,opacity .3s ease,border-color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease'
+						'transform .3s ease,height .3s ease,background .3s ease,opacity .3s ease,border-color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease',
 				}}
 			>
 				<div className="mx-auto px-2 sm:px-6 lg:px-16 w-full">
@@ -251,6 +263,11 @@ const NavBar = () => {
 							<button className={styles.iconSubNav}>
 								<IconButton Icon={BiLogoGmail} />
 							</button>
+							{isLoggedIn && (
+								<Link to="/admin" className={styles.iconSubNav}>
+									<IconButton Icon={BiSolidDashboard} />
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>
