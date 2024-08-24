@@ -4,9 +4,10 @@ import SubNavBar from '../SubNav';
 interface IProps {
 	type?: 'main' | 'sub';
 	toggleCollapsed?: () => void;
+	collapsed?: boolean;
 }
 const Header = (props: IProps) => {
-	const { type = 'main', toggleCollapsed } = props;
+	const { type = 'main', toggleCollapsed, collapsed } = props;
 	return (
 		<div className="relative">
 			<div className="flex justify-center">
@@ -21,9 +22,17 @@ const Header = (props: IProps) => {
 			</div>
 			<div>
 				{type === 'main' && (
-					<NavBar toggleCollapsed={toggleCollapsed} />
+					<NavBar
+						toggleCollapsed={toggleCollapsed}
+						collapsed={collapsed}
+					/>
 				)}
-				{type === 'sub' && <SubNavBar />}
+				{type === 'sub' && (
+					<SubNavBar
+						toggleCollapsed={toggleCollapsed}
+						collapsed={collapsed}
+					/>
+				)}
 			</div>
 		</div>
 	);

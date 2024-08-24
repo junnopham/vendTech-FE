@@ -18,15 +18,17 @@ interface IconButtonProps {
 }
 interface IProps {
 	toggleCollapsed?: () => void;
+	collapsed?: boolean;
 }
 
 const NavBar = (props: IProps) => {
-	const { toggleCollapsed } = props;
+	const { toggleCollapsed, collapsed } = props;
 	let oldScrollY = 0;
 
 	const [direction, setDirection] = useState('up');
 	const [hiddenNav, setHiddenNav] = useState(false);
 	const [hiddenSubNav, setHiddenSubNav] = useState(true);
+	const [isDisplay, setIsDisplay] = useState(false);
 
 	const controlDirection = () => {
 		if (window.scrollY > oldScrollY) {
@@ -38,10 +40,36 @@ const NavBar = (props: IProps) => {
 	};
 
 	const listenScrollEvent = () => {
-		window.scrollY > 80 ? setHiddenNav(true) : setHiddenNav(false);
-		window.scrollY > 80 && direction === 'up'
-			? setHiddenSubNav(false)
-			: setHiddenSubNav(true);
+		if (collapsed) {
+			setIsDisplay(true);
+		} else {
+			setIsDisplay(false);
+		}
+
+		if (window.scrollY > 80) {
+			if (isDisplay && !hiddenNav) {
+				setHiddenNav(false);
+				setHiddenSubNav(true);
+				return;
+			}
+			if (isDisplay && !hiddenSubNav) {
+				setHiddenNav(true);
+				setHiddenSubNav(false);
+				return;
+			}
+			setHiddenNav(true);
+			setHiddenSubNav(true);
+		}
+		if (window.scrollY < 1) {
+			setHiddenNav(false);
+			setHiddenSubNav(true);
+			return;
+		}
+
+		if (window.scrollY > 80 && direction === 'up') {
+			setHiddenSubNav(false);
+			return;
+		}
 	};
 	useEffect(() => {
 		window.addEventListener('scroll', listenScrollEvent);
@@ -64,33 +92,27 @@ const NavBar = (props: IProps) => {
 		<>
 			<Disclosure
 				as="nav"
-				className="bg-transparent fixed top-0 left-0 w-full z-50 py-6"
-				style={{
-					transform: hiddenNav
-						? 'translateY(-100%)'
-						: 'translateY(0px)',
-					transition: 'transform .5s ease,box-shadow .5s ease',
-				}}
+				className={`${hiddenNav ? 'opacity-0' : 'opacity-1'} bg-transparent fixed top-0 left-0 w-full z-50 py-3 lg:py-6 transition-all duration-300 `}
 			>
 				<div className="xl:px-16">
 					<div className="relative flex h-16 items-center justify-between w-full px-10">
 						<div className="absolute inset-y-0 left-0 items-center w-full lg:hidden">
 							{/* Mobile menu button*/}
-							<div className="flex justify-between items-center px-20 w-full">
+							<div className="flex justify-between items-center pr-10 pl-20 lg:px-20 w-full">
 								<button className="text-white font-bold text-4xl ">
 									<Link to="/"> Vend Tech </Link>
 								</button>
 								<DisclosureButton
-									className="group relative inline-flex items-center justify-center rounded-md p-2 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-[1000ms] "
+									className="group relative inline-flex items-center justify-center rounded-md p-2 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all "
 									onClick={toggleCollapsed}
 								>
 									<Bars3Icon
 										aria-hidden="true"
-										className="block h-8 w-8 group-data-[open]:hidden"
+										className={`${collapsed ? 'hidden' : 'block'} block h-8 w-8`}
 									/>
 									<XMarkIcon
 										aria-hidden="true"
-										className="hidden h-8 w-8 group-data-[open]:block"
+										className={`${collapsed ? 'block' : 'hidden'} block h-8 w-8`}
 									/>
 								</DisclosureButton>
 							</div>
@@ -163,34 +185,27 @@ const NavBar = (props: IProps) => {
 			</Disclosure>
 			<Disclosure
 				as="nav"
-				className="bg-white text-black fixed top-0 left-0 w-full z-50 py-3 lg:py-6 "
-				style={{
-					transform: hiddenSubNav
-						? 'translateY(-100%)'
-						: 'translateY(0px)',
-					transition:
-						'transform .3s ease,height .3s ease,background .3s ease,opacity .3s ease,border-color .3s ease,box-shadow .3s ease,backdrop-filter .3s ease',
-				}}
+				className={`${hiddenSubNav ? 'opacity-0' : 'opacity-1'} bg-white fixed top-0 left-0 w-full z-50 py-3 lg:py-6 transition-all duration-300 `}
 			>
 				<div className="xl:px-16">
 					<div className="relative flex h-12 items-center justify-between w-full px-10">
 						<div className="absolute inset-y-0 left-0 items-center w-full lg:hidden">
 							{/* Mobile menu button*/}
-							<div className="flex justify-between items-center px-20 w-full">
+							<div className="flex justify-between items-center pr-10 pl-20 lg:px-20 w-full">
 								<button className="text-black font-bold text-4xl ">
 									<Link to="/"> Vend Tech </Link>
 								</button>
 								<DisclosureButton
-									className="group relative inline-flex items-center justify-center rounded-md p-2 text-black hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black transition-all duration-[1000ms] "
+									className="group relative inline-flex items-center justify-center rounded-md p-2 text-black hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black transition-all "
 									onClick={toggleCollapsed}
 								>
 									<Bars3Icon
 										aria-hidden="true"
-										className="block h-8 w-8 "
+										className={`${collapsed ? 'hidden' : 'block'} block h-8 w-8`}
 									/>
 									<XMarkIcon
 										aria-hidden="true"
-										className="hidden h-8 w-8 "
+										className={`${collapsed ? 'block' : 'hidden'} block h-8 w-8`}
 									/>
 								</DisclosureButton>
 							</div>

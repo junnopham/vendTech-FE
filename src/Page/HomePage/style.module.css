@@ -4,7 +4,7 @@
 	opacity: 90%;
 	width: 100%;
 	top: 0;
-	animation: slide-down 3s ease-in-out both;
+	animation: slide-down 2s ease-in-out both;
 	z-index: 50;
 }
 @keyframes slide-down {

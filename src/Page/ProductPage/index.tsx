@@ -16,11 +16,11 @@ const ProductPage = () => {
 	return (
 		<div>
 			{/* PART 1 */}
-			<div className="mt-10 px-48">
+			<div className="mt-10 xl:px-48">
 				<h2 className="text-[#1D1D1B] text-[30px] leading-[1] mb-5 uppercase p-[30px]">
 					We don't just offer retail solutions, we create them.
 				</h2>
-				<div className="flex flex-wrap my-[30px]">
+				<div className="flex flex-col flex-wrap my-[30px] md:flex-row">
 					<div className="flex flex-col flex-1 basis-1/2 p-[30px] items-start justify-between">
 						<div className="text-left text-lg">
 							<p className="mb-5">
@@ -59,10 +59,10 @@ const ProductPage = () => {
 				</h2>
 			</div>
 			{/* PART 3 */}
-			<div className="px-48 py-[50px] bg-[#F5F5F5] flex flex-wrap w-full justify-start">
+			<div className=" py-[50px] bg-[#F5F5F5] flex flex-wrap w-full justify-center md:px-24 2xl:px-48">
 				{products?.map((product: any) => (
 					<div
-						className="bg-white px-[50px] py-[30px] mx-[5px] mb-[10px] min-h-[430px] w-[350px] max-w-[350px] min-w-[350px] flex-1 basis-1/4"
+						className="bg-white  px-[50px] py-[30px] mx-[5px] mb-[10px] min-h-[430px] min-w-[350px] flex-1 md:basis-1/3 xl:basis-1/4 lg:max-w-[350px] "
 						key={product?.id}
 					>
 						<div className="mb-5 min-h-[250px] flex justify-center items-center">
@@ -82,18 +82,24 @@ const ProductPage = () => {
 				))}
 			</div>
 			{/* PART 4 */}
-			<div className="flex flex-wrap px-48">
+			<div className="flex flex-col flex-wrap 2xl:px-48 md:flex-row">
 				<div className="flex-1 basis-1/2">
 					<img src="https://autoretailtech.com.au/wp-content/uploads/2023/08/modular-vending.jpg" />
 				</div>
-				<div className="flex justify-center items-center flex-1 basis-1/2 bg-[#F5F5F5] text-[30px] font-bold leading-[1] text-[#1D1D1B] ">
+				<div className="flex justify-center items-center flex-1 basis-1/2 bg-[#F5F5F5] text-[30px] font-bold leading-[1] text-[#1D1D1B] py-12">
 					<p>Modula Vending</p>
 				</div>
-				<div className="flex justify-center items-center flex-1 basis-1/2 bg-[#F5F5F5] text-[30px] font-bold leading-[1] text-[#1D1D1B]">
-					<p>Tailored Designs</p>
+				<div className="flex justify-center items-center flex-1 basis-1/2 bg-[#F5F5F5]">
+					<div className="  text-[30px] font-bold leading-[1] text-[#1D1D1B] hidden py-12 md:block">
+						<p className="my-auto">Tailored Designs</p>
+					</div>
 				</div>
+
 				<div className="flex-1 basis-1/2">
 					<img src="https://autoretailtech.com.au/wp-content/uploads/2023/08/tailored-design.jpg" />
+				</div>
+				<div className="flex justify-center items-center flex-1 basis-1/2 bg-[#F5F5F5] text-[30px] font-bold leading-[1] text-[#1D1D1B] py-12 md:hidden">
+					<p>Tailored Designs</p>
 				</div>
 			</div>
 			{/* PART 5 */}
@@ -120,22 +126,22 @@ const ProductPage = () => {
 			{/* PART 6 */}
 			<div className="flex justify-center items-center bg-[#262626] p-[30px]">
 				<div className="flex flex-col justify-center items-center">
-					<h2 className="text-[#fff] text-[60px] font-bold leading-[1]">
+					<h2 className="text-[#fff] text-[40px] lg:text-[60px] font-bold leading-[1] text-center">
 						BARISTA COFFEE
 					</h2>
-					<h2 className="text-[#fff] text-[30px] font-bold leading-[1]">
+					<h2 className="text-[#fff] text-[20px] lg:text-[30px] font-bold leading-[1]">
 						AVAILABLE HERE
 					</h2>
 					<img src="https://autoretailtech.com.au/wp-content/uploads/2023/08/jonnee-coffee-logo.png" />
 				</div>
 			</div>
 			{/* PART 7 */}
-			<div className="px-48 bg-[#A99162] py-[50px]">
-				<h2 className="text-[30px] font-bold leading-[1] mb-5 p-[10px]">
+			<div className="bg-[#A99162] px-12 py-[50px] 2xl:px-48">
+				<h2 className="text-[30px] font-bold leading-[1] mb-5 p-[10px] text-center lg:text-left lg:px-14 2xl:px-36">
 					Discover Jonnee Coffee
 				</h2>
-				<div className="flex flex-wrap p-[10px]">
-					<div className="flex-1 basis-1/2 p-[10px]">
+				<div className="flex flex-col flex-wrap p-[10px] md:flex-row">
+					<div className="flex-1 basis-1/2 p-[10px] flex justify-center items-center md:items-start">
 						<img src="https://autoretailtech.com.au/wp-content/uploads/2023/08/jonnee-coffee-img-1.jpg" />
 					</div>
 					<div className="flex-1 basis-1/2 p-[10px]">
@@ -180,21 +186,21 @@ const ProductPage = () => {
 				</div>
 			</div>
 			{/* PART 8 */}
-			<div className="relative bg-[url('https://autoretailtech.com.au/wp-content/uploads/2023/07/art-banner.jpg')] h-[60vh]">
-				<img
-					src="https://autoretailtech.com.au/wp-content/uploads/2023/08/footer-banner-1.jpg"
-					className="absolute max-w-[80vw] h-[50vh] top-[10%] left-[10%]"
-				/>
-				<div className="absolute z-10 bg-[#AC4A6D] text-white flex flex-col px-[30px] py-24 max-w-[28vw] justify-center align-middle top-[20%] left-[15%]">
-					<p className="text-xl mb-5">
-						Read the latest News & Updates from the world of
-						automated retail and delivery technologies:
-					</p>
-					<div className="bg-[#44295B] flex flex-col justify-center align-middle p-[8px] text-center">
-						<h4 className="text-[17px]">CHECK BACK SOON</h4>
-						<p className="text-[14px]">
-							Once posts are published, you'll see them here.
+			<div className="relative bg-[url('https://autoretailtech.com.au/wp-content/uploads/2023/07/art-banner.jpg')] min-h-[40vh] lg:min-h-[60vh]">
+				<div className="absolute bg-[url('https://autoretailtech.com.au/wp-content/uploads/2023/08/footer-banner-1.jpg')] max-w-[80vw] min-h-[30vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full lg:max-w-full lg:min-h-[50vh]">
+					<div className="absolute z-10 bg-[#AC4A6D] text-white w-[85%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col h-full px-6 justify-center items-center md:h-[80%] md:px-[30px] md:py-24 md:max-w-[50vw] lg:max-w-[28vw] lg:top-[50%] lg:left-[20%] lg:px-10">
+						<p className="text-[15px] lg:text-xl mb-5">
+							Read the latest News & Updates from the world of
+							automated retail and delivery technologies:
 						</p>
+						<div className="bg-[#44295B] flex flex-col justify-center align-middle p-[8px] text-center">
+							<h4 className="text-[15px] lg:text-[17px]">
+								CHECK BACK SOON
+							</h4>
+							<p className="text-[12px] lg:text-[14px]">
+								Once posts are published, you'll see them here.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
