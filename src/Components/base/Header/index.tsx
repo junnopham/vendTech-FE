@@ -3,9 +3,11 @@ import SubNavBar from '../SubNav';
 
 interface IProps {
 	type?: 'main' | 'sub';
+	toggleCollapsed?: () => void;
+	collapsed?: boolean;
 }
 const Header = (props: IProps) => {
-	const { type = 'main' } = props;
+	const { type = 'main', toggleCollapsed, collapsed } = props;
 	return (
 		<div className="relative">
 			<div className="flex justify-center">
@@ -14,13 +16,23 @@ const Header = (props: IProps) => {
 					autoPlay
 					loop
 					muted
-					className="h-[75vh] w-full object-fill
+					className="h-[50vh] md:h-[75vh] w-full object-fill
 					"
 				/>
 			</div>
 			<div>
-				{type === 'main' && <NavBar />}
-				{type === 'sub' && <SubNavBar />}
+				{type === 'main' && (
+					<NavBar
+						toggleCollapsed={toggleCollapsed}
+						collapsed={collapsed}
+					/>
+				)}
+				{type === 'sub' && (
+					<SubNavBar
+						toggleCollapsed={toggleCollapsed}
+						collapsed={collapsed}
+					/>
+				)}
 			</div>
 		</div>
 	);

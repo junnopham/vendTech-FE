@@ -36,19 +36,14 @@ const FormSubmit: React.FC = () => {
 		}
 	};
 
-	const websiteOptions = autoCompleteResult.map((website) => ({
-		label: website,
-		value: website
-	}));
-
 	return (
 		<div
-			className="flex justify-center align-middle relative flex-col"
+			className="flex flex-wrap justify-center align-middle relative flex-col"
 			style={{
 				backgroundImage:
 					'url(https://www.morsl.com.au/wp-content/uploads/2018/04/morsl-dark-pattern-800-08-1.png)',
 				backgroundPosition: 'left top',
-				backgroundRepeat: 'repeat'
+				backgroundRepeat: 'repeat',
 			}}
 		>
 			<FormLayout />
