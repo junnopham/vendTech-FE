@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Descriptions, Form, Input, message, Modal } from 'antd';
 import './style.css';
 import useTitle from '../../../hooks/useTtitle';
@@ -7,7 +7,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { formatTime } from '../../../util/date-time';
 import { useNavigate } from 'react-router-dom';
 import { EditOutlined } from '@ant-design/icons';
-import { updateUser } from '../../../service/user.service';
+import { getUserByUsername, updateUser } from '../../../service/user.service';
 
 const Profile = () => {
 	useTitle('Profile');
@@ -16,20 +16,18 @@ const Profile = () => {
 	const [form] = Form.useForm();
 
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-	const [mode, setMode] = useState<'username' | 'password'>('password');
+	const [userData, setUserData] = useState<any>(null);
+
+	useEffect(() => {
+		if (user?.username) {
+			getUserByUsername(user?.username).then((res) => {
+				setUserData(res);
+			});
+		}
+	}, [user]);
 
 	const showModal = () => {
 		setIsModalOpen(true);
-	};
-
-	const updateUsername = () => {
-		setMode('username');
-		showModal();
-	};
-
-	const updatePassword = () => {
-		setMode('password');
-		showModal();
 	};
 
 	const handleOk = () => {
@@ -43,7 +41,6 @@ const Profile = () => {
 	};
 
 	const onFinish = async (values: {
-		username: string;
 		currentPassword: string;
 		newPassword: string;
 		confirmPassword: string;
@@ -51,21 +48,8 @@ const Profile = () => {
 		try {
 			let formUpdate: any = {
 				confirmPassword: values.currentPassword,
+				newPassword: values.newPassword,
 			};
-
-			if (values.username) {
-				formUpdate = {
-					...formUpdate,
-					newUsername: values.username,
-				};
-			}
-
-			if (values.newPassword) {
-				formUpdate = {
-					...formUpdate,
-					newPassword: values.newPassword,
-				};
-			}
 
 			await updateUser(formUpdate);
 
@@ -78,7 +62,7 @@ const Profile = () => {
 
 	return (
 		<>
-			{!!user && (
+			{!!userData && (
 				<>
 					<Card
 						title="Profile"
@@ -86,27 +70,19 @@ const Profile = () => {
 					>
 						<Descriptions bordered>
 							<Descriptions.Item label="ID" span={3}>
-								{user._id}
+								{userData._id}
 							</Descriptions.Item>
 							<Descriptions.Item label="Username" span={3}>
-								<span>{user.username}</span>
-								<Button
-									type="text"
-									icon={<EditOutlined />}
-									size="small"
-									shape="circle"
-									style={{ marginLeft: '5px' }}
-									onClick={updateUsername}
-								/>
+								{userData.username}
 							</Descriptions.Item>
 							<Descriptions.Item label="Email" span={3}>
-								{user.email}
+								{userData.email}
 							</Descriptions.Item>
 							<Descriptions.Item label="Created At" span={3}>
-								{formatTime(user.createdAt)}
+								{formatTime(userData.createdAt)}
 							</Descriptions.Item>
 							<Descriptions.Item label="Updated At" span={3}>
-								{formatTime(user.updatedAt)}
+								{formatTime(userData.updatedAt)}
 							</Descriptions.Item>
 							<Descriptions.Item label="Password" span={3}>
 								<Button
@@ -115,7 +91,7 @@ const Profile = () => {
 									iconPosition="end"
 									size="small"
 									style={{ marginLeft: '5px' }}
-									onClick={updatePassword}
+									onClick={showModal}
 								>
 									Update Password
 								</Button>
@@ -146,47 +122,34 @@ const Profile = () => {
 							onFinish={onFinish}
 							name="edit_form"
 						>
-							{mode === 'username' && (
-								<Form.Item name="username" label="Username">
-									<Input placeholder="Enter new username" />
-								</Form.Item>
-							)}
-							{mode === 'password' && (
-								<>
-									<Form.Item
-										name="newPassword"
-										label="New Password"
-									>
-										<Input.Password />
-									</Form.Item>
-									<Form.Item
-										name="confirmPassword"
-										label="Confirm New Password"
-										dependencies={['newPassword']}
-										rules={[
-											({ getFieldValue }) => ({
-												validator(_, value) {
-													if (
-														!value ||
-														getFieldValue(
-															'newPassword'
-														) === value
-													) {
-														return Promise.resolve();
-													}
-													return Promise.reject(
-														new Error(
-															'The two passwords do not match!'
-														)
-													);
-												},
-											}),
-										]}
-									>
-										<Input.Password />
-									</Form.Item>
-								</>
-							)}
+							<Form.Item name="newPassword" label="New Password">
+								<Input.Password />
+							</Form.Item>
+							<Form.Item
+								name="confirmPassword"
+								label="Confirm New Password"
+								dependencies={['newPassword']}
+								rules={[
+									({ getFieldValue }) => ({
+										validator(_, value) {
+											if (
+												!value ||
+												getFieldValue('newPassword') ===
+													value
+											) {
+												return Promise.resolve();
+											}
+											return Promise.reject(
+												new Error(
+													'The two passwords do not match!'
+												)
+											);
+										},
+									}),
+								]}
+							>
+								<Input.Password />
+							</Form.Item>
 							<Form.Item
 								name="currentPassword"
 								label="Current Password"

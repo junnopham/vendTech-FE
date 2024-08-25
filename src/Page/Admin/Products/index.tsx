@@ -189,12 +189,7 @@ const Products = () => {
 	};
 
 	const handleUpdate = (updatedProduct: Product) => {
-		setData(
-			(prevData) =>
-				prevData?.map((item) =>
-					item._id === updatedProduct._id ? updatedProduct : item
-				) || []
-		);
+		setReload(!reload);
 	};
 
 	const addProduct = () => {
@@ -202,8 +197,7 @@ const Products = () => {
 	};
 
 	const handleAddProduct = (newProduct: Product) => {
-		setData((prevData) => [newProduct, ...(prevData || [])]);
-		setIsAddModalOpen(false);
+		setReload(!reload);
 	};
 
 	return (

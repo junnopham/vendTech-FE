@@ -19,7 +19,6 @@ const ForgotPassword = () => {
 	}, [searchParams]);
 
 	const onFinish = async (values: any) => {
-		console.log('Success:', values);
 		try {
 			if (userId && token) {
 				const newPassword = values.newPassword;

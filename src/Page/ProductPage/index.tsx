@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import { AiFillAlipaySquare } from 'react-icons/ai';
 import { getProducts } from '../../service/product.service';
 
 const ProductPage = () => {
 	const [products, setProducts] = useState<[]>([]);
-	console.log(products);
 
 	useEffect(() => {
 		const getProduct = async () => {
