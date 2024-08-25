@@ -183,12 +183,14 @@ const NavBar = (props: IProps) => {
 										customColor="#fff"
 									/>
 								</button>
-								<Link to="/admin">
-									<IconButton
-										Icon={BiSolidDashboard}
-										customColor="#fff"
-									/>
-								</Link>
+								{isLoggedIn && (
+									<Link to="/admin">
+										<IconButton
+											Icon={BiSolidDashboard}
+											customColor="#fff"
+										/>
+									</Link>
+								)}
 							</div>
 						</div>
 					</div>
@@ -282,12 +284,14 @@ const NavBar = (props: IProps) => {
 										customColor="#333"
 									/>
 								</button>
-								<Link to="/admin">
-									<IconButton
-										Icon={BiSolidDashboard}
-										customColor="#333"
-									/>
-								</Link>
+								{isLoggedIn && (
+									<Link to="/admin">
+										<IconButton
+											Icon={BiSolidDashboard}
+											customColor="#333"
+										/>
+									</Link>
+								)}
 							</div>
 						</div>
 					</div>

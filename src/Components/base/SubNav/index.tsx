@@ -1,31 +1,37 @@
 import { Disclosure, DisclosureButton } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { navigation } from '../../../const';
 import { classNames } from '../../../util';
 import styles from './styles.module.css';
 import {
 	BiLogoFacebook,
-	BiLogoLinkedin,
-	BiLogoInstagram,
 	BiLogoGmail,
+	BiLogoInstagram,
+	BiLogoLinkedin,
+	BiSolidDashboard,
 } from 'react-icons/bi';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface IconButtonProps {
 	Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 	customColor?: string;
 }
+
 interface IProps {
 	toggleCollapsed?: () => void;
 	collapsed?: boolean;
 }
+
 const SubNavBar = (props: IProps) => {
 	let oldScrollY = 0;
 	const { collapsed, toggleCollapsed } = props;
 	const [direction, setDirection] = useState('up');
 	const [hiddenSubNav, setHiddenSubNav] = useState(false);
 	const [isDisplay, setIsDisplay] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(
+		localStorage.getItem('authToken') && localStorage.getItem('user')
+	);
 
 	const controlDirection = () => {
 		if (window.scrollY > oldScrollY) {
@@ -153,6 +159,14 @@ const SubNavBar = (props: IProps) => {
 										customColor="#333"
 									/>
 								</button>
+								{isLoggedIn && (
+									<Link to="/admin">
+										<IconButton
+											Icon={BiSolidDashboard}
+											customColor="#333"
+										/>
+									</Link>
+								)}
 							</div>
 						</div>
 					</div>

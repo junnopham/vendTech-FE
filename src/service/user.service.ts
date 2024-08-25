@@ -26,6 +26,12 @@ const getUsers = async (pageSize: number, currentPage: number) => {
 	return response.data;
 };
 
+const getUserByUsername = async (username: string) => {
+	const response = await axios.get(`${USER_URL}/${username}`);
+
+	return response.data;
+};
+
 const updateUser = async (user: any) => {
 	const response = await axios.post(`${USER_URL}/update`, user);
 
@@ -51,6 +57,7 @@ const resetPassword = async (data: {
 export {
 	signInWithUsernameAndPassword,
 	getUsers,
+	getUserByUsername,
 	updateUser,
 	forgotPassword,
 	resetPassword,

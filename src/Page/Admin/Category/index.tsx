@@ -184,19 +184,7 @@ const Category = () => {
 	};
 
 	const handleUpdate = (updatedCategory: Category) => {
-		if (category?._id) {
-			setData(
-				(prevData) =>
-					prevData?.map((item) =>
-						item._id === updatedCategory._id
-							? updatedCategory
-							: item
-					) || []
-			);
-		} else {
-			// Thêm mới dữ liệu vào bảng
-			setData((prevData) => [...(prevData || []), updatedCategory]);
-		}
+		setReload(!reload);
 	};
 
 	const onCloseModal = () => {
