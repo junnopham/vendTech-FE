@@ -7,7 +7,7 @@ const Benefit = () => {
 			>
 				Why Vend Tech?
 			</h3>
-			<div className="flex flex-col md:flex-row flex-wrap md:justify-center md:items-center lg:justify-normal">
+			<div className="flex flex-col md:flex-row flex-wrap md:justify-center lg:justify-normal">
 				<div className="md:p-10 lg:p-18 flex-1 basis-1/3 lg:min-w-[400px] max-w-[500px] ">
 					<h2
 						style={{ color: '#52B2BF' }}
