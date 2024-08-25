@@ -11,7 +11,7 @@ type ICard = {
 const Card = (props: IProps) => {
 	const { items } = props;
 	return (
-		<div className="flex flex-wrap justify-center items-center">
+		<div className="flex flex-wrap justify-center items-start md:px-24">
 			{items.map((item) => {
 				return (
 					<div

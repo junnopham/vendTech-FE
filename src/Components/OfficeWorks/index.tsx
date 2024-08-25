@@ -4,7 +4,7 @@ import Card from '../base/Card';
 const OfficeWorks = () => {
 	return (
 		<div className=" py-10 lg:pt-28 lg:pb-40 bg-[#ecece5]">
-			<div className="flex flex-col flex-wrap justify-center items-center lg:px-20 lg:pb-24">
+			<div className="flex flex-col flex-wrap justify-center items-center lg:px-20 lg:pb-24 lg:flex-row">
 				<div className="flex flex-1 sm:basis-auto xl:basis-1/2 px-10 justify-center align-middle xl:max-w-[700px] ">
 					<img
 						src={morsl03}
