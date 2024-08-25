@@ -11,14 +11,12 @@ interface ProductFormModalProps {
 	id: string | null;
 	onClose: () => void;
 	onUpdate: (updatedProduct: Product) => void;
-	onCreate?: (newProduct: Product) => void;
 }
 
 const ProductModal: React.FC<ProductFormModalProps> = ({
 	id,
 	onClose,
 	onUpdate,
-	onCreate,
 }) => {
 	const [form] = Form.useForm();
 	const [isModalOpen, setIsModalOpen] = useState(true);
@@ -69,7 +67,7 @@ const ProductModal: React.FC<ProductFormModalProps> = ({
 				message.success('Update successfully');
 			} else {
 				const newProduct = await createProduct(formData);
-				onCreate && onCreate(newProduct);
+				onUpdate(newProduct);
 				message.success('Product created successfully');
 			}
 
