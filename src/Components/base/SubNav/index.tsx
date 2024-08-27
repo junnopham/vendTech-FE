@@ -12,6 +12,7 @@ import {
 	BiSolidDashboard,
 } from 'react-icons/bi';
 import React, { useEffect, useState } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 
 interface IconButtonProps {
 	Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -133,9 +134,14 @@ const SubNavBar = (props: IProps) => {
 							</div>
 							<div className="ml-6 justify-around flex-1 basis-[30%] hidden lg:block">
 								<div className="flex items-center justify-center">
-									<button className="px-5 py-2 font-thin text-sm text-white hover:opacity-80  bg-[#52B2BF] xl:mx-5 xl:px-2 ">
+									<ScrollLink
+										to="formSubmit"
+										smooth={true}
+										duration={1000}
+										className="px-5 py-2 font-thin text-sm text-white hover:opacity-80  bg-[#52B2BF] xl:mx-5 xl:px-2 "
+									>
 										Make Enquiry
-									</button>
+									</ScrollLink>
 									<button className="mx-2 xl:mr-4">
 										<IconButton
 											Icon={BiLogoFacebook}

@@ -63,8 +63,11 @@ const ProductPage = () => {
 						className="bg-white  px-[50px] py-[30px] mx-[5px] mb-[10px] min-h-[430px] min-w-[350px] flex-1 md:basis-1/3 xl:basis-1/4 lg:max-w-[350px] "
 						key={product?.id}
 					>
-						<div className="mb-5 min-h-[250px] flex justify-center items-center">
-							<img src={product?.image.url} className="h-full" />
+						<div className="mb-5 h-[250px]  flex justify-center items-center">
+							<img
+								src={product?.image.url}
+								className="h-full w-full object-contain"
+							/>
 						</div>
 						<h2 className="text-[#1D1D1B] text-[25px] text-left font-medium uppercase">
 							{product?.name}
@@ -80,23 +83,28 @@ const ProductPage = () => {
 				))}
 			</div>
 			{/* PART 4 */}
-			<div className="flex flex-col flex-wrap 2xl:px-48 md:flex-row">
-				<div className="flex-1 basis-1/2">
-					<img src="https://autoretailtech.com.au/wp-content/uploads/2023/08/modular-vending.jpg" />
+			<div className="flex flex-col items-stretch sm:px-12 md:px-24 flex-wrap 2xl:px-48 md:flex-row">
+				<div className="flex-1 md:basis-1/2">
+					<img
+						src="https://autoretailtech.com.au/wp-content/uploads/2023/08/modular-vending.jpg"
+						className="w-full h-full"
+					/>
 				</div>
-				<div className="flex justify-center items-center flex-1 basis-1/2 bg-[#F5F5F5] text-[30px] font-bold leading-[1] text-[#1D1D1B] py-12">
+				<div className="flex justify-center items-center flex-1 md:basis-1/2 bg-[#F5F5F5] text-[30px] font-bold leading-[1] text-[#1D1D1B] py-12 ">
 					<p>Modula Vending</p>
 				</div>
-				<div className="flex justify-center items-center flex-1 basis-1/2 bg-[#F5F5F5]">
+				<div className="flex justify-center items-center flex-1 md:basis-1/2 bg-[#F5F5F5]">
 					<div className="  text-[30px] font-bold leading-[1] text-[#1D1D1B] hidden py-12 md:block">
 						<p className="my-auto">Tailored Designs</p>
 					</div>
 				</div>
-
-				<div className="flex-1 basis-1/2">
-					<img src="https://autoretailtech.com.au/wp-content/uploads/2023/08/tailored-design.jpg" />
+				<div className="flex-1 md:basis-1/2">
+					<img
+						src="https://autoretailtech.com.au/wp-content/uploads/2023/08/tailored-design.jpg"
+						className="w-full h-full"
+					/>
 				</div>
-				<div className="flex justify-center items-center flex-1 basis-1/2 bg-[#F5F5F5] text-[30px] font-bold leading-[1] text-[#1D1D1B] py-12 md:hidden">
+				<div className="flex justify-center items-center flex-1 md:basis-1/2 bg-[#F5F5F5] text-[30px] font-bold leading-[1] text-[#1D1D1B] py-12 md:hidden">
 					<p>Tailored Designs</p>
 				</div>
 			</div>

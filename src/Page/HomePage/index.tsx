@@ -12,9 +12,6 @@ const HomePage = () => {
 	const location = useLocation();
 	const isHomePage = location.pathname === '/' ? 'main' : 'sub';
 	const [collapsed, setCollapsed] = useState(false);
-	const { ref, inView } = useInView({
-		threshold: 0.6,
-	});
 
 	const toggleCollapsed = () => {
 		setCollapsed(!collapsed);
@@ -22,6 +19,7 @@ const HomePage = () => {
 
 	useEffect(() => {
 		setCollapsed(false);
+		window.scrollTo(0, 0);
 	}, [isHomePage, location]);
 
 	return (

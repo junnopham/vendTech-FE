@@ -1,6 +1,8 @@
 import { Disclosure, DisclosureButton } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
+
 import { navigation } from '../../../const';
 import { classNames } from '../../../util';
 import styles from './styles.module.css';
@@ -76,6 +78,7 @@ const NavBar = (props: IProps) => {
 			return;
 		}
 	};
+
 	useEffect(() => {
 		window.addEventListener('scroll', listenScrollEvent);
 	});
@@ -158,9 +161,14 @@ const NavBar = (props: IProps) => {
 							</div>
 							<div className="ml-6 justify-around flex-1 basis-[30%] hidden lg:block">
 								<div className="flex items-center justify-center">
-									<button className="px-5 py-2 font-thin text-sm text-white hover:opacity-80  bg-[#52B2BF] xl:mx-5 xl:px-2 ">
+									<ScrollLink
+										smooth={true}
+										duration={1000}
+										to="formSubmit"
+										className="px-5 py-2 font-thin text-sm text-white hover:opacity-80  bg-[#52B2BF] xl:mx-5 xl:px-2 "
+									>
 										Make Enquiry
-									</button>
+									</ScrollLink>
 									<button className="mx-2 xl:mr-4">
 										<IconButton
 											Icon={BiLogoFacebook}
@@ -259,9 +267,14 @@ const NavBar = (props: IProps) => {
 							</div>
 							<div className="ml-6 justify-around flex-1 basis-[30%] hidden lg:block">
 								<div className="flex items-center justify-center">
-									<button className="px-5 py-2 font-thin text-sm text-white hover:opacity-80  bg-[#52B2BF] xl:mx-5 xl:px-2 ">
+									<ScrollLink
+										smooth={true}
+										duration={1000}
+										to="formSubmit"
+										className="px-5 py-2 font-thin text-sm text-white hover:opacity-80  bg-[#52B2BF] xl:mx-5 xl:px-2"
+									>
 										Make Enquiry
-									</button>
+									</ScrollLink>
 									<button className="mx-2 xl:mr-4">
 										<IconButton
 											Icon={BiLogoFacebook}
