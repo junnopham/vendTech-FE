@@ -13,6 +13,7 @@ import {
 } from 'react-icons/bi';
 import React, { useEffect, useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
+import logo from '../../../assets/logo-ventech.svg';
 
 interface IconButtonProps {
 	Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -83,7 +84,14 @@ const SubNavBar = (props: IProps) => {
 								{/* Mobile menu button*/}
 								<div className="flex justify-between items-center pr-10 pl-20 lg:px-20 w-full">
 									<button className="text-black font-bold text-4xl ">
-										<Link to="/"> Vend Tech </Link>
+										<Link to="/">
+											<img
+												src={logo}
+												alt="logo"
+												width={200}
+												height={50}
+											/>
+										</Link>
 									</button>
 									<DisclosureButton
 										className="group relative inline-flex items-center justify-center rounded-md p-2 text-black hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black transition-all duration-[1000ms] "
@@ -104,7 +112,14 @@ const SubNavBar = (props: IProps) => {
 								<div className="flex justify-center items-center">
 									<div className="flex flex-shrink-0 items-center flex-1 basis-[30%]">
 										<button className="text-black font-bold text-4xl ">
-											<Link to="/"> Vend Tech </Link>
+											<Link to="/">
+												<img
+													src={logo}
+													alt="logo"
+													width={200}
+													height={50}
+												/>
+											</Link>
 										</button>
 									</div>
 									<div className="flex-1 basis-[60%]">
@@ -138,7 +153,7 @@ const SubNavBar = (props: IProps) => {
 										to="formSubmit"
 										smooth={true}
 										duration={1000}
-										className="px-5 py-2 font-thin text-sm text-white hover:opacity-80  bg-[#52B2BF] xl:mx-5 xl:px-2 "
+										className="px-5 py-2 font-thin text-sm text-white hover:opacity-80  bg-[#52B2BF] xl:mx-5 xl:px-2 cursor-pointer"
 									>
 										Make Enquiry
 									</ScrollLink>

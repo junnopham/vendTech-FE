@@ -1,12 +1,14 @@
 import axios from '../config/axios';
 import { GUESTINFO_URL } from '../const/api-url';
+
 interface IGuestInfo {
 	firstName: string;
 	lastName: string;
-	phone?: string;
+	phoneNumber?: string;
 	message?: string;
 	email: string;
 }
+
 const getGuestInfo = async (pageSize: number, currentPage: number) => {
 	const response = await axios(GUESTINFO_URL, {
 		params: {
@@ -25,11 +27,11 @@ const deleteGuestInfo = async (id: string) => {
 };
 
 const createGuestInfo = async (guestInfo: IGuestInfo) => {
-	const { firstName, lastName, phone, message, email } = guestInfo;
+	const { firstName, lastName, phoneNumber, message, email } = guestInfo;
 	const response = await axios.post(GUESTINFO_URL, {
 		firstName,
 		lastName,
-		phone,
+		phoneNumber,
 		message,
 		email,
 	});

@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { signInWithUsernameAndPassword } from '../../service/user.service';
 import useTitle from '../../hooks/useTtitle';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logo from '../../assets/logo-ventech.svg';
 
 const { Title } = Typography;
 
@@ -30,9 +31,15 @@ const SignIn: React.FC = () => {
 
 	return (
 		<div style={{ maxWidth: 400, margin: '0 auto', padding: '20px' }}>
-			<Title level={2} style={{ textAlign: 'center' }}>
-				Vend Tech
-			</Title>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<img src={logo} alt="logo" width={150} height={40} />
+			</div>
 			<Form name="login" onFinish={onFinish} style={{ maxWidth: '100%' }}>
 				<Form.Item
 					name="username"

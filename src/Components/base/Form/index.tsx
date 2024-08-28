@@ -1,9 +1,11 @@
-import { Button, Form, Input, notification, message } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
 import { useInView } from 'react-intersection-observer';
 import { createGuestInfo } from '../../../service/guestinfo.service';
+
 interface IProps {
 	className?: string;
 }
+
 const FormLayout = (props: IProps) => {
 	const [form] = Form.useForm();
 	const { ref, inView } = useInView({
@@ -112,7 +114,7 @@ const FormLayout = (props: IProps) => {
 					>
 						<Input className="bg-[#f5f8fa] h-[40px]" />
 					</Form.Item>
-					<Form.Item name="phone" label="Phone Number">
+					<Form.Item name="phoneNumber" label="Phone Number">
 						<Input className="bg-[#f5f8fa] h-[40px]" />
 					</Form.Item>
 

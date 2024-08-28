@@ -11,6 +11,7 @@ import {
 import { Button, Layout, Menu, theme } from 'antd';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
+import logo from '../../../assets/logo-ventech.svg';
 
 const { Header, Sider, Content } = Layout;
 
@@ -37,7 +38,16 @@ const Dashboard: React.FC = () => {
 				<div className="logo-vend-tech">
 					<Link to="/">
 						<span className="logo">
-							{!collapsed ? 'Vend Tech' : 'VT'}
+							{!collapsed ? (
+								<img
+									src={logo}
+									alt="logo"
+									width={150}
+									height={40}
+								/>
+							) : (
+								'VT'
+							)}
 						</span>
 					</Link>
 				</div>
