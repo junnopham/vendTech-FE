@@ -1,6 +1,7 @@
 import morsl03 from '../../assets/morsl-03.jpg';
 import { itemInfo1 } from '../../const';
 import Card from '../base/Card';
+
 const OfficeWorks = () => {
 	return (
 		<div className=" py-10 lg:pt-28 lg:pb-40 bg-[#ecece5]">
@@ -27,14 +28,9 @@ const OfficeWorks = () => {
 						learn how Morsl has improved employee health and
 						wellbeing at Officeworks:
 					</p>
-					<a
-						href="https://www.morsl.com.au/wp-content/uploads/2021/09/OFFICEWORKS-CASE-STUDY.pdf"
-						target="_blank"
-						rel="noreferrer"
-						className="text-[#52B2BF]"
-					>
+					<span className="text-[#52B2BF]">
 						OFFICEWORKS CASE STUDY
-					</a>
+					</span>
 				</div>
 			</div>
 			<div className="px-24">

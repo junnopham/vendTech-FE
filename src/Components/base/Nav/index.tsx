@@ -102,14 +102,14 @@ const NavBar = (props: IProps) => {
 			<div>
 				<Disclosure
 					as="nav"
-					className={`${hiddenNav ? 'opacity-0' : 'opacity-1'} bg-transparent fixed top-0 left-0 w-full z-[1000] py-3 lg:py-6 transition-all duration-300 `}
+					className={`${hiddenNav ? 'opacity-0' : 'opacity-1'} bg-white fixed top-0 left-0 w-full z-[1000] py-3 lg:py-6 transition-all duration-300 `}
 				>
 					<div className="xl:px-16">
-						<div className="relative flex h-16 items-center justify-between w-full px-10">
+						<div className="relative flex h-12 items-center justify-between w-full px-10">
 							<div className="absolute inset-y-0 left-0 items-center w-full lg:hidden">
 								{/* Mobile menu button*/}
 								<div className="flex justify-between items-center pr-10 pl-20 lg:px-20 w-full">
-									<button className="text-white font-bold text-4xl ">
+									<button className="text-black font-bold text-4xl ">
 										<Link to="/">
 											<img
 												src={logo}
@@ -120,7 +120,7 @@ const NavBar = (props: IProps) => {
 										</Link>
 									</button>
 									<DisclosureButton
-										className="group relative inline-flex items-center justify-center rounded-md p-2 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all "
+										className="group relative inline-flex items-center justify-center rounded-md p-2 text-black hover:text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black transition-all "
 										onClick={toggleCollapsed}
 									>
 										<Bars3Icon
@@ -134,11 +134,10 @@ const NavBar = (props: IProps) => {
 									</DisclosureButton>
 								</div>
 							</div>
-
 							<div className="flex-1 basis-[70%] hidden lg:block">
 								<div className="flex justify-center items-center">
 									<div className="flex flex-shrink-0 items-center flex-1 basis-[30%]">
-										<button className="text-white font-bold text-4xl ">
+										<button className="text-black font-bold text-4xl ">
 											<Link to="/">
 												<img
 													src={logo}
@@ -150,7 +149,7 @@ const NavBar = (props: IProps) => {
 										</button>
 									</div>
 									<div className="flex-1 basis-[60%]">
-										<div className={styles.itemList}>
+										<div className={styles.itemList2}>
 											{navigation.map((item) => (
 												<Link
 													key={item.name}
@@ -162,8 +161,8 @@ const NavBar = (props: IProps) => {
 													}
 													className={classNames(
 														item.current
-															? ' text-white'
-															: 'text-gray-300 hover:text-white',
+															? ' text-black'
+															: ' hover:opacity-70',
 														'rounded-md px-3 py-2 text-sm font-medium'
 													)}
 												>
@@ -187,32 +186,32 @@ const NavBar = (props: IProps) => {
 									<button className="mx-2 xl:mr-4">
 										<IconButton
 											Icon={BiLogoFacebook}
-											customColor="#fff"
+											customColor="#333"
 										/>
 									</button>
 									<button className="mx-2 xl:mr-4">
 										<IconButton
 											Icon={BiLogoLinkedin}
-											customColor="#fff"
+											customColor="#333"
 										/>
 									</button>
 									<button className="mx-2 xl:mr-4">
 										<IconButton
 											Icon={BiLogoInstagram}
-											customColor="#fff"
+											customColor="#333"
 										/>
 									</button>
 									<button className="mx-2 xl:mr-4">
 										<IconButton
 											Icon={BiLogoGmail}
-											customColor="#fff"
+											customColor="#333"
 										/>
 									</button>
 									{isLoggedIn && (
 										<Link to="/admin">
 											<IconButton
 												Icon={BiSolidDashboard}
-												customColor="#fff"
+												customColor="#333"
 											/>
 										</Link>
 									)}

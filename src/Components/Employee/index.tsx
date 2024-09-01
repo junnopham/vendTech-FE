@@ -15,16 +15,7 @@ const Employee: React.FC = () => {
 	const onChange = (currentSlide: number) => {};
 
 	return (
-		<div
-			style={{
-				backgroundImage:
-					'url(https://www.morsl.com.au/wp-content/uploads/2021/08/Side-fruits-both-44.svg)',
-				backgroundPosition: 'center',
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover',
-			}}
-			className="lg:px-36"
-		>
+		<div className="lg:px-36 bg-[#ecece5]">
 			<Carousel
 				afterChange={onChange}
 				draggable
