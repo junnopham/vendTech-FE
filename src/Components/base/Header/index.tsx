@@ -6,20 +6,11 @@ interface IProps {
 	toggleCollapsed?: () => void;
 	collapsed?: boolean;
 }
+
 const Header = (props: IProps) => {
 	const { type = 'main', toggleCollapsed, collapsed } = props;
 	return (
-		<div className="relative">
-			<div className="flex justify-center">
-				<video
-					src={require('../../../assets/background.mp4')}
-					autoPlay
-					loop
-					muted
-					className="h-[50vh] md:h-[75vh] w-full object-fill
-					"
-				/>
-			</div>
+		<div>
 			<div>
 				{type === 'main' && (
 					<NavBar
@@ -33,6 +24,16 @@ const Header = (props: IProps) => {
 						collapsed={collapsed}
 					/>
 				)}
+			</div>
+			<div className="flex justify-center">
+				<video
+					src={require('../../../assets/background.mp4')}
+					autoPlay
+					loop
+					muted
+					className="h-[50vh] md:h-[75vh] w-full object-fill
+					"
+				/>
 			</div>
 		</div>
 	);

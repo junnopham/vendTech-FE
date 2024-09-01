@@ -102,7 +102,7 @@ const NavBar = (props: IProps) => {
 			<div>
 				<Disclosure
 					as="nav"
-					className={`${hiddenNav ? 'opacity-0' : 'opacity-1'} bg-white fixed top-0 left-0 w-full z-[1000] py-3 lg:py-6 transition-all duration-300 `}
+					className={`${hiddenNav ? 'opacity-0' : 'opacity-1'} bg-white top-0 left-0 w-full z-[1000] py-3 lg:py-6 transition-all duration-300 `}
 				>
 					<div className="xl:px-16">
 						<div className="relative flex h-12 items-center justify-between w-full px-10">
