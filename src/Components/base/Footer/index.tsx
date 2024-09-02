@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
 	const clients = [
-		sheraton,
 		officeworks,
+		sheraton,
 		intercontinental,
 		queenland,
 		mantra,
