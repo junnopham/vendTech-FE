@@ -29,7 +29,7 @@ const Footer = () => {
 		<div className="">
 			<div className="h-full lg:p-[76px_90px] flex flex-row justify-between pl-5">
 				<div className="lg:w-[60%] ">
-					<div className="text-[#52B2BF] mb-[20px] text-[25px]">
+					<div className="text-[#52B2BF] mb-[20px] text-[28px] font-semibold">
 						Our Clients
 					</div>
 					<div className="flex flex-wrap">
@@ -45,7 +45,7 @@ const Footer = () => {
 
 				<div className="lg:w-[40%]  mb-8">
 					<div>
-						<div className="text-[#52B2BF] mb-[20px] text-[25px]">
+						<div className="text-[#52B2BF] mb-[20px] text-[28px] font-semibold">
 							Our contact
 						</div>
 						<div className="flex flex-wrap">
