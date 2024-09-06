@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
 	BrowserRouter as Router,
 	Navigate,
 	Route,
 	Routes,
-	useLocation,
 } from 'react-router-dom';
 import HomePage from './Page/HomePage';
 import FoodAndDrinkPage from './Page/FoodDrinkPage';
@@ -19,6 +18,8 @@ import Main from './Components/base/Main';
 import ProductPage from './Page/ProductPage';
 import SignIn from './Page/Auth/SignIn';
 import ForgotPassword from './Page/Auth/ForgotPassword';
+import ProductDetailPage from './Page/ProductDetailPage';
+import FoodDrinkDetailPage from './Page/FoodDrinkDetailPage';
 
 const App: React.FC = () => {
 	return (
@@ -29,8 +30,16 @@ const App: React.FC = () => {
 						<Route index element={<Main />} />
 						<Route path="products" element={<ProductPage />} />
 						<Route
+							path="product/:id"
+							element={<ProductDetailPage />}
+						/>
+						<Route
 							path="food-and-drink"
 							element={<FoodAndDrinkPage />}
+						/>
+						<Route
+							path="food-and-drink/:id"
+							element={<FoodDrinkDetailPage />}
 						/>
 						<Route path="contact-us" element={<ContactPage />} />
 						<Route path="about-us" element={<AboutPage />} />

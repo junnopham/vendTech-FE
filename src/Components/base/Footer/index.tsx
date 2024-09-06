@@ -52,7 +52,7 @@ const Footer = () => {
 							{contact.map((contact) => (
 								<Link
 									to={contact.url}
-									className="rounded-md px-3 py-2 text-lg font-medium"
+									className="rounded-md pe-3 py-2 text-lg font-medium"
 								>
 									{contact.label}
 								</Link>

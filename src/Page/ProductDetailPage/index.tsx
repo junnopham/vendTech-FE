@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Pagination } from 'antd';
-import { getCategories } from '../../service/category.service';
-import { Link } from 'react-router-dom';
+import { getProducts } from '../../service/product.service';
 
-const ProductPage = () => {
-	const [categories, setCategories] = useState<[]>([]);
+const ProductDetailPage = () => {
+	let { id } = useParams();
+
+	const [products, setProducts] = useState<[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [totalItems, setTotalItems] = useState<number>(9);
 	const pageSize = 9;
@@ -14,8 +16,8 @@ const ProductPage = () => {
 	};
 
 	useEffect(() => {
-		getCategories(9, currentPage).then((res) => {
-			setCategories(res?.data);
+		getProducts(9, currentPage, id).then((res) => {
+			setProducts(res?.data);
 			setTotalItems(res?.total);
 		});
 	}, [currentPage]);
@@ -67,29 +69,27 @@ const ProductPage = () => {
 			{/* PART 3 */}
 			<div className=" py-[50px] bg-[#F5F5F5] flex flex-col w-full md:px-24 2xl:px-48">
 				<div className="flex flex-wrap justify-center">
-					{categories?.map((category: any) => (
+					{products?.map((product: any) => (
 						<div
-							className="bg-white  px-[50px] py-[30px] mx-[5px] mb-[10px] min-h-[430px] min-w-[350px] flex-1 md:basis-1/3 xl:basis-1/4 lg:max-w-[350px] "
-							key={category?._id}
+							className="w-full h-48 p-2 bg-white-200
+                        border-2 border-slate-200 
+                        rounded-lg flex flex-row 
+                        mx-auto mt-6"
 						>
-							<div className="mb-5 h-[250px]  flex justify-center items-center">
+							<div className="w-3/12 h-full flex items-center">
 								<img
-									src={category?.image.url}
-									className="h-full w-full object-contain"
+									className="pl-4 pt-2 w-72 h-auto"
+									src={product.image.url}
 								/>
 							</div>
-							<h2 className="text-[#1D1D1B] text-[25px] text-left font-medium uppercase">
-								{category?.name}
-							</h2>
-							<div className="text-[#1D1D1B] text-[15px] text-left mb-5">
-								<p>{category?.description}</p>
+							<div className="w-6/12 h-full p-2 ">
+								<h3 className="pl-4 pt-2 text-2xl font-medium">
+									{product.name}
+								</h3>
+								<span className="px-4">
+									{product.description}
+								</span>
 							</div>
-							<div className="bg-[#1D1D1B] my-5 h-[1px]"></div>
-							<Link to={`/product/${category?._id}`}>
-								<button className="bg-[#2D2E82] px-5 py-[10px] text-[15px] font-bold text-white">
-									More Details
-								</button>
-							</Link>
 						</div>
 					))}
 				</div>
@@ -235,4 +235,4 @@ const ProductPage = () => {
 	);
 };
 
-export default ProductPage;
+export default ProductDetailPage;
