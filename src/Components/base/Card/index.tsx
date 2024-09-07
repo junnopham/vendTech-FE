@@ -1,4 +1,3 @@
-import logo from '../../../asset/food-icon01.svg';
 type IProps = {
 	items: ICard[];
 };
@@ -38,11 +37,12 @@ const Card = (props: IProps) => {
 							{item?.title}
 						</div>
 						<ul className="text-center">
-							{item.contents.map((content, _, arr) => {
+							{item.contents.map((content, index, arr) => {
 								let list = (
 									<li
 										className="font-thin"
 										style={{ lineHeight: '32px' }}
+										key={index}
 									>
 										{content}
 									</li>
@@ -52,6 +52,7 @@ const Card = (props: IProps) => {
 										<li
 											className="font-thin"
 											style={{ lineHeight: '32px' }}
+											key={index}
 										>
 											- {content}
 										</li>

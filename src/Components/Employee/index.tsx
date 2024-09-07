@@ -22,9 +22,9 @@ const Employee: React.FC = () => {
 				autoplay
 				className="pb-10"
 			>
-				{employeeDescriptions.map((employee) => {
+				{employeeDescriptions.map((employee, index) => {
 					return (
-						<div className="">
+						<div className="" key={index}>
 							<div className="flex flex-col lg:flex-row flex-wrap justify-around lg:pb-10 px-8">
 								<div className="lg:px-12 pb-10 max-w-[100%] md:min-h-[700px] flex-1 basis-full lg:basis-[40%]">
 									<div

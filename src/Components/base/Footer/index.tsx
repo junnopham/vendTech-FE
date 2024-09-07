@@ -33,11 +33,12 @@ const Footer = () => {
 						Our Clients
 					</div>
 					<div className="flex flex-wrap">
-						{clients.map((client) => (
+						{clients.map((client, index) => (
 							<img
 								src={client}
 								style={{ height: '120px' }}
 								alt="client"
+								key={index}
 							/>
 						))}
 					</div>
@@ -49,10 +50,11 @@ const Footer = () => {
 							Our contact
 						</div>
 						<div className="flex flex-wrap">
-							{contact.map((contact) => (
+							{contact.map((contact, index) => (
 								<Link
 									to={contact.url}
 									className="rounded-md pe-3 py-2 text-lg font-medium"
+									key={index}
 								>
 									{contact.label}
 								</Link>
