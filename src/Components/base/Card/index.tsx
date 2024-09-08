@@ -58,6 +58,7 @@ const Card = (props: IProps) => {
 										</li>
 									);
 								}
+								
 								return list;
 							})}
 						</ul>

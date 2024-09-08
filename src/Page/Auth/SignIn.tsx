@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { signInWithUsernameAndPassword } from '../../service/user.service';
 import useTitle from '../../hooks/useTtitle';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logo from '../../assets/logo-ventech.svg';
+import logo from '../../assets/logo-white.svg';
 
 const { Title } = Typography;
 

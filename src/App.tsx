@@ -9,7 +9,6 @@ import HomePage from './Page/HomePage';
 import FoodAndDrinkPage from './Page/FoodDrinkPage';
 import ContactPage from './Page/ContactPage';
 import AboutPage from './Page/AboutPage';
-import Products from './Page/Admin/Products';
 import GuestInfo from './Page/Admin/GuestInfo';
 import Dashboard from './Page/Admin/DashboardPage';
 import User from './Page/Admin/Profile';
@@ -20,6 +19,11 @@ import SignIn from './Page/Auth/SignIn';
 import ForgotPassword from './Page/Auth/ForgotPassword';
 import ProductDetailPage from './Page/ProductDetailPage';
 import FoodDrinkDetailPage from './Page/FoodDrinkDetailPage';
+import AddAndEditProduct from './Page/Admin/Products/AddAndEditProduct';
+import ListProduct from './Page/Admin/Products/ListProduct';
+import FoodDrinkCategory from './Page/Admin/FoodDrinkCategory';
+import ListFoodDrink from './Page/Admin/FoodDrink/ListFoodDrink';
+import AddAndEditDrinkFood from './Page/Admin/FoodDrink/AddAndEditFoodDrink';
 
 const App: React.FC = () => {
 	return (
@@ -49,10 +53,37 @@ const App: React.FC = () => {
 						<Route path="profile" element={<User />} />
 						<Route path="guestInfo" element={<GuestInfo />} />
 						<Route
-							path="product-management"
-							element={<Products />}
+							path="micro-market-solutions"
+							element={<Category />}
 						/>
-						<Route path="category" element={<Category />} />
+						<Route
+							path="micro-market-solutions/view/:categoryId"
+							element={<ListProduct />}
+						/>
+						<Route
+							path="micro-market-solutions/view/:categoryId/add"
+							element={<AddAndEditProduct />}
+						/>
+						<Route
+							path="micro-market-solutions/view/:categoryId/edit/:id"
+							element={<AddAndEditProduct />}
+						/>
+						<Route
+							path="food-and-drink"
+							element={<FoodDrinkCategory />}
+						/>
+						<Route
+							path="food-and-drink/view/:categoryId"
+							element={<ListFoodDrink />}
+						/>
+						<Route
+							path="food-and-drink/view/:categoryId/add"
+							element={<AddAndEditDrinkFood />}
+						/>
+						<Route
+							path="food-and-drink/view/:categoryId/edit/:id"
+							element={<AddAndEditDrinkFood />}
+						/>
 					</Route>
 					<Route path="sign-in" element={<SignIn />} />
 					<Route path="reset-password" element={<ForgotPassword />} />

@@ -1,23 +1,34 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
+import useTitle from '../../../hooks/useTtitle';
 import {
-	deleteProductById,
-	getProducts,
-} from '../../../service/product.service';
-import { Button, GetProp, Modal, notification, Table, TableProps } from 'antd';
+	Button,
+	GetProp,
+	Modal,
+	notification,
+	Table,
+	TableProps,
+	Tooltip,
+} from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
+import { formatTime } from '../../../util/date-time';
 import {
 	DeleteOutlined,
 	EditOutlined,
 	ExclamationCircleFilled,
+	EyeOutlined,
 } from '@ant-design/icons';
-import ProductModal from '../../../Components/Admin/ProductModal';
 import withAuth from '../../../Components/Admin/withAuth';
-import useTitle from '../../../hooks/useTtitle';
+import { Link } from 'react-router-dom';
+import {
+	deleteFoodDrinkCategoryById,
+	getFoodDrinkCategories,
+} from '../../../service/foodanddrink.services';
 
 const { confirm } = Modal;
-const Products = () => {
-	useTitle('Products');
+
+const FoodDrinkCategory = () => {
+	useTitle('Food and Drink');
 	type ColumnsType<T> = TableProps<T>['columns'];
 	type TablePaginationConfig = Exclude<
 		GetProp<TableProps, 'pagination'>,
@@ -31,7 +42,7 @@ const Products = () => {
 		filters?: Parameters<GetProp<TableProps, 'onChange'>>[1];
 	}
 
-	const columns: ColumnsType<Product> = [
+	const columns: ColumnsType<Category> = [
 		{
 			title: 'Image',
 			dataIndex: 'image',
@@ -49,12 +60,20 @@ const Products = () => {
 		{
 			title: 'Name',
 			dataIndex: 'name',
-			width: '30%',
 		},
 		{
 			title: 'Description',
 			dataIndex: 'description',
-			width: '50%',
+		},
+		{
+			title: 'Created At',
+			dataIndex: 'createdAt',
+			render: (text, record, index) => formatTime(record.createdAt),
+		},
+		{
+			title: 'Updated At',
+			dataIndex: 'updatedAt',
+			render: (text, record, index) => formatTime(record.updatedAt),
 		},
 		{
 			title: 'Action',
@@ -63,21 +82,35 @@ const Products = () => {
 			render: (text, record, index) => {
 				return (
 					<div className="action-row">
-						<EditOutlined
-							onClick={(event) => editProduct(record)}
-							style={{ fontSize: '16px', cursor: 'pointer' }}
-						/>
-						<DeleteOutlined
-							onClick={(event) => deleteProduct(record)}
-							style={{ fontSize: '16px', cursor: 'pointer' }}
-						/>
+						<Tooltip title="View">
+							<Link to={'view/' + record._id}>
+								<EyeOutlined
+									style={{
+										fontSize: '16px',
+										cursor: 'pointer',
+									}}
+								/>
+							</Link>
+						</Tooltip>
+						<Tooltip title="Edit">
+							<EditOutlined
+								onClick={(event) => handleEdit(record)}
+								style={{ fontSize: '16px', cursor: 'pointer' }}
+							/>
+						</Tooltip>
+						<Tooltip title="Delete">
+							<DeleteOutlined
+								onClick={(event) => handleDelete(record)}
+								style={{ fontSize: '16px', cursor: 'pointer' }}
+							/>
+						</Tooltip>
 					</div>
 				);
 			},
 		},
 	];
 
-	const [data, setData] = useState<Product[]>();
+	const [data, setData] = useState<Category[]>();
 	const [loading, setLoading] = useState(false);
 	const [reload, setReload] = useState(false);
 	const [tableParams, setTableParams] = useState<TableParams>({
@@ -86,8 +119,7 @@ const Products = () => {
 			pageSize: 10,
 		},
 	});
-	const [editId, setEditId] = useState<string | null>(null);
-	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+	const [category, setCategory] = useState<Category | null>(null);
 
 	const [api, contextHolder] = notification.useNotification();
 	type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -102,24 +134,23 @@ const Products = () => {
 		});
 	};
 
-	const editProduct = (record: Product) => {
-		setEditId(record._id);
+	const handleAdd = () => {
+		console.log('add');
 	};
 
-	const onCloseModal = () => {
-		setEditId(null);
-		setIsAddModalOpen(false);
+	const handleEdit = (record: Category) => {
+		setCategory(record);
 	};
 
-	const deleteProduct = (record: Product) => {
+	const handleDelete = (record: Category) => {
 		confirm({
-			title: 'Are you sure delete this product?',
+			title: 'Are you sure delete this category?',
 			icon: <ExclamationCircleFilled />,
 			okText: 'Yes',
 			okType: 'danger',
 			cancelText: 'No',
 			onOk() {
-				deleteProductById(record._id)
+				deleteFoodDrinkCategoryById(record._id)
 					.then((res) => {
 						setReload(!reload);
 						const deleteInfo: {
@@ -153,7 +184,7 @@ const Products = () => {
 
 	const fetchData = () => {
 		setLoading(true);
-		getProducts(
+		getFoodDrinkCategories(
 			tableParams.pagination?.pageSize || 10,
 			tableParams.pagination?.current || 0
 		).then((results) => {
@@ -188,16 +219,12 @@ const Products = () => {
 		}
 	};
 
-	const handleUpdate = (updatedProduct: Product) => {
+	const handleUpdate = (updatedCategory: Category) => {
 		setReload(!reload);
 	};
 
-	const addProduct = () => {
-		setIsAddModalOpen(true);
-	};
-
-	const handleAddProduct = (newProduct: Product) => {
-		setReload(!reload);
+	const onCloseModal = () => {
+		setCategory(null);
 	};
 
 	return (
@@ -210,11 +237,12 @@ const Products = () => {
 					marginBottom: 16,
 				}}
 			>
-				<Button type="primary" onClick={addProduct}>
+				<Button type="primary" onClick={handleAdd}>
 					Add
 				</Button>
 			</div>
 			<Table
+				scroll={{ x: 768 }}
 				columns={columns}
 				rowKey={(record) => record._id}
 				dataSource={data}
@@ -222,22 +250,8 @@ const Products = () => {
 				loading={loading}
 				onChange={handleTableChange}
 			/>
-			{editId && (
-				<ProductModal
-					id={editId}
-					onClose={onCloseModal}
-					onUpdate={handleUpdate}
-				/>
-			)}
-			{isAddModalOpen && (
-				<ProductModal
-					id={null}
-					onClose={onCloseModal}
-					onUpdate={handleAddProduct}
-				/>
-			)}
 		</>
 	);
 };
 
-export default withAuth(Products);
+export default withAuth(FoodDrinkCategory);

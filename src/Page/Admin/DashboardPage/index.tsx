@@ -5,13 +5,13 @@ import {
 	MenuFoldOutlined,
 	MenuUnfoldOutlined,
 	MessageOutlined,
-	UnorderedListOutlined,
 	UserOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
-import logo from '../../../assets/logo-ventech.svg';
+import logo from '../../../assets/logo-white.svg';
+import logoIcon from '../../../assets/logo-vend-tech.svg';
 
 const { Header, Sider, Content } = Layout;
 
@@ -42,11 +42,16 @@ const Dashboard: React.FC = () => {
 								<img
 									src={logo}
 									alt="logo"
-									width={150}
-									height={40}
+									width={120}
+									height={32}
 								/>
 							) : (
-								'VT'
+								<img
+									src={logoIcon}
+									alt="logo"
+									width={32}
+									height={32}
+								/>
 							)}
 						</span>
 					</Link>
@@ -62,11 +67,20 @@ const Dashboard: React.FC = () => {
 							label: <Link to="/admin/profile">Profile</Link>,
 						},
 						{
-							key: '/admin/product-management',
+							key: '/admin/micro-market-solutions',
 							icon: <InboxOutlined />,
 							label: (
-								<Link to="/admin/product-management">
-									Product Management
+								<Link to="/admin/micro-market-solutions">
+									Micro market solutions
+								</Link>
+							),
+						},
+						{
+							key: '/admin/food-and-drink',
+							icon: <InboxOutlined />,
+							label: (
+								<Link to="/admin/food-and-drink">
+									Food and drink
 								</Link>
 							),
 						},
@@ -76,11 +90,6 @@ const Dashboard: React.FC = () => {
 							label: (
 								<Link to="/admin/guestInfo">Guest Info</Link>
 							),
-						},
-						{
-							key: '/admin/category',
-							icon: <UnorderedListOutlined />,
-							label: <Link to="/admin/category">Category</Link>,
 						},
 					]}
 				/>

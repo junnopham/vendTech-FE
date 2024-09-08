@@ -13,7 +13,7 @@ import {
 } from 'react-icons/bi';
 import React, { useEffect, useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
-import logo from '../../../assets/logo-ventech.svg';
+import logo from '../../../assets/logo-black.svg';
 
 interface IconButtonProps {
 	Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;

@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import './style.css';
-import useTitle from '../../../hooks/useTtitle';
-import {
-	Button,
-	GetProp,
-	Modal,
-	notification,
-	Table,
-	TableProps,
-	Tooltip,
-} from 'antd';
+import { Button, GetProp, Modal, notification, Table, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
-import { formatTime } from '../../../util/date-time';
 import {
 	DeleteOutlined,
 	EditOutlined,
 	ExclamationCircleFilled,
-	EyeOutlined,
 } from '@ant-design/icons';
-import {
-	deleteCategoryById,
-	getCategories,
-} from '../../../service/category.service';
 import withAuth from '../../../Components/Admin/withAuth';
-import { Link } from 'react-router-dom';
+import useTitle from '../../../hooks/useTtitle';
+import {
+	deleteProductById,
+	getProducts,
+} from '../../../service/product.service';
 
 const { confirm } = Modal;
-
-const Category = () => {
+const ListProduct = () => {
 	useTitle('Micro market solutions');
+	const { categoryId } = useParams();
+	const navigate = useNavigate();
 	type ColumnsType<T> = TableProps<T>['columns'];
 	type TablePaginationConfig = Exclude<
 		GetProp<TableProps, 'pagination'>,
@@ -42,7 +33,7 @@ const Category = () => {
 		filters?: Parameters<GetProp<TableProps, 'onChange'>>[1];
 	}
 
-	const columns: ColumnsType<Category> = [
+	const columns: ColumnsType<Product> = [
 		{
 			title: 'Image',
 			dataIndex: 'image',
@@ -60,20 +51,17 @@ const Category = () => {
 		{
 			title: 'Name',
 			dataIndex: 'name',
+			width: '30%',
 		},
 		{
 			title: 'Description',
 			dataIndex: 'description',
+			width: '50%',
 		},
 		{
-			title: 'Created At',
-			dataIndex: 'createdAt',
-			render: (text, record, index) => formatTime(record.createdAt),
-		},
-		{
-			title: 'Updated At',
-			dataIndex: 'updatedAt',
-			render: (text, record, index) => formatTime(record.updatedAt),
+			title: 'Category',
+			dataIndex: 'category.name',
+			width: '50%',
 		},
 		{
 			title: 'Action',
@@ -82,35 +70,21 @@ const Category = () => {
 			render: (text, record, index) => {
 				return (
 					<div className="action-row">
-						<Tooltip title="View">
-							<Link to={'view/' + record._id}>
-								<EyeOutlined
-									style={{
-										fontSize: '16px',
-										cursor: 'pointer',
-									}}
-								/>
-							</Link>
-						</Tooltip>
-						<Tooltip title="Edit">
-							<EditOutlined
-								onClick={(event) => handleEdit(record)}
-								style={{ fontSize: '16px', cursor: 'pointer' }}
-							/>
-						</Tooltip>
-						<Tooltip title="Delete">
-							<DeleteOutlined
-								onClick={(event) => handleDelete(record)}
-								style={{ fontSize: '16px', cursor: 'pointer' }}
-							/>
-						</Tooltip>
+						<EditOutlined
+							onClick={(event) => editProduct(record)}
+							style={{ fontSize: '16px', cursor: 'pointer' }}
+						/>
+						<DeleteOutlined
+							onClick={(event) => deleteProduct(record)}
+							style={{ fontSize: '16px', cursor: 'pointer' }}
+						/>
 					</div>
 				);
 			},
 		},
 	];
 
-	const [data, setData] = useState<Category[]>();
+	const [data, setData] = useState<Product[]>();
 	const [loading, setLoading] = useState(false);
 	const [reload, setReload] = useState(false);
 	const [tableParams, setTableParams] = useState<TableParams>({
@@ -119,7 +93,6 @@ const Category = () => {
 			pageSize: 10,
 		},
 	});
-	const [category, setCategory] = useState<Category | null>(null);
 
 	const [api, contextHolder] = notification.useNotification();
 	type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -134,23 +107,19 @@ const Category = () => {
 		});
 	};
 
-	const handleAdd = () => {
-		console.log('add');
+	const editProduct = (record: Product) => {
+		navigate('edit/' + record._id);
 	};
 
-	const handleEdit = (record: Category) => {
-		setCategory(record);
-	};
-
-	const handleDelete = (record: Category) => {
+	const deleteProduct = (record: Product) => {
 		confirm({
-			title: 'Are you sure delete this category?',
+			title: 'Are you sure delete this product?',
 			icon: <ExclamationCircleFilled />,
 			okText: 'Yes',
 			okType: 'danger',
 			cancelText: 'No',
 			onOk() {
-				deleteCategoryById(record._id)
+				deleteProductById(record._id)
 					.then((res) => {
 						setReload(!reload);
 						const deleteInfo: {
@@ -184,9 +153,10 @@ const Category = () => {
 
 	const fetchData = () => {
 		setLoading(true);
-		getCategories(
+		getProducts(
 			tableParams.pagination?.pageSize || 10,
-			tableParams.pagination?.current || 0
+			tableParams.pagination?.current || 0,
+			categoryId
 		).then((results) => {
 			setData(results.data);
 			setLoading(false);
@@ -210,6 +180,8 @@ const Category = () => {
 		reload,
 	]);
 
+	useEffect(() => {}, []);
+
 	const handleTableChange: TableProps['onChange'] = (pagination) => {
 		setTableParams({
 			pagination,
@@ -219,12 +191,8 @@ const Category = () => {
 		}
 	};
 
-	const handleUpdate = (updatedCategory: Category) => {
-		setReload(!reload);
-	};
-
-	const onCloseModal = () => {
-		setCategory(null);
+	const addProduct = () => {
+		navigate(`add`);
 	};
 
 	return (
@@ -237,12 +205,11 @@ const Category = () => {
 					marginBottom: 16,
 				}}
 			>
-				<Button type="primary" onClick={handleAdd}>
+				<Button type="primary" onClick={addProduct}>
 					Add
 				</Button>
 			</div>
 			<Table
-				scroll={{ x: 768 }}
 				columns={columns}
 				rowKey={(record) => record._id}
 				dataSource={data}
@@ -254,4 +221,4 @@ const Category = () => {
 	);
 };
 
-export default withAuth(Category);
+export default withAuth(ListProduct);
