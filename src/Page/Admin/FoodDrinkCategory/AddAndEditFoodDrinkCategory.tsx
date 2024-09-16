@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Form, Input, message, Select, Space, Upload } from 'antd';
+import { Button, Form, Input, message, Space, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import withAuth from '../../../Components/Admin/withAuth';
 import {
-	createFoodDrink,
-	getFoodDrinkById,
-	getFoodDrinkCategories,
-	updateFoodDrinkById,
+	createFoodDrinkCategory,
+	getFoodDrinkCategoryById,
+	updateFoodDrinkCategoryById,
 } from '../../../service/foodanddrink.services';
 
 interface CategoryOption {
@@ -16,36 +15,23 @@ interface CategoryOption {
 	description: string;
 }
 
-const AddAndEditDrinkFood = () => {
-	const { id, categoryId } = useParams();
+const AddAndEditFoodDrinkCategory = () => {
+	const { id } = useParams();
 	const navigate = useNavigate();
 	const [form] = Form.useForm();
-	const [categoryList, setCategoryList] = useState<CategoryOption[]>([]);
 	const [fileList, setFileList] = useState<any[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 	const isEditMode = !!id;
 
 	useEffect(() => {
 		setLoading(true);
-		getFoodDrinkCategories(20, 1).then((response) => {
-			setCategoryList(
-				response.data.map((item: any) => {
-					return {
-						label: item.name,
-						value: item._id,
-						description: item.description,
-					};
-				})
-			);
-		});
 
 		if (isEditMode && id) {
-			getFoodDrinkById(id)
+			getFoodDrinkCategoryById(id)
 				.then((response) => {
 					const { image } = response;
 					form.setFieldsValue({
 						...response,
-						category: categoryId,
 					});
 
 					if (image?._id) {
@@ -62,14 +48,13 @@ const AddAndEditDrinkFood = () => {
 					setLoading(false);
 				})
 				.catch(() => {
-					message.error('No food and drink with id: ' + id);
-					navigate('/admin/food-and-drink/view/' + categoryId);
+					message.error('No data with id: ' + id);
+					navigate('/admin/food-and-drink');
 				});
 		} else {
 			form.setFieldsValue({
 				name: '',
 				description: '',
-				category: categoryId,
 			});
 			setFileList([]);
 			setLoading(false);
@@ -93,21 +78,21 @@ const AddAndEditDrinkFood = () => {
 			}
 
 			if (isEditMode) {
-				await updateFoodDrinkById(id!, formData);
+				await updateFoodDrinkCategoryById(id, formData);
 				message.success('Update successfully');
 			} else {
-				await createFoodDrink(formData);
+				await createFoodDrinkCategory(formData);
 				message.success('Food and drink created successfully');
 			}
-			navigate('/admin/food-and-drink/view/' + categoryId);
+			navigate('/admin/food-and-drink/');
 		} catch (error: any) {
 			if (error.errorFields) {
 				console.error(error);
 			} else {
 				message.error(
 					isEditMode
-						? 'Error when updating food and drink, please try again!'
-						: 'Error when creating food and drink, please try again!'
+						? 'Error when updating, please try again!'
+						: 'Error when creating, please try again!'
 				);
 			}
 		}
@@ -118,7 +103,6 @@ const AddAndEditDrinkFood = () => {
 			_id: id,
 			name: '',
 			description: '',
-			category: categoryId,
 		});
 		setFileList([]);
 	};
@@ -161,34 +145,6 @@ const AddAndEditDrinkFood = () => {
 				<Form.Item name="description" label="Description">
 					<Input />
 				</Form.Item>
-				<Form.Item
-					name="category"
-					label="Category"
-					rules={[
-						{
-							required: true,
-							message: 'Please select a category!',
-						},
-					]}
-				>
-					<Select
-						placeholder="Select category"
-						loading={loading}
-						options={categoryList}
-						optionRender={(option: any) => (
-							<div>
-								<strong>{option.label}</strong>
-								<div
-									style={{ fontSize: '12px', color: 'gray' }}
-								>
-									{option.data.description}
-								</div>
-							</div>
-						)}
-						disabled={true}
-						allowClear
-					/>
-				</Form.Item>
 				<Form.Item label="Image">
 					<Upload
 						fileList={fileList}
@@ -215,4 +171,4 @@ const AddAndEditDrinkFood = () => {
 	);
 };
 
-export default withAuth(AddAndEditDrinkFood);
+export default withAuth(AddAndEditFoodDrinkCategory);

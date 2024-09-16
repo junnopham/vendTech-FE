@@ -21,7 +21,8 @@ const AddAndEditProduct = () => {
 	const navigate = useNavigate();
 	const [form] = Form.useForm();
 	const [categoryList, setCategoryList] = useState<CategoryOption[]>([]);
-	const [fileList, setFileList] = useState<any[]>([]);
+	const [fileMainList, setFileMainList] = useState<any[]>([]);
+	const [imageList, setImageList] = useState<any[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 	const isEditMode = !!id;
 
@@ -42,21 +43,35 @@ const AddAndEditProduct = () => {
 		if (isEditMode && id) {
 			getProductById(id)
 				.then((response) => {
-					const { image } = response;
+					const { mainImage, images } = response;
 					form.setFieldsValue({
 						...response,
 						category: categoryId,
 					});
 
-					if (image?._id) {
-						setFileList([
+					if (mainImage?._id) {
+						setFileMainList([
 							{
-								uid: image._id,
-								name: image.name,
+								uid: mainImage._id,
+								name: mainImage.name,
 								status: 'done',
-								url: image.url,
+								url: mainImage.url,
 							},
 						]);
+					}
+
+					if (images !== null && images.lenght > 0) {
+						images.map((image: any) => {
+							setImageList([
+								...imageList,
+								{
+									uid: image._id,
+									name: image.name,
+									status: 'done',
+									url: image.url,
+								},
+							]);
+						});
 					}
 
 					setLoading(false);
@@ -73,14 +88,10 @@ const AddAndEditProduct = () => {
 				description: '',
 				category: categoryId,
 			});
-			setFileList([]);
+			setFileMainList([]);
 			setLoading(false);
 		}
 	}, [id]);
-
-	const onCategoryChange = (value: string) => {
-		console.log(value);
-	};
 
 	const onFinish = async () => {
 		try {
@@ -92,10 +103,16 @@ const AddAndEditProduct = () => {
 			formData.append('description', description);
 			formData.append('category', category);
 
-			if (fileList.length > 0) {
-				if (!fileList[0].url) {
-					formData.append('fileName', fileList[0].originFileObj);
+			if (fileMainList.length > 0) {
+				if (!fileMainList[0].url) {
+					formData.append('mainImage', fileMainList[0].originFileObj);
 				}
+			}
+
+			if (imageList.length > 0) {
+				imageList.forEach((image: any) => {
+					formData.append('fileName', image.originFileObj);
+				});
 			}
 
 			if (isEditMode) {
@@ -105,7 +122,7 @@ const AddAndEditProduct = () => {
 				const newProduct = await createProduct(formData);
 				message.success('Product created successfully');
 			}
-			navigate('/admin/food-and-drink/view/' + categoryId);
+			navigate('/admin/micro-market-solutions/view/' + categoryId);
 		} catch (error: any) {
 			if (error.errorFields) {
 				console.error(error);
@@ -126,15 +143,19 @@ const AddAndEditProduct = () => {
 			description: '',
 			category: categoryId,
 		});
-		setFileList([]);
+		setFileMainList([]);
 	};
 
 	const beforeUpload = (file: any) => {
 		return false;
 	};
 
+	const handleMainFileChange = ({ fileList }: any) => {
+		setFileMainList(fileList.splice(-1));
+	};
+
 	const handleFileChange = ({ fileList }: any) => {
-		setFileList(fileList);
+		setImageList(fileList);
 	};
 
 	return (
@@ -179,7 +200,6 @@ const AddAndEditProduct = () => {
 				>
 					<Select
 						placeholder="Select category"
-						onChange={onCategoryChange}
 						loading={loading}
 						options={categoryList}
 						optionRender={(option: any) => (
@@ -196,13 +216,41 @@ const AddAndEditProduct = () => {
 						allowClear
 					/>
 				</Form.Item>
-				<Form.Item label="Image">
+				<Form.Item
+					label="Main Image"
+					rules={[
+						{
+							required: true,
+							message: 'Please select main image!',
+						},
+					]}
+				>
 					<Upload
-						fileList={fileList}
+						fileList={fileMainList}
+						beforeUpload={beforeUpload}
+						onChange={handleMainFileChange}
+						listType="picture"
+						accept="image/*"
+					>
+						<Button icon={<UploadOutlined />}>Select Image</Button>
+					</Upload>
+				</Form.Item>
+				<Form.Item
+					label="Image"
+					rules={[
+						{
+							required: true,
+							message: 'Please select image!',
+						},
+					]}
+				>
+					<Upload
+						fileList={imageList}
 						beforeUpload={beforeUpload}
 						onChange={handleFileChange}
 						listType="picture"
 						accept="image/*"
+						multiple={true}
 					>
 						<Button icon={<UploadOutlined />}>Select Image</Button>
 					</Upload>

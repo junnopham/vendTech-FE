@@ -112,6 +112,7 @@ const deleteFoodDrinkById = async (id: string) => {
 export {
 	getFoodDrinkCategories,
 	getFoodDrinkCategory,
+	getFoodDrinkCategoryById,
 	createFoodDrinkCategory,
 	updateFoodDrinkCategoryById,
 	deleteFoodDrinkCategoryById,

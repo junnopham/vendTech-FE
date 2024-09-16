@@ -1,26 +1,9 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Pagination } from 'antd';
-import { getProducts } from '../../service/product.service';
+import Product from './Product';
 
 const ProductDetailPage = () => {
 	let { id } = useParams();
 
-	const [products, setProducts] = useState<[]>([]);
-	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [totalItems, setTotalItems] = useState<number>(9);
-	const pageSize = 9;
-
-	const onPageChange = (page: number) => {
-		setCurrentPage(page);
-	};
-
-	useEffect(() => {
-		getProducts(9, currentPage, id).then((res) => {
-			setProducts(res?.data);
-			setTotalItems(res?.total);
-		});
-	}, [currentPage]);
 	return (
 		<div>
 			{/* PART 1 */}
@@ -67,42 +50,7 @@ const ProductDetailPage = () => {
 				</h2>
 			</div>
 			{/* PART 3 */}
-			<div className=" py-[50px] bg-[#F5F5F5] flex flex-col w-full md:px-24 2xl:px-48">
-				<div className="flex flex-wrap justify-center">
-					{products?.map((product: any) => (
-						<div
-							className="w-full h-48 p-2 bg-white-200
-                        border-2 border-slate-200 
-                        rounded-lg flex flex-row 
-                        mx-auto mt-6"
-						>
-							<div className="w-3/12 h-full flex items-center">
-								<img
-									className="pl-4 pt-2 w-72 h-auto"
-									src={product.image.url}
-								/>
-							</div>
-							<div className="w-6/12 h-full p-2 ">
-								<h3 className="pl-4 pt-2 text-2xl font-medium">
-									{product.name}
-								</h3>
-								<span className="px-4">
-									{product.description}
-								</span>
-							</div>
-						</div>
-					))}
-				</div>
-				{totalItems > pageSize && (
-					<Pagination
-						className="justify-center"
-						current={currentPage}
-						total={totalItems}
-						pageSize={pageSize}
-						onChange={onPageChange}
-					/>
-				)}
-			</div>
+			<Product productId={id} />
 			{/* PART 4 */}
 			<div className="flex flex-col items-stretch sm:px-12 md:px-24 flex-wrap 2xl:px-48 md:flex-row">
 				<div className="flex-1 md:basis-1/2">

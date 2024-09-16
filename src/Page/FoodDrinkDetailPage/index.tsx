@@ -18,7 +18,7 @@ const FoodDrinkDetailPage = () => {
 	};
 
 	useEffect(() => {
-		getFoodDrink(9, currentPage, id).then((res) => {
+		getFoodDrink(pageSize, currentPage, id).then((res) => {
 			setList(res?.data);
 			setTotalItems(res?.total);
 		});
@@ -29,22 +29,20 @@ const FoodDrinkDetailPage = () => {
 				<div className="flex flex-wrap justify-center">
 					{list?.map((item: any) => (
 						<div
-							className="w-full h-48 p-2 bg-white-200
-                        border-2 border-slate-200
-                        rounded-lg flex flex-row
-                        mx-auto mt-6"
+							className="px-[50px] py-[30px] mx-[5px] mb-[10px] min-h-[430px] min-w-[350px] flex-1 md:basis-1/3 xl:basis-1/4 lg:max-w-[350px] "
+							key={item?._id}
 						>
-							<div className="w-3/12 h-full flex items-center">
+							<div className="mb-5 h-[250px]  flex justify-center items-center">
 								<img
-									className="pl-4 pt-2 w-72 h-auto"
-									src={item.image.url}
+									src={item?.image.url}
+									className="h-full w-full object-contain"
 								/>
 							</div>
-							<div className="w-6/12 h-full p-2 ">
-								<h3 className="pl-4 pt-2 text-2xl font-medium">
-									{item.name}
-								</h3>
-								<span className="px-4">{item.description}</span>
+							<h2 className="text-[#290e30] text-[25px] text-center font-bold">
+								{item?.name}
+							</h2>
+							<div className="text-[#1D1D1B] text-[15px] text-center mb-5">
+								<p>{item?.description}</p>
 							</div>
 						</div>
 					))}

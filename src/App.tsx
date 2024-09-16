@@ -12,7 +12,7 @@ import AboutPage from './Page/AboutPage';
 import GuestInfo from './Page/Admin/GuestInfo';
 import Dashboard from './Page/Admin/DashboardPage';
 import User from './Page/Admin/Profile';
-import Category from './Page/Admin/Category';
+import ListCategory from './Page/Admin/Category/ListCategory';
 import Main from './Components/base/Main';
 import ProductPage from './Page/ProductPage';
 import SignIn from './Page/Auth/SignIn';
@@ -21,9 +21,11 @@ import ProductDetailPage from './Page/ProductDetailPage';
 import FoodDrinkDetailPage from './Page/FoodDrinkDetailPage';
 import AddAndEditProduct from './Page/Admin/Products/AddAndEditProduct';
 import ListProduct from './Page/Admin/Products/ListProduct';
-import FoodDrinkCategory from './Page/Admin/FoodDrinkCategory';
+import ListFoodDrinkCategory from './Page/Admin//FoodDrinkCategory/ListFoodDrinkCategory';
 import ListFoodDrink from './Page/Admin/FoodDrink/ListFoodDrink';
 import AddAndEditDrinkFood from './Page/Admin/FoodDrink/AddAndEditFoodDrink';
+import AddAndEditCategory from './Page/Admin/Category/AddAndEditCategory';
+import AddAndEditFoodDrinkCategory from './Page/Admin/FoodDrinkCategory/AddAndEditFoodDrinkCategory';
 
 const App: React.FC = () => {
 	return (
@@ -54,7 +56,15 @@ const App: React.FC = () => {
 						<Route path="guestInfo" element={<GuestInfo />} />
 						<Route
 							path="micro-market-solutions"
-							element={<Category />}
+							element={<ListCategory />}
+						/>
+						<Route
+							path="micro-market-solutions/add"
+							element={<AddAndEditCategory />}
+						/>
+						<Route
+							path="micro-market-solutions/edit/:id"
+							element={<AddAndEditCategory />}
 						/>
 						<Route
 							path="micro-market-solutions/view/:categoryId"
@@ -70,7 +80,15 @@ const App: React.FC = () => {
 						/>
 						<Route
 							path="food-and-drink"
-							element={<FoodDrinkCategory />}
+							element={<ListFoodDrinkCategory />}
+						/>
+						<Route
+							path="food-and-drink/add"
+							element={<AddAndEditFoodDrinkCategory />}
+						/>
+						<Route
+							path="food-and-drink/edit/:id"
+							element={<AddAndEditFoodDrinkCategory />}
 						/>
 						<Route
 							path="food-and-drink/view/:categoryId"

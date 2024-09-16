@@ -18,17 +18,18 @@ import {
 	ExclamationCircleFilled,
 	EyeOutlined,
 } from '@ant-design/icons';
-import withAuth from '../../../Components/Admin/withAuth';
-import { Link } from 'react-router-dom';
 import {
-	deleteFoodDrinkCategoryById,
-	getFoodDrinkCategories,
-} from '../../../service/foodanddrink.services';
+	deleteCategoryById,
+	getCategories,
+} from '../../../service/category.service';
+import withAuth from '../../../Components/Admin/withAuth';
+import { Link, useNavigate } from 'react-router-dom';
 
 const { confirm } = Modal;
 
-const FoodDrinkCategory = () => {
-	useTitle('Food and Drink');
+const ListCategory = () => {
+	useTitle('Micro market solutions');
+	const navigate = useNavigate();
 	type ColumnsType<T> = TableProps<T>['columns'];
 	type TablePaginationConfig = Exclude<
 		GetProp<TableProps, 'pagination'>,
@@ -135,11 +136,11 @@ const FoodDrinkCategory = () => {
 	};
 
 	const handleAdd = () => {
-		console.log('add');
+		navigate('add');
 	};
 
 	const handleEdit = (record: Category) => {
-		setCategory(record);
+		navigate('edit/' + record._id);
 	};
 
 	const handleDelete = (record: Category) => {
@@ -150,7 +151,7 @@ const FoodDrinkCategory = () => {
 			okType: 'danger',
 			cancelText: 'No',
 			onOk() {
-				deleteFoodDrinkCategoryById(record._id)
+				deleteCategoryById(record._id)
 					.then((res) => {
 						setReload(!reload);
 						const deleteInfo: {
@@ -184,7 +185,7 @@ const FoodDrinkCategory = () => {
 
 	const fetchData = () => {
 		setLoading(true);
-		getFoodDrinkCategories(
+		getCategories(
 			tableParams.pagination?.pageSize || 10,
 			tableParams.pagination?.current || 0
 		).then((results) => {
@@ -254,4 +255,4 @@ const FoodDrinkCategory = () => {
 	);
 };
 
-export default withAuth(FoodDrinkCategory);
+export default withAuth(ListCategory);
