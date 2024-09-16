@@ -34,9 +34,12 @@ const App: React.FC = () => {
 				<Routes>
 					<Route path="/" element={<HomePage />}>
 						<Route index element={<Main />} />
-						<Route path="products" element={<ProductPage />} />
 						<Route
-							path="product/:id"
+							path="micro-market-solutions"
+							element={<ProductPage />}
+						/>
+						<Route
+							path="micro-market-solutions/:id"
 							element={<ProductDetailPage />}
 						/>
 						<Route

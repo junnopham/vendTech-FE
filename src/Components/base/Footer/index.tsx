@@ -63,6 +63,9 @@ const Footer = () => {
 					</div>
 				</div>
 			</div>
+			<div className="copy-right text-center pb-1">
+				Copyright © 2024 Ezvending Pty ltd - All Rights Reserved.
+			</div>
 		</div>
 	);
 };

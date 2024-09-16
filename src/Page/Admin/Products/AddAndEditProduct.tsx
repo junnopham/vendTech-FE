@@ -23,6 +23,7 @@ const AddAndEditProduct = () => {
 	const [categoryList, setCategoryList] = useState<CategoryOption[]>([]);
 	const [fileMainList, setFileMainList] = useState<any[]>([]);
 	const [imageList, setImageList] = useState<any[]>([]);
+	const [deletedImage, setDeleteImage] = useState<string[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 	const isEditMode = !!id;
 
@@ -60,18 +61,16 @@ const AddAndEditProduct = () => {
 						]);
 					}
 
-					if (images !== null && images.lenght > 0) {
-						images.map((image: any) => {
-							setImageList([
-								...imageList,
-								{
-									uid: image._id,
-									name: image.name,
-									status: 'done',
-									url: image.url,
-								},
-							]);
+					if (images !== null && images.length > 0) {
+						const list = images.map((image: any) => {
+							return {
+								uid: image._id,
+								name: image.name,
+								status: 'done',
+								url: image.url,
+							};
 						});
+						setImageList(list);
 					}
 
 					setLoading(false);
@@ -115,6 +114,12 @@ const AddAndEditProduct = () => {
 				});
 			}
 
+			if (deletedImage.length > 0) {
+				deletedImage.forEach((image: any) => {
+					formData.append('deletedImages', image);
+				});
+			}
+
 			if (isEditMode) {
 				const updatedProduct = await updateProductById(id!, formData);
 				message.success('Update successfully');
@@ -146,6 +151,10 @@ const AddAndEditProduct = () => {
 		setFileMainList([]);
 	};
 
+	const onRemove = (file: any) => {
+		setDeleteImage([...deletedImage, file.uid]);
+	};
+
 	const beforeUpload = (file: any) => {
 		return false;
 	};
@@ -155,6 +164,7 @@ const AddAndEditProduct = () => {
 	};
 
 	const handleFileChange = ({ fileList }: any) => {
+		console.log('FIle', fileList);
 		setImageList(fileList);
 	};
 
@@ -248,6 +258,7 @@ const AddAndEditProduct = () => {
 						fileList={imageList}
 						beforeUpload={beforeUpload}
 						onChange={handleFileChange}
+						onRemove={onRemove}
 						listType="picture"
 						accept="image/*"
 						multiple={true}
