@@ -1,4 +1,3 @@
-import FoodItem from '../../Components/FoodItem';
 import FormSubmit from '../../Components/FormSubmit';
 import { Link } from 'react-router-dom';
 import { Pagination } from 'antd';
@@ -61,7 +60,6 @@ const FoodAndDrinkPage = () => {
 					/>
 				)}
 			</div>
-			<FoodItem />
 			<FormSubmit />
 		</div>
 	);

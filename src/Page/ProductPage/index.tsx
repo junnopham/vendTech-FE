@@ -85,7 +85,9 @@ const ProductPage = () => {
 								<p>{category?.description}</p>
 							</div>
 							<div className="bg-[#1D1D1B] my-5 h-[1px]"></div>
-							<Link to={`/product/${category?._id}`}>
+							<Link
+								to={`/micro-market-solutions/${category?._id}`}
+							>
 								<button className="bg-[#2D2E82] px-5 py-[10px] text-[15px] font-bold text-white">
 									More Details
 								</button>

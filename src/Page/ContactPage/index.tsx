@@ -3,7 +3,7 @@ import FormLayout from '../../Components/base/Form';
 
 const ContactPage = () => {
 	return (
-		<div className="flex justify-center pb-10 pt-[60px] px-32">
+		<div className="bg-[#F5F5F5] flex justify-center pb-10 pt-[60px] px-32">
 			<div className="flex flex-wrap">
 				<div className="flex-1 basis-1/2 pl-5 py-5 pr-14">
 					<h2 className="text-[#1D1D1B] text-[38px] font-bold leading-[1] mb-5">
