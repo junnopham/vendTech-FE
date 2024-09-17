@@ -1,6 +1,10 @@
 export const navigation = [
 	{ name: 'About Us', href: '/about-us', current: true },
-	{ name: 'Micro market solutions', href: '/products', current: true },
+	{
+		name: 'Micro market solutions',
+		href: '/micro-market-solutions',
+		current: true,
+	},
 	{ name: 'Contact Us', href: '/contact-us', current: false },
 	{ name: 'Food & Drink', href: '/food-and-drink', current: false },
 ];
