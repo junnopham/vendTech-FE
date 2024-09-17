@@ -26,11 +26,13 @@ import ListFoodDrink from './Page/Admin/FoodDrink/ListFoodDrink';
 import AddAndEditDrinkFood from './Page/Admin/FoodDrink/AddAndEditFoodDrink';
 import AddAndEditCategory from './Page/Admin/Category/AddAndEditCategory';
 import AddAndEditFoodDrinkCategory from './Page/Admin/FoodDrinkCategory/AddAndEditFoodDrinkCategory';
+import ScrollToTop from './Components/ScrollToTop';
 
 const App: React.FC = () => {
 	return (
 		<div className="App">
 			<Router>
+				<ScrollToTop />
 				<Routes>
 					<Route path="/" element={<HomePage />}>
 						<Route index element={<Main />} />

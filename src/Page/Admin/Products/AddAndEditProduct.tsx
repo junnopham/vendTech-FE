@@ -164,7 +164,6 @@ const AddAndEditProduct = () => {
 	};
 
 	const handleFileChange = ({ fileList }: any) => {
-		console.log('FIle', fileList);
 		setImageList(fileList);
 	};
 

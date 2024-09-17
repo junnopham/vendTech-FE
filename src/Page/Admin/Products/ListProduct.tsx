@@ -36,13 +36,13 @@ const ListProduct = () => {
 	const columns: ColumnsType<Product> = [
 		{
 			title: 'Image',
-			dataIndex: 'image',
+			dataIndex: 'mainImage',
 			width: '10%',
 			render: (text, record, index) => {
 				return (
 					<img
 						style={{ height: '80px' }}
-						src={record.image?.url || ''}
+						src={record.mainImage?.url || ''}
 						alt=""
 					/>
 				);

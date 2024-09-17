@@ -3,12 +3,24 @@ interface Product {
 	name: string;
 	description: string;
 	action: string;
-	image: {
-		name: string;
-		type: string;
-		url: string;
-	};
+	mainImage: Image;
+	images: Image[];
 	category: string;
+}
+
+interface FoodDrink {
+	_id: string;
+	name: string;
+	description: string;
+	action: string;
+	image: Image;
+	category: string;
+}
+
+interface Image {
+	name: string;
+	type: string;
+	url: string;
 }
 
 interface User {

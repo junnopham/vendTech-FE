@@ -196,6 +196,7 @@ const AddAndEditDrinkFood = () => {
 						onChange={handleFileChange}
 						listType="picture"
 						accept="image/*"
+						multiple={false}
 					>
 						<Button icon={<UploadOutlined />}>Select Image</Button>
 					</Upload>

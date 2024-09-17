@@ -33,7 +33,7 @@ const ListFoodDrink = () => {
 		filters?: Parameters<GetProp<TableProps, 'onChange'>>[1];
 	}
 
-	const columns: ColumnsType<Product> = [
+	const columns: ColumnsType<FoodDrink> = [
 		{
 			title: 'Image',
 			dataIndex: 'image',
@@ -84,7 +84,7 @@ const ListFoodDrink = () => {
 		},
 	];
 
-	const [data, setData] = useState<Product[]>();
+	const [data, setData] = useState<FoodDrink[]>();
 	const [loading, setLoading] = useState(false);
 	const [reload, setReload] = useState(false);
 	const [tableParams, setTableParams] = useState<TableParams>({
@@ -107,11 +107,11 @@ const ListFoodDrink = () => {
 		});
 	};
 
-	const editProduct = (record: Product) => {
+	const editProduct = (record: FoodDrink) => {
 		navigate('edit/' + record._id);
 	};
 
-	const deleteProduct = (record: Product) => {
+	const deleteProduct = (record: FoodDrink) => {
 		confirm({
 			title: 'Are you sure delete this product?',
 			icon: <ExclamationCircleFilled />,
