@@ -35,7 +35,7 @@ const Product = (props: any) => {
 						>
 							<SliderImage data={product} />
 							<div className="w-6/12 h-full p-2 ">
-								<h3 className="pl-4 pt-2 text-2xl font-medium">
+								<h3 className="pl-8 pt-2 text-2xl font-medium">
 									{product.name}
 								</h3>
 								<span className="px-4">
