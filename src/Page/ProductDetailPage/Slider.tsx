@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Slider from 'react-slick';
+import { Image } from 'antd';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './index.css';
@@ -24,7 +25,7 @@ const SliderImage = (props: any) => {
 	return (
 		<>
 			<div className="w-3/12 h-full flex flex-col items-center gap-2">
-				<img
+				<Image
 					className="pl-4 pt-2 w-auto h-60"
 					src={currentImage}
 					alt=""
